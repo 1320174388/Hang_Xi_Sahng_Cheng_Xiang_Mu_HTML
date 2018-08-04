@@ -9,6 +9,33 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
+  /**
+   * 小程序登录接口
+   */
+  cheshi:function(res){
+    wx.login({
+      success:function(res){
+        wx.request({
+          url: 'https://langxue2hanxishangchengxiangmu.dlaotianhuang.com/v1/login_module/login_init/'+res.code,
+          header: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          method:'POST',
+          success: function (res) {
+            console.log(res.data);
+            console.log(
+              JSON.stringify(
+                [
+                  { "styleName": "规格名称", "stylePrice": "123" },
+                    { "styleName": "规格名称", "stylePrice": "123" },
+                ]
+              )
+            )
+          }
+        })
+      }
+    })
+  },
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({
