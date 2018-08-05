@@ -1,13 +1,63 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+<!-- 
+     版权声明 :  地老天荒科技有限公司
+     文件名称 :  index.wxml
+     创 建 者 :  Cheng Tao
+     创建日期 :  2018/08/04 10:02
+     文件描述 :  商城首页
+     历史记录 :  ----------------------- 
+-->
+<view id='wrap'>
+    <!-- 轮播图 -->
+    <swiper class='head-swiper' indicator-dots='true' autoplay='true' interval='2000' indicator-color='#fff' indicator-active-color='#ff4000' circular='true'>
+        <swiper-item wx:for='{{swiperArr}}' wx:key=''>
+            <image src='../images/swipeImage.png'></image>
+        </swiper-item>
+    </swiper>
+    <!-- 中部导航 -->
+    <view class='content-nav'>
+        <view wx:for="{{navArr}}" wx:key="" bindtap='shopJump'>
+            <image src='{{item.img}}' mode='widthFix'></image>
+            <text>{{item.txt}}</text>
+        </view>
+    </view>
+    <!-- 内容 今日特卖 -->
+    <view class='content'>
+        <view class='title-wrap'>
+            <!-- 标题周边圆点 -->
+            <view></view>
+            <view></view>
+            <view></view>
+            <view></view>
+            <!-- 文字 -->
+            <text>今日特卖</text>
+            <text>更多》</text>
+        </view>
+        <view class='content-shop'>
+            <view wx:for="{{shopArr}}" wx:key="index">
+                <image src='{{item.img}}' mode='widthFix'></image>
+                <text>{{item.text}}</text>
+                <text>￥{{item.price}}</text>
+            </view>
+        </view>
+    </view>
+    <!-- 内容 今日特卖 -->
+    <view class='content'>
+        <view class='title-wrap'>
+            <!-- 标题周边圆点 -->
+            <view></view>
+            <view></view>
+            <view></view>
+            <view></view>
+            <!-- 文字 -->
+            <text>精品特卖</text>
+            <text>更多》</text>
+        </view>
+        <view class='content-shop'>
+            <view wx:for="{{shopArr}}" wx:key="index">
+                <image src='{{item.img}}' mode='widthFix'></image>
+                <text>{{item.text}}</text>
+                <text>￥{{item.price}}</text>
+            </view>
+        </view>
+    </view>
 </view>

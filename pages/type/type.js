@@ -1,69 +1,70 @@
-// pages/index/index.js
+// pages/type/type.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    //   轮播图
-      swiperArr:[
-          "../images/swipeImage.png",
-          "../images/swipeImage.png",
-          "../images/swipeImage.png",
-          "../images/swipeImage.png",
-          "../images/swipeImage.png",
-          "../images/swipeImage.png",
-          "../images/swipeImage.png"
+    //   类型列表
+      typeList:[
+          {
+              title: "休闲食品",
+              active:true
+          },
+          {
+              title: "水果生鲜",
+              active: false
+          },
+          {
+              title: "儿童玩具",
+              active: false
+          },
+          {
+              title: "休闲食品",
+              active: false
+          },
+          {
+              title: "水果生鲜",
+              active: false
+          },
+          {
+              title: "儿童玩具",
+              active: false
+          }
+          
       ],
-    //   中部导航栏
-      navArr:[
-          {
-              img:"../images/yifu.png",
-              txt:"休闲服装"
-          },
-          {
-              img: "../images/shengxian.png",
-              txt: "水果生鲜"
-          },
-          {
-              img: "../images/shipin.png",
-              txt: "休闲食品"
-          },
-          {
-              img: "../images/chongzhi.png",
-              txt: "充值充值"
-          },
-          {
-              img: "../images/chaoshi.png",
-              txt: "超市超市"
-          },
-      ],
-    //   今日特卖
-      shopArr:[
+    //   内容列表
+      contentList:[
           {
               img:"../images/content.png",
-              text:"四川梅干菜",
-              price:"5.9"
+              text:"分类一"
           },
           {
               img: "../images/content.png",
-              text: "四川梅干菜",
-              price: "6.1"
+              text: "分类二"
           },
           {
               img: "../images/content.png",
-              text: "四川梅干菜",
-              price: "6.3"
+              text: "分类三"
+          },
+          {
+              img: "../images/content.png",
+              text: "分类四"
           }
-      ]
+          
+      ],
   },
-//   商品页面跳转
-  shopJump:function(){
-      wx.navigateTo({
-          url: '../shopDetail/shopDetail',
-      })
-  },
-
+    // 分类选择
+    typeActive:function(res){
+        var typeList = this.data.typeList;
+        for (var i = 0; i < typeList.length;i++){
+            typeList[i].active = false;
+        }
+        typeList[res.currentTarget.id].active = true;
+        this.setData({
+            typeList: typeList
+        })
+    },
   /**
    * 生命周期函数--监听页面加载
    */
