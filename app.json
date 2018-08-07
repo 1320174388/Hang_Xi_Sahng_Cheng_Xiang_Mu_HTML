@@ -1,11 +1,12 @@
 {
   "pages":[
-    "pages/index/index",
-    "pages/type/type",
-    "pages/shopping/shopping",
-    "pages/my/my",
-    "pages/shopDetail/shopDetail",
-    "pages/goodsDetail/goodsDetail"
+    "pages/home/index/index",
+    "pages/home/type/type",
+    "pages/home/shopping/shopping",
+    "pages/home/my/my",
+    "pages/home/shopDetail/shopDetail",
+    "pages/home/goodsDetail/goodsDetail",
+    "pages/home/collection/collection"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -16,28 +17,28 @@
   "tabBar": {
         "list": [
             {
-                "pagePath": "pages/index/index",
+                "pagePath": "pages/home/index/index",
                 "text": "首页",
-                "iconPath":"pages/images/index-icon.png",
-                "selectedIconPath":"pages/images/index-icon-active.png"
+                "iconPath":"pages/home/images/index-icon.png",
+                "selectedIconPath":"pages/home/images/index-icon-active.png"
             },
             {
-                "pagePath": "pages/type/type",
+                "pagePath": "pages/home/type/type",
                 "text": "分类",
-                "iconPath": "pages/images/type-icon.png",
-                "selectedIconPath": "pages/images/type-icon-active.png"
+                "iconPath": "pages/home/images/type-icon.png",
+                "selectedIconPath": "pages/home/images/type-icon-active.png"
             },
             {
-                "pagePath": "pages/shopping/shopping",
+                "pagePath": "pages/home/shopping/shopping",
                 "text": "购物车",
-                "iconPath": "pages/images/shopping-icon.png",
-                "selectedIconPath": "pages/images/shopping-icon-active.png"
+                "iconPath": "pages/home/images/shopping-icon.png",
+                "selectedIconPath": "pages/home/images/shopping-icon-active.png"
             },
             {
-                "pagePath": "pages/my/my",
+                "pagePath": "pages/home/my/my",
                 "text": "我的",
-                "iconPath": "pages/images/my-icon.png",
-                "selectedIconPath": "pages/images/my-icon-active.png"
+                "iconPath": "pages/home/images/my-icon.png",
+                "selectedIconPath": "pages/home/images/my-icon-active.png"
             }
         ]
     }

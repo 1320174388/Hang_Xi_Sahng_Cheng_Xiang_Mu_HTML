@@ -5,7 +5,29 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    //   菜单栏
+      menuList:[
+          {
+              icon:"../images/fukuan.png",
+              text:"待付款"
+          },
+          {
+              icon: "../images/fahuo.png",
+              text: "待发货"
+          },
+          {
+              icon: "../images/shouhuo.png",
+              text: "待收货"
+          },
+          {
+              icon: "../images/pingjia.svg",
+              text: "待评价"
+          },
+          {
+              icon: "../images/shouhou.png",
+              text: "已完成"
+          },
+      ]
   },
 
   /**

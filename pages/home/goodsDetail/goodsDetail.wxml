@@ -28,7 +28,7 @@
         <image src='../images/edit.png' mode='widthFix'></image>
     </view>
     <!-- 规格 -->
-    <view class='spec'>
+    <view class='spec' bindtap='specAlert'>
         <view>
             <text>规格</text>
             <text>></text>
@@ -63,7 +63,7 @@
         </view>
     </view>
     <!-- 规格弹框 -->
-    <view class='spec-alert'>
-        
+    <view class='spec-alert' hidden='{{specAlertShow}}'>
+        <view wx:for="{{specList}}" wx:key="index" id='{{index}}' class='{{item.active==true?"spec-alert-active":""}}' bindtap='specActiveFun'>{{item.spec}}</view>
     </view>
 </view>

@@ -1,14 +1,11 @@
-// pages/goodsDetail/goodsDetail.js
+// pages/home/collection/collection.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    //   详情和评价切换
-      active:0,
-    //   收藏的图标
-      collectionIcon:'../images/collection.png',
+  
   },
 
   /**
@@ -17,31 +14,7 @@ Page({
   onLoad: function (options) {
   
   },
-//   详情
-  activeDetail:function(){
-      this.setData({
-          active:0
-      })
-  },
-//   评价
-  activeEvaluate: function () {
-      this.setData({
-          active: 1
-      })
-  },
-//   收藏
-  collection:function(){
-      if (this.data.collectionIcon =='../images/collection.png'){
-          this.setData({
-              collectionIcon: '../images/collection-active.svg'
-          })
-      }else{
-          this.setData({
-              collectionIcon: '../images/collection.png'
-          })
-      }
-      
-  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

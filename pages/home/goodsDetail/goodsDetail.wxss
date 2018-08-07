@@ -141,4 +141,31 @@
      color: #fff;
      font-size: 28rpx;
  }
+ /* 规格的弹框 */
+ .spec-alert{
+     width: 100%;
+     position: absolute;
+     left: 0;
+     bottom: 108rpx;
+     background: #E6E6E6;
+     padding: 20rpx 30rpx;
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-around;
+ }
+ .spec-alert>view{
+     width: 283rpx;
+     height: 56rpx;
+     background: #F0F0F0;
+     border: 1rpx solid #ccc;
+     font-size: 28rpx;
+     color: #949494;
+     text-align: center;
+     line-height: 56rpx;
+     margin: 10rpx 0;
+ }
+ .spec-alert>.spec-alert-active{
+     border: 1rpx solid #FF1756;
+     color: #FF1656;
+ }
 
