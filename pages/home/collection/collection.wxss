@@ -1,0 +1,62 @@
+/**
+ *  版权声明 :  地老天荒科技有限公司
+ *  文件名称 :  collection.wxss
+ *  创 建 者 :  Cheng Tao
+ *  创建日期 :  2018/08/07 10:02
+ *  文件描述 :  商城我的收藏样式
+ *  历史记录 :  -----------------------
+ */
+ view{
+     box-sizing: border-box;
+ }
+ .collect-wrap{
+     height: 260rpx;
+     border-bottom: 2rpx solid #F2F2F2;
+     position: relative;
+     padding: 50rpx 70rpx 40rpx 100rpx;
+     font-size: 30rpx;
+     color: #838383;
+     line-height: 70rpx;
+ }
+ .collect-wrap>checkbox{
+     opacity: 0;
+     position: absolute;
+     left: 0;
+     top: 0;
+ }
+ .collect-wrap>view:first-of-type{
+     width: 40rpx;
+     height: 40rpx;
+     position: absolute;
+     left: 33rpx;
+     top: 103rpx;
+     border: 1rpx solid #979797;
+     border-radius: 50%;
+     z-index: 1;
+ }
+ .collect-wrap>image:first-of-type{
+     width: 45rpx;
+     height: 45rpx;
+     position: absolute;
+     left: 30rpx;
+     top: 100rpx;
+     z-index: 2;
+ }
+ .collect-wrap>image:nth-of-type(2){
+     width: 150rpx;
+     height: 150rpx;
+     border: 1rpx solid #000;
+     margin-right: 20rpx;
+     float: left;
+ }
+ .collect-wrap>view:last-of-type{
+     float: left;
+     width: 350rpx;
+     white-space: nowrap;
+     overflow: hidden;
+ }
+ .collect-wrap>view>text:last-of-type{
+     color: #FF1656;
+     font-size: 36rpx;
+     font-weight: bold;
+ }

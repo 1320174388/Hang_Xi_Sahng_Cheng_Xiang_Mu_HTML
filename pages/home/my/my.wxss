@@ -1,0 +1,85 @@
+/**
+ *  版权声明 :  地老天荒科技有限公司
+ *  文件名称 :  my.wxss
+ *  创 建 者 :  Cheng Tao
+ *  创建日期 :  2018/08/04 10:02
+ *  文件描述 :  商城我的样式
+ *  历史记录 :  -----------------------
+ */
+ #wrap{
+     background: #eceae8;
+     height: 100vh;
+ }
+ view{
+     box-sizing: border-box;
+ }
+ /* 头部用户信息 */
+ .header{
+     height: 200rpx;
+     background: #FF6532;
+     padding: 20rpx 40rpx;
+     display: flex;
+ }
+ .header>view:first-of-type{
+     width: 120rpx;
+     height: 120rpx;
+     border-radius: 50%;
+     overflow: hidden;
+ }
+ .header image{
+     width: 100%;
+ }
+ .header>view:nth-of-type(2){
+     color: #fff;
+     font-size: 34rpx;
+     line-height: 100rpx;
+     padding-left: 40rpx;
+ }
+ /* 我的订单 */
+ .my-order{
+     height: 110rpx;
+     background: #fff;
+     padding: 0 20rpx;
+     line-height: 110rpx;
+ }
+ .my-order>text{
+     font-size: 30rpx;
+ }
+ .my-order>text:last-of-type{
+     float: right;
+     color: #BFBFBF;
+ }
+ /* 菜单栏 */
+ .menu{
+     height: 174rpx;
+     display: flex;
+     justify-content: space-around;
+     padding: 30rpx;
+     background: #fff;
+     margin-top: 5rpx;
+ }
+ .menu>view{
+     text-align: center;
+     height: 100%;
+     color: #949494;
+     font-size: 24rpx;
+ }
+ .menu image{
+     height: 40rpx;
+     width: 43rpx;
+     margin-bottom: 20rpx;
+ }
+ /* 菜单栏下按钮 */
+ .content-wrap{
+     height: 100rpx;
+     background: #fff;
+     margin-top: 20rpx;
+     padding: 0 55rpx;
+     line-height: 100rpx;
+     font-size: 28rpx;
+ }
+ .content-wrap>text:last-of-type{
+     color: #979797;
+     float: right;
+     font-size: 36rpx;
+ }

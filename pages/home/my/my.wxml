@@ -1,0 +1,46 @@
+<!-- 
+     版权声明 :  地老天荒科技有限公司
+     文件名称 :  my.wxml
+     创 建 者 :  Cheng Tao
+     创建日期 :  2018/08/04 10:02
+     文件描述 :  商城我的页面
+     历史记录 :  ----------------------- 
+-->
+<view id='wrap'>
+    <!-- 头部信息 -->
+    <view class='header'>
+        <view>
+            <image src='../images/my-head-icon.png' mode='widthFix'></image>
+        </view>
+        <view>
+            用户名
+        </view>
+    </view>
+    <!-- 我的订单 -->
+    <view class='my-order'>
+        <text>我的订单</text>
+        <text>查看全部订单></text>
+    </view>
+    <!-- 菜单栏 -->
+    <view class='menu'>
+        <view wx:for="{{menuList}}" wx:key="index">
+            <image src='{{item.icon}}'></image>
+            <text>\n{{item.text}}</text>
+        </view>
+    </view>
+    <!-- 后台管理 -->
+    <view class='content-wrap'>
+        <text>后台管理</text>
+        <text>></text>
+    </view>
+    <!-- 我的地址 -->
+    <view class='content-wrap'>
+        <text>我的地址</text>
+        <text>></text>
+    </view>
+    <!-- 我的收藏 -->
+    <view class='content-wrap'>
+        <text>我的收藏</text>
+        <text>></text>
+    </view>
+</view>

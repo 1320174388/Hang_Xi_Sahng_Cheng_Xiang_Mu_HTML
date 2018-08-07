@@ -1,0 +1,108 @@
+/**
+ *  版权声明 :  地老天荒科技有限公司
+ *  文件名称 :  index.wxss
+ *  创 建 者 :  Cheng Tao
+ *  创建日期 :  2018/08/04 10:02
+ *  文件描述 :  商城首页样式
+ *  历史记录 :  -----------------------
+ */
+ view{
+     box-sizing: border-box;
+ }
+
+ .head-swiper image{
+     width: 100%;
+ }
+ .content-nav{
+     display: flex;
+     justify-content: space-around;
+     height: 200rpx;
+     padding: 20rpx 0;
+ }
+ .content-nav>view{
+     text-align: center;
+     width: 100rpx;
+ }
+ .content-nav image{
+     width: 93rpx;
+ }
+ .content-nav text{
+     font-size: 24rpx;
+
+ }
+ /* 内容 今日特卖 */
+ .content{
+
+ }
+ .title-wrap{
+     height: 100rpx;
+     border-top: 1rpx solid #E1E1E1;
+     border-bottom: 1rpx solid #E1E1E1;
+     text-align: center;
+     line-height: 100rpx;
+     position: relative;
+ }
+ /* 小圆点统一样式 */
+ .title-wrap>view{
+     position: absolute;
+     border-radius: 50%;
+     background: #FF3D4B;
+     width: 15rpx;
+     height: 15rpx;
+ }
+ /* 文字样式 */
+ .title-wrap>text:first-of-type{
+     color: #FF1058;
+     font-size: 34rpx;
+     font-weight: bold;
+ }
+ .title-wrap>text:last-of-type{
+     font-size: 24rpx;
+     color: #4A4A4A;
+     position: absolute;
+     right: 20rpx;
+     top: 0;
+ }
+ /* 小圆点样式 */
+ .title-wrap>view:first-of-type{
+     width: 8rpx;
+     height: 8rpx;
+     top: 55rpx;
+     left: 270rpx;
+ }
+ .title-wrap>view:nth-of-type(2){
+     top: 45rpx;
+     left: 285rpx;
+ }
+ .title-wrap>view:nth-of-type(3){
+     top: 45rpx;
+     left: 455rpx;
+ }
+ .title-wrap>view:last-of-type{
+     width: 8rpx;
+     height: 8rpx;
+     top: 40rpx;
+     left: 475rpx;
+ }
+ /* 今日特卖内容 */
+ .content-shop{
+     padding: 20rpx 40rpx;
+     display: flex;
+     justify-content: space-around;
+     
+ }
+ .content-shop>view{
+     display: flex;
+     flex-direction: column;
+     text-align: center;
+ }
+ .content-shop image{
+     width: 194rpx;
+ }
+ .content-shop text:first-of-type{
+     font-size: 22rpx;
+ }
+ .content-shop text:nth-of-type(2){
+     color: #FF1656;
+     font-size: 28rpx;
+ }

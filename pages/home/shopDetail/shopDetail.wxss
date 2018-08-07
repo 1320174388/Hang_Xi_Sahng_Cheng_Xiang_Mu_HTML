@@ -1,0 +1,91 @@
+/**
+ *  版权声明 :  地老天荒科技有限公司
+ *  文件名称 :  shopDetail.wxss
+ *  创 建 者 :  Cheng Tao
+ *  创建日期 :  2018/08/04 12:02
+ *  文件描述 :  商城商品详情样式
+ *  历史记录 :  -----------------------
+ */
+ view{
+     box-sizing: border-box;
+ }
+ /* 头部信息 */
+ .header{
+     height: 88rpx;
+     background: #eaeaea;
+     display: flex;
+ }
+ .header>view{
+     flex-grow: 1;
+     height: 88rpx;
+     line-height: 88rpx;
+     text-align: center;
+     font-size: 24rpx;
+     color: #4a4a4a;
+ }
+ .header>view:nth-of-type(3){
+     position: relative;
+ }
+ /* 价格图标 */
+ .header image{
+     width: 32rpx;
+     position: absolute;
+     top: 28rpx;
+     right: 30rpx;
+ }
+ /* 内容 */
+ .content{
+     padding: 40rpx 40rpx 30rpx;
+     display: flex;
+     font-size: 30rpx;
+ }
+ .content>image{
+     width: 200rpx;
+     height: 200rpx;
+ }
+ .content>view{
+     width: 400rpx;
+     margin-left: 40rpx;
+     position: relative;
+ }
+ .content>view>text:first-of-type{
+     font-weight: bold;
+ }
+ .content>view>view:first-of-type{
+     font-size: 26rpx;
+     color: #949494;
+     font-weight: bold;
+     margin-top: 5rpx
+ }
+ .content>view>view:nth-of-type(2){
+     font-size: 22rpx;
+     color: #cfcfcf;
+     border: 1rpx solid #cfcfcf;
+     border-radius: 4rpx;
+     width: 160rpx;
+     margin-top: 20rpx;
+ }
+ .content>view>view:nth-of-type(3){
+     font-size: 28rpx;
+     color: #FF1656;
+     margin: 20rpx 0;
+ }
+ .content>view>text:last-of-type{
+     font-size: 24rpx;
+     color: #9b9b9b;
+ }
+ .content>view>view:last-of-type{
+     position: absolute;
+     width: 65rpx;
+     height: 65rpx;
+     background: #FF1058;
+     right: 0rpx;
+     top: 80%;
+     border-radius: 50%;
+     text-align: center;
+     line-height: 80rpx;
+ }
+ .content>view>view:last-of-type>image{
+     width: 65%;
+     height: 65%;
+ }

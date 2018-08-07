@@ -1,0 +1,23 @@
+<!-- 
+     版权声明 :  地老天荒科技有限公司
+     文件名称 :  type.wxml
+     创 建 者 :  Cheng Tao
+     创建日期 :  2018/08/04 15:14
+     文件描述 :  商城分类
+     历史记录 :  ----------------------- 
+-->
+<view id='wrap'>
+    <!-- 分类 -->
+    <view class='type'>
+        <view wx:for="{{typeList}}" wx:key="index" id='{{index}}' bindtap='typeActive' class='{{item.active==true?"active":""}}'>{{item.title}}</view>
+    </view>
+    <!-- 商品 -->
+    <view class='type-content'>
+        <view wx:for="{{contentList}}" wx:key="index">
+            <image src='{{item.img}}'></image>
+            <text>{{item.text}}</text>
+        </view>
+    </view>
+    <!-- 默认高 -->
+    <view style='height:100vh;width:1%;'></view>
+</view>

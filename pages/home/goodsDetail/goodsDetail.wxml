@@ -1,0 +1,69 @@
+<!-- 
+     版权声明 :  地老天荒科技有限公司
+     文件名称 :  goodsDetail.wxml
+     创 建 者 :  Cheng Tao
+     创建日期 :  2018/08/05 14:39
+     文件描述 :  商城首页
+     历史记录 :  ----------------------- 
+-->
+<view id='wrap'>
+    <!-- 头部banner图 -->
+    <view class='header'>
+        <image src='../images/content.png' mode='widthFix'></image>
+    </view>
+    <!-- 商品描述 -->
+    <view class='describe'>
+        <view>智利白菜</view>
+        <view>这么好的白菜 都想留着自己吃</view>
+        <view>
+            <text>￥5.9</text>\t
+            <text>￥5.9</text>
+            <text>已售 123456份</text>
+        </view>
+        <view>
+            <text>智利</text>\t
+            <text>次日达</text>\t
+            <text>实付满88包邮</text>
+        </view>
+        <image src='../images/edit.png' mode='widthFix'></image>
+    </view>
+    <!-- 规格 -->
+    <view class='spec' bindtap='specAlert'>
+        <view>
+            <text>规格</text>
+            <text>></text>
+        </view>
+        <text>重量：125g*1盒 \n</text>
+        <text>包装：普装 \n</text>
+        <text>保质期：到货可立即实用</text>
+    </view>
+    <!-- 商品评价和图片 -->
+    <view class='goods-detail'>
+        <view class='{{active==0?"active":""}}' bindtap='activeDetail'>详情</view>
+        <view class='{{active==1?"active":""}}' bindtap='activeEvaluate'>评价</view>
+    </view>
+
+    <!-- 底部购买高度 -->
+    <view style='height:108rpx;width:100%;'></view>
+    <!-- 底部footer -->
+    <view class='footer'>
+        <view>
+            <image src='../images/index-icon.png'></image>
+            <text>\n首页</text>
+        </view>
+        <view bindtap='collection'>
+            <image src='{{collectionIcon}}' bindtap=''></image>
+            <text>\n收藏</text>
+        </view>
+        <view>
+            加入购物车
+        </view>
+        <view>
+            立刻购买
+        </view>
+    </view>
+    <!-- 规格弹框 -->
+    <view class='spec-alert' hidden='{{specAlertShow}}'>
+        <view wx:for="{{specList}}" wx:key="index" id='{{index}}' class='{{item.active==true?"spec-alert-active":""}}' bindtap='specActiveFun'>{{item.spec}}</view>
+    </view>
+</view>

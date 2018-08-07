@@ -1,0 +1,27 @@
+<!-- 
+     版权声明 :  地老天荒科技有限公司
+     文件名称 :  collection.wxml
+     创 建 者 :  Cheng Tao
+     创建日期 :  2018/08/07 10:02
+     文件描述 :  商城我的收藏
+     历史记录 :  ----------------------- 
+-->
+<view id='wrap'>
+    <checkbox-group>
+        <view class='collect-wrap'>
+            <!-- 多选框 -->
+            <checkbox></checkbox>
+            <!-- 未选中 -->
+            <view></view>
+            <!-- 选中图标 -->
+            <image src='../images/xuanzhong.svg'></image>
+            <!-- 商品图片 -->
+            <image src='{{}}'></image>
+            <!-- 商品介绍 -->
+            <view>
+                <text>四川梅干菜\n</text>
+                <text>￥5.9</text>
+            </view>
+        </view>
+    </checkbox-group>
+</view>
