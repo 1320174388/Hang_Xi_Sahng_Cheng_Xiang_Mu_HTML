@@ -1,0 +1,42 @@
+<!--pages/home/installAddress/installAddress.wxml-->
+<view class='main'>
+  <view class='tr row b_bot'>
+    <view class='tr_left'>收货人</view>
+    <input class='tr_right' placeholder='收货人姓名'></input>
+  </view>
+  <view class='tr row b_bot'>
+    <view class='tr_left'>手机号码</view>
+    <input class='tr_right' placeholder='配送员联系您的电话' maxlength='11'></input>
+  </view>
+  <view class='tr row b_bot'>
+    <view class='tr_left'>所在城市</view>
+    <view class='tr_right row'>
+      <text class='tr_right_right'>选择您的所在城市</text>
+      <view>></view>
+    </view>
+  </view>
+  <view class='tr row b_bot'>
+    <view class='tr_left'>收货地址</view>
+    <view class='tr_right row'>
+      <view class='tr_right_right row'>
+        <image class='tr_icon' src='../images/address.png'></image>
+        <text>小区/写字楼</text>
+      </view>
+      <view>></view>
+    </view>
+  </view>
+  <view class='tr row b_bot'>
+    <view class='tr_left'>楼号门牌</view>
+    <input class='tr_right' placeholder='楼号/单元/门牌号'></input>
+  </view>
+  <view class='tr row'>
+    <view class='tr_left'>地址类型</view>
+    <view class='tr_right row'>
+      <view class='right_btn'>公司</view>
+      <view class='right_btn'>住宅</view>
+      <view class='right_btn'>学校</view>
+      <view class='right_btn'>其它</view>
+    </view>
+  </view>
+</view>
+<view class='submit'>保持收货信息</view>

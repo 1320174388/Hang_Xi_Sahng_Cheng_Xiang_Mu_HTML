@@ -1,0 +1,46 @@
+/* pages/classificationDetails/classificationDetails.wxss */
+page{
+  background:  #262d49;
+}
+.classification_name {
+  padding: 55rpx 100rpx 42.5rpx 70rpx;
+  display: flex;
+  flex-direction: row;
+  color: #fff;
+}
+
+.classification_name_img {
+  width: 100rpx;
+  height: 100rpx;
+  background: #2d3958;
+  border-radius: 4rpx;
+  margin-right: 56rpx;
+}
+
+.classification_name_cont {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  font-size: 28rpx;
+}
+
+.classification_name_btn {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  font-size: 24rpx;
+}
+
+.name_btn {
+  background: #384268;
+  border: 1rpx solid #525c88;
+  border-radius: 4rpx;
+  text-align: center;
+  line-height: 42rpx;
+  margin-right: 25.33rpx;
+  align-items: center;
+  width: 67rpx;
+  height: 42rpx;
+  margin-top: 18rpx;
+}

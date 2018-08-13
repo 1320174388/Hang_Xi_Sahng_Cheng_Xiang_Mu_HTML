@@ -1,0 +1,74 @@
+/* pages/commodity/commodity.wxss */
+page{
+  background:  #262d49;
+}
+.wrap {
+  border-bottom: 1px solid #555;
+}
+
+.header {
+  background: #2d3958;
+  padding: 35rpx 65rpx 34rpx 59rpx;
+  display: flex;
+}
+
+.head_add {
+  padding: 17rpx 0;
+  width: 100%;
+  height: 100%;
+  font-size: 28rpx;
+  text-align: center;
+  color: #fff;
+  background-image: linear-gradient(-180deg, #5e6a96 0%, #4c557b 100%);
+  border: 1rpx solid #979797;
+  border-radius: 4rpx;
+}
+.classification_name {
+  padding: 34rpx 43.44rpx 39.33rpx 46.67rpx;
+  border-bottom: 1px solid #555;
+  display: flex;
+  flex-direction: row;
+  color: #fff;
+}
+
+.classification_name_img {
+  width: 100rpx;
+  height: 100rpx;
+  background: #2d3958;
+  border-radius: 4rpx;
+  margin-right: 59rpx;
+}
+
+.classification_name_cont {
+}
+
+.tr {
+  /* width: 100rpx; */
+  
+  margin-bottom: 16rpx;
+  font-size: 28rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+
+.classification_name_btn {
+  display: flex;
+  flex-direction: row;
+  
+  /* background: #384268;
+  border: 1rpx solid #434c74;
+  border-radius: 4rpx;
+  margin-right: 20.67rpx;
+  font-size: 16rpx; */
+}
+.name_btn{
+   background: #384268;
+  border: 1rpx solid #434c74;
+  border-radius: 4rpx;
+  margin-right: 21rpx;
+  font-size: 24rpx;
+  width: 67rpx;
+  height: 42rpx;
+  text-align: center;
+  line-height: 42rpx
+}

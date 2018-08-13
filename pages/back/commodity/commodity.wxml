@@ -1,0 +1,20 @@
+<!--pages/commodity/commodity.wxml-->
+
+<view class='header'>
+  <view class='head_add' bindtap='jump_Addcommodity'>添加商品</view>
+</view>
+<view class='classification_name'>
+  <view class='classification_name_img'>
+    <image></image>
+  </view>
+  <view class='classification_name_cont'>
+    <view class='tr'>商品名称</view>
+    <view class='tr'>￥45</view>
+    <view class='tr'>已售</view>
+    <view class='classification_name_btn'>
+      <view class='name_btn' bindtap='jump_commodityDetails'>详情</view>
+      <view class='name_btn'>编辑</view>
+      <view class='name_btn'>删除</view>
+    </view> 
+  </view>
+</view>

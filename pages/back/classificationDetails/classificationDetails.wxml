@@ -1,0 +1,14 @@
+<!--pages/classificationDetails/classificationDetails.wxml-->
+<view class='classification_name'>
+  <view class='classification_name_img'>
+    <image></image>
+  </view>
+  <view class='classification_name_cont'>
+    <view>分类名称()
+    </view>
+    <view class='classification_name_btn'>
+      <view class='name_btn'>编辑</view>
+      <view class='name_btn'>删除</view>
+    </view>
+  </view>
+</view>

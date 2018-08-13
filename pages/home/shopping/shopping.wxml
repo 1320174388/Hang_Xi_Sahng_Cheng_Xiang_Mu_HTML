@@ -1,2 +1,92 @@
 <!--pages/shopping/shopping.wxml-->
-<text>pages/shopping/shopping.wxml</text>
+<!--/**
+ *  版权声明 :  地老天荒科技有限公司
+ *  文件名称 :  shopping.wxml
+ *  创 建 者 :  Ji Xue Lian
+ *  创建日期 :  2018/08/07 21:00
+ *  文件描述 :  商城购物车页面
+ *  历史记录 :  -----------------------
+ */-->
+<view class='header'>
+  <view class='header_th'>
+    <image class='icon'></image>
+    <text>北京</text>
+    <image class='icon'></image>
+  </view>
+</view>
+<view class='list col'>
+  <view class='list_head row_between'>
+    <view class='list_left row'>
+      <view class='click'></view>
+      <view>次日达</view>
+    </view>
+    <view class='list_right row'>
+      <view class='f_color4'>实付满88元包邮，还差18元，去凑单</view>
+      >
+    </view>
+  </view>
+<scroll-view scroll-y="true">
+
+  <view class='list_main row_between' wx:for ="{{carts}}">
+    <view class='main_left row'>
+      <view class='click' bindtap='switchSelect' data-index='{{index}}' data-id='{{index}}'></view>
+      <image class='imgs' src='../images/content.png'></image>
+    </view>
+    
+
+      <view class='main_right col'>
+        <view class='f_color5 list_right_item'>四川梅干菜180-280g*2个</view>
+        <view class='row_between list_right_item'>
+          <view>
+            <text class='f_color'>￥5.9</text>
+            <text>#7.9</text>
+          </view>
+          <!-- 主容器 -->
+          <view class="stepper row">
+            <!-- 减号 -->
+            <view class="{{minusStatus}}" bindtap="bindMinus">-</view>
+            <!-- 数值 -->
+            <input type="number" disabled='true' value="{{input.num}}"></input>
+            <!-- 加号 -->
+            <view class="normal" bindtap="bindPlus">+</view>
+          </view>
+        </view>
+      </view>
+  </view>
+  </scroll-view>
+</view>
+<view class='price'>
+  <view class='price_top row_between'>
+    <view>商品总价</view>
+    <view class='f_color2'>￥65.9</view>
+  </view>
+  <view class='price_bot col'>
+    <view class='row_between'>
+      <view>商品实付</view>
+      <view class='f_color2'>￥65.9</view>
+    </view>
+    <view class='row_between'>
+      <view class='row'>
+        <view class='price_bot_left'>运费</view>
+        <view class='f_color3'>实付满88包邮</view>
+      </view>
+      <view class='f_color2'>￥10</view>
+    </view>
+  </view>
+</view>
+<view class='foot row'>
+  <view class='foot_left row'>
+    <view class='row'>
+      <view class='click' bindtap='allselect'></view>全选
+    </view>
+    <view class='row'>
+      <view>合计：</view>
+      <view class='f_color'>￥{{totalMomey}}</view>
+    </view>
+  </view>
+  <view class='foot_right row_between' bindtap='jump_fillOrider'>
+    <text>去结算</text>
+    <view class='foot_right_r'></view>
+  </view>
+
+</view>

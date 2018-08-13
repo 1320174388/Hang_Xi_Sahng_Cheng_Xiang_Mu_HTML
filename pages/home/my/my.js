@@ -29,7 +29,32 @@ Page({
           },
       ]
   },
+//
+  jump_myOrider: function () {
+    wx.navigateTo({
+      url: '../myOrider/myOrider',
+    })
+  },
+  //
+  jump_installAddress:function(){
+    wx.navigateTo({
+      url: '../installAddress/installAddress',
+    })
+  },
 
+  //
+  jump_myCollect: function () {
+    wx.navigateTo({
+      url: '../myCollect/myCollect',
+    })
+  },
+
+  jump_Background:function(){
+wx.navigateTo({
+  url: "/pages/back/Background/Background",
+})
+  },
+  
   /**
    * 生命周期函数--监听页面加载
    */

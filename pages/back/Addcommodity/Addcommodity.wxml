@@ -1,0 +1,29 @@
+<!--pages/Addcommodity/Addcommodity.wxml-->
+<view class='wrap'>
+  <view class='upimages'>
+    <view class='upimages_img'>点击上传</view>
+    <!-- <view class='upimages_left'>
+      <view class='upimages_left_icon'></view>
+      <view class='upimages_left_icon'></view>
+      <view class='upimages_left_icon'></view>
+    </view> -->
+    <view class="upimages_left">
+  <view wx:for="{{navbar}}" data-idx='{{index}}' class="upimages_left_icon {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap='navbarTap'>{{item}}</view>
+</view>
+  </view>
+
+  <view class='upinput'>
+    <view class='upinput_item'>商品名称</view>
+    <view class='upinput_item'>商品价格</view>
+    <view class='upinput_item'>商品销量</view>
+  </view>
+  <view class='th'>商品规格</view>
+  <view class='specifications'>
+    <view class='specifications_input'>规格款式名称</view>
+    <view class='specifications_input'>规格款式名称</view>
+    <view class='specifications_btn'>+</view>
+  </view>
+  <view class='th'>商品详情</view>
+  <view class='details_btn'>上传图片</view>
+  <view class='addbtn'>确定添加</view>
+</view>

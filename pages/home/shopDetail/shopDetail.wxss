@@ -38,6 +38,7 @@
      padding: 40rpx 40rpx 30rpx;
      display: flex;
      font-size: 30rpx;
+     background: #fff;
  }
  .content>image{
      width: 200rpx;

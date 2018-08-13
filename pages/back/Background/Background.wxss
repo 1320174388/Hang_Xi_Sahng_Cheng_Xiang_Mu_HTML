@@ -1,0 +1,45 @@
+/* pages/Background/Background.wxss */
+
+.container{
+margin: 0;
+padding: 0;
+}
+
+.pages {
+  padding: 74rpx;
+  color: #c4c7d3;
+  background:  #262d49;
+  display: flex;
+  flex-direction: column;
+  font-size: 24rpx;
+}
+
+.wrap {
+  background: #2d3958;
+  border: 1px solid #979797;
+  border-radius: 8px;
+  padding: 30rpx;
+  overflow: hidden;
+  margin-bottom: 66rpx;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 32rpx;
+}
+
+.th {
+  font-size: 28rpx;
+  color: #fff;
+}
+
+.jump {
+  align-items: center;
+}
+
+.main {
+  width: 100%;
+  line-height: 1.8;
+}

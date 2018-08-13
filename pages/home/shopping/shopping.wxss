@@ -1,1 +1,248 @@
 /* pages/shopping/shopping.wxss */
+
+/**
+ *  版权声明 :  地老天荒科技有限公司
+ *  文件名称 :  shopping.wxss
+ *  创 建 者 :  Ji Xue Lian
+ *  创建日期 :  2018/08/07 21:00
+ *  文件描述 :  商城购物车样式
+ *  历史记录 :  -----------------------
+ */
+
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 92rpx;
+  font-family: PingFangSC-Medium;
+  font-size: 36rpx;
+  color: #000;
+  background: #fff;
+}
+
+.icon {
+  width: 30rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  text-align: center;
+}
+
+.header_th {
+  padding: 0 10rpx;
+  margin: auto;
+}
+
+.list {
+  margin: 18rpx 0 12rpx 0;
+  background: #fff;
+}
+
+.list_head {
+  padding: 0 24rpx 0 37rpx;
+  font-size: 26rpx;
+  height: 98rpx;
+}
+
+.list_left {
+  flex: 1;
+  width: 285rpx;
+}
+
+.main_left {
+  margin-right: 36rpx;
+}
+
+.main_right {
+  flex: 1;
+  font-family: PingFangSC-Semibold;
+  font-size: 28rpx;
+  color: #949494;
+  text-align: left;
+  height: 150rpx;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.click {
+  width: 45rpx;
+  height: 45rpx;
+  border-radius: 45rpx;
+  margin-right: 17rpx;
+  border: 1rpx solid #d0d0d0;
+}
+
+.imgs {
+  width: 150rpx;
+  height: 150rpx;
+  background: #ccc;
+}
+
+.list_right {
+  font-family: PingFangSC-Semibold;
+  font-size: 28rpx;
+  color: #949494;
+  text-align: left;
+}
+
+.list_right_item {
+  height: 50%;
+}
+
+.list_main {
+  border-top: 2px solid #f2f2f2;
+  background: #fff;
+  padding: 73rpx 50rpx 17rpx 37rpx;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
+
+.f_color {
+  font-family: PingFangSC-Semibold;
+  font-size: 36rpx;
+  color: #ff1656;
+}
+
+.price {
+  background: #fff;
+  font-family: PingFangSC-Semibold;
+  font-size: 28rpx;
+  color: #949494;
+}
+
+.price_top {
+  height: 108rpx;
+  border-bottom: 2px solid #f2f2f2;
+  padding: 0 40rpx 0 50rpx;
+}
+
+.f_color2 {
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #000;
+}
+
+.f_color3 {
+  font-family: PingFangSC-Semibold;
+  font-size: 28rpx;
+  color: #ccc;
+}
+
+.f_color4 {
+  font-family: PingFangSC-Semibold;
+  font-size: 26rpx;
+  color: #ff1656;
+}
+
+.f_color5 {
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #838383;
+}
+
+.price_bot {
+  border-bottom: 2px solid #f2f2f2;
+  padding: 0 40rpx 24rpx 50rpx;
+  height: 168rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.price_bot_left {
+  margin-right: 30rpx;
+}
+
+.foot {
+  background: #fff;
+  height: 100rpx;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  font-family: PingFangSC-Semibold;
+  font-size: 28rpx;
+  color: #949494;
+}
+
+.foot_left {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.foot_right {
+  background-image: linear-gradient(-206deg, #ff5e42 0%, #ff1058 95%);
+  width: 246rpx;
+  height: 100rpx;
+  padding: 0 28rpx 0 66rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 36rpx;
+  color: #fff;
+}
+
+.foot_right_r {
+  width: 26rpx;
+  height: 26rpx;
+  transform: rotate(90deg);
+background: #FFFFFF;
+color: #fff;
+}
+
+/*主容器*/
+
+.stepper {
+  width: 80px;
+  height: 26px;
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #979797;
+}
+
+/*加号和减号*/
+
+.stepper view {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 48rpx;
+  border: 1rpx solid #979797;
+  line-height: 48rpx;
+  text-align: center;
+  float: left;
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #979797;
+}
+
+/*数值*/
+
+.stepper input {
+  width: 40px;
+  height: 26px;
+  float: left;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 12px;
+  /*给中间的input设置左右边框即可*//* border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc; */
+}
+
+/*普通样式*/
+
+.stepper .normal {
+  color: #979797;
+}
+
+/*禁用样式*/
+
+.stepper .disabled {
+  color: #ccc;
+}

@@ -1,0 +1,21 @@
+<!--pages/home/myCollect//myCollect.wxml-->
+
+<view>
+  <view class='list row'>
+    <view class='list_left row_between'>
+      <view class='list_left_left click'></view>
+      <image src='../images/content.png' class='list_left_right'/>
+    </view>
+    <view class='list_right col'>
+      <view class='list_right_top'>四川梅干菜180-208g*2个</view>
+      <view class='list_right_bot'>￥5.9</view>
+    </view>
+
+  </view>
+  <view class='foot row_between'>
+    <view class='foot_left row'>
+      <view class='click'></view>全选
+    </view>
+    <view class='foot_right'>删除</view>
+  </view>
+</view>

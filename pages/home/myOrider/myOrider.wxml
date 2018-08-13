@@ -1,0 +1,38 @@
+<!--pages/home/myOrider/myOrider.wxml-->
+<view class='wrap'>
+  <!--导航条-->
+  <view class="navbar">
+    <text wx:for="{{navbar}}" data-idx='{{index}}' class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap='navbarTap'>{{item}}</text>
+  </view>
+
+  <view class='main col'>
+    <view class='orider'>订单号：123456</view>
+    <view class='list row'>
+      <image class='list_left' src='../images/content.png'></image>
+      <view class='list_right'>
+        <view class='list_right_item row_between'>商品名称</view>
+        <view class='list_right_item row_between'>商品规格
+          <text>￥15.9</text>
+        </view>
+        <view class='list_right_item row_between'><text></text>
+          <text>*2</text>
+        </view>
+    </view>
+  </view>
+  <view class='price'>
+    <!-- <view class='price_main'> -->
+      <view class='price_item'>运费：0</view>
+      <view class='price_item'>合计<text class='price_item_right'>￥31.8</text>
+        </view>
+        <view class='price_item'>共2件商品</view>
+        <!-- </view> -->
+      </view>
+      <view class='btn row'>
+       
+       
+        <view class='btn3' bindtap='jump_evaluate'>确认收货</view>
+        <view class='btn1'>延长收货</view>
+        <view class='btn2'>查看物流</view>
+      </view>
+    </view>
+  </view>

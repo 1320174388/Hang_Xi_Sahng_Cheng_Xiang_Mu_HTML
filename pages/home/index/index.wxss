@@ -18,6 +18,7 @@
      justify-content: space-around;
      height: 200rpx;
      padding: 20rpx 0;
+     background: #fff;
  }
  .content-nav>view{
      text-align: center;
@@ -32,7 +33,7 @@
  }
  /* 内容 今日特卖 */
  .content{
-
+background: #fff;
  }
  .title-wrap{
      height: 100rpx;

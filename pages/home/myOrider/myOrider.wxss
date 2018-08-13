@@ -1,0 +1,146 @@
+/* pages/home/myOrider/myOrider.wxss */
+
+.navbar {
+  flex: none;
+  display: flex;
+  background: #fff;
+  font-size: 30rpx;
+  color: #000;
+  /* margin-bottom: 7rpx; */
+  border-bottom: 7rpx solid #D8D8D8;
+}
+
+.navbar .item {
+  position: relative;
+  flex: auto;
+  text-align: center;
+  line-height: 88rpx;
+  height: 88rpx;
+}
+
+.navbar .item.active {
+  color: #ff1656;
+  border-bottom: 4rpx solid #ff1656;
+}
+
+.navbar .item.active:after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.wrap{
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  margin-top: 45rpx; 
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.main {
+  margin-bottom: 7rpx;
+  
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #656565;
+  
+}
+
+.orider {
+  height: 74rpx;
+  line-height: 74rpx;
+  padding-left: 34rpx;
+}
+
+.list {
+  height: 216rpx;
+  background: #fbfbfb;
+  border: 1px solid #979797;
+  padding: 0 34rpx;
+}
+
+.list_left {
+  width: 150rpx;
+  height: 150rpx;
+  background: rebeccapurple;
+  margin-right: 34rpx;
+}
+
+.list_right {
+  flex: 1;
+  
+  height: 150rpx;
+}
+.list_right_item{
+  height: 50rpx;
+  line-height: 50rpx;
+}
+
+.price {
+  height: 81rpx;
+  padding-right: 80rpx;
+  float: right;
+  border-bottom: 1px solid #d8d8d8;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.price_item {
+  line-height: 81rpx;
+  margin: 0 15rpx;
+}
+
+.price_item_right {
+  font-family: PingFangSC-Regular;
+  font-size: 34rpx;
+  color: #000;
+}
+
+.btn {
+  padding: 24rpx;
+  font-size: 30rpx;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.btn1 {
+  background-image: linear-gradient(-180deg, #efefef 0%, #dadada 100%);
+  border-radius: 4px;
+  color: #000;
+  width: 154rpx;
+  height: 58rpx;
+   line-height: 58rpx;
+  text-align: center;
+  margin-right: 30rpx;
+  align-items: center;
+}
+
+.btn2 {
+  background-image: linear-gradient(-195deg, #f4af0b 0%, #f2a812 98%);
+  border-radius: 4px;
+  color: #fff;
+  width: 154rpx;
+  height: 58rpx;
+  line-height: 58rpx;
+  text-align: center;
+  margin-right: 30rpx;
+  align-items: center;
+  
+}
+
+.btn3 {
+  background-image: linear-gradient(-206deg, #ff5e42 0%, #ff1058 95%);
+  border-radius: 4px;
+  color: #fff;
+  width: 154rpx;
+  height: 58rpx;
+   line-height: 58rpx;
+  text-align: center;
+  margin-right: 30rpx;
+  
+}

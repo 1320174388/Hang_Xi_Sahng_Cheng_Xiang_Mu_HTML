@@ -1,0 +1,82 @@
+<!--pages/home/evaluate/evaluate.wxml-->
+<view class='pages'>
+  <view class='head'>
+    <view class='banner'>
+      <swiper indicator-dots="false" autoplay="true" interval="2000" duration="500" circular="true">
+        <block wx:for="{{myImgs}}" wx:key="" wx:for-item="m">
+          <swiper-item>
+            <image src="{{m.img_url}}" class="banner-img" mode='{{mode[1]}}'></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <view class='head_cont col'>
+      <view class='head_cont_name'>智利白菜</view>
+      <view class='head_cont_text'>怎么美好的白菜。咋不留着自己吃呢</view>
+      <view class='row_between'>
+        <view class='row'>
+          <text class='f_color'>￥5.9</text>
+          <text> ￥509</text>
+        </view>
+        <view>已售23490份</view>
+      </view>
+      <view class='head_cont_foot row'>
+        <text>智利</text>
+        <text>次日达</text>
+        <text>实付满88包邮</text>
+      </view>
+    </view>
+  </view>
+  <view class='specifications col'>
+    <view class='head_cont_name'>规格</view>
+    <view class='specifications_main col'>
+      <text>重量：125g*1盒</text>
+      <text>包装：普装</text>
+      <text>保质期：到货可立即使用</text>
+    </view>
+  </view>
+
+  <view class='main col'>
+    <!--导航条-->
+    <view class="navbar">
+      <text wx:for="{{navbar}}" data-idx='{{index}}' class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap='navbarTap'>{{item}}</text>
+    </view>
+  </view>
+  <view class='row cont_head'>
+    <view class='cont_head_item row'>
+      <view class='click'></view>全部
+    </view>
+    <view class='cont_head_item row'>
+      <view class='click'></view>有图片
+    </view>
+  </view>
+  <view class='col list_wrap'>
+    <view class='list'>
+      <image class='list_img' src='../images/my-head-icon.png'></image>
+      <view class='col list_right'>
+        <view class='list_right_head row_between'>
+          <view class='name'>123456</view>
+          <view class='time'>7月7日</view>
+        </view>
+        <view class='text'>很新鲜，味道不错</view>
+        <image class='imgs' src='../images/content.png'></image>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='foot row'>
+  <view class='foot_left row'>
+    <view class='foot_left_item col'>
+      <image class='foot_img' src='../images/index-icon.png' bindtap='jump_index'></image>
+      <text>首页</text>
+    </view>
+    <view class='foot_left_item col'>
+      <image class='foot_img' src='../images/collection.png'></image>
+      <text>收藏</text>
+    </view>
+  </view>
+  <view class='foot_right row'>
+    <view class='foot_right_left'>加入购物车</view>
+    <view class='foot_right_right'>立即购买</view>
+  </view>
+</view>

@@ -1,0 +1,24 @@
+<!--pages/Background/Background.wxml-->
+<view class='container pages'>
+  <view class='wrap'>
+    <view class='header'>
+      <view class='th'>分类管理</view>
+      <view class='jump' bindtap='Jump_classification'>设置>></view>
+    </view>
+    <view class='main'>及打击非法哈法if回复回复回复福符号if啊好分分合合时代峰峻课时费建省会计法111shffjkffk经济法发挥科技反馈哈咖啡机阿福卡卡拉涉及到了空间发链接发就发考虑是否就爱看的九分裤</view>
+  </view>
+  <view class='wrap'>
+    <view class='header'>
+      <view class='th'>商品管理</view>
+      <view class='jump' bindtap='Jump_commodity'>设置>></view>
+    </view>
+    <view class='main'>及打击非法哈法if回复回复回复福符号if啊好分分合合时代峰峻课时费建省会计法111</view>
+  </view>
+  <view class='wrap'>
+    <view class='header'>
+      <view class='th'>订单管理</view>
+      <view class='jump' bindtap='Jump_order'>设置>></view>
+    </view>
+    <view class='main'>及打击非法哈法if回复回复回复福符号if啊好分分合合时代峰峻课时费建省会计法111</view>
+  </view>
+</view>

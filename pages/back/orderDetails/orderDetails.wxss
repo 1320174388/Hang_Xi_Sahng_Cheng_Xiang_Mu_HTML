@@ -1,0 +1,121 @@
+/* pages/orderDetails/orderDetails.wxss */
+
+page{
+  background:  #262d49;
+}
+.header{
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+font-size: 28rpx;
+padding: 12rpx 36rpx;
+color: #fff;
+}
+.header_item{
+height: 60rpx;
+line-height: 60rpx;
+}
+.order_name {
+  background: #1a1f35;
+  padding: 24rpx 36rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #fff;
+  letter-spacing: 0;
+  line-height: 48rpx;
+  width: 100%;
+  height: 146rpx;
+}
+
+.order_name_img {
+  margin-right: 39rpx;
+  background: #4c557b;
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.order_name_cont {
+}
+
+.cont_name {
+}
+
+.cont_specifications {
+  display: flex;
+  flex-direction: row;
+}
+
+.cont_specifications_name {
+  text-align: center;
+  background: #2d3958;
+  border: 1px solid #979797;
+  width: 175rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+  margin-left: 16rpx;
+}
+
+.number {
+  height: 77rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #fff;
+  letter-spacing: 0;
+  line-height: 77rpx;
+  border-bottom: 1px solid #0e1222;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.price {
+  width: 100%;
+  height: 110rpx;
+  line-height: 110rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #fff;
+  letter-spacing: 0;
+  text-align: right;
+  display: flex;
+  flex-direction: row-reverse;
+  align-self: right;
+  padding-right: 54rpx;
+  border-bottom: 1px solid #0e1222;
+}
+
+.price_item {
+  margin-right: 59rpx;
+}
+
+.state {
+  display: flex;
+  flex-direction: column;
+  padding: 43rpx 54rpx 0 36rpx;
+  font-size: 28rpx;
+  color: #fff;
+}
+.state_item {
+  padding: 29rpx 0;
+  font-size: 28rpx;
+}
+.state_item_name{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 237rpx;
+  height: 33rpx;
+  margin: 14rpx 0;
+}
+.state_item_btn {
+  background-image: linear-gradient(-180deg, #5e6a96 0%, #4c557b 100%);
+  border: 1px solid #979797;
+  width: 175rpx;
+  height: 52rpx;
+  text-align: center;
+  line-height: 52rpx;
+  margin-top: 15rpx;
+}

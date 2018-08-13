@@ -1,0 +1,71 @@
+/* pages/home/installAddress/installAddress.wxss */
+
+.main {
+  background: #fff;
+  padding: 4rpx 21rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #000;
+  /* line-height: 90px; */
+  margin: 16rpx 0;
+}
+
+.b_bot {
+  border-bottom: 1px solid #ededed;
+}
+
+.tr {
+  height: 90rpx;
+}
+
+.tr_left {
+  width: 160rpx;
+}
+input{
+  flex: 1;
+  background: #fff;
+  font-size: 26rpx;
+color: #949494;
+}
+.tr_right {
+  
+  flex: 1;
+  align-items: center;
+}
+
+.tr_right_left {
+  background: #fff;
+}
+.tr_icon{
+  width: 20rpx;
+  height: 27rpx;
+  margin-right:10rpx; 
+ 
+}
+
+.tr_right_right {
+  flex: 1;
+  border-radius: 2px;
+}
+
+.right_btn {
+  width: 70rpx;
+  text-align: center;
+  height: 34rpx;
+  line-height: 34rpx;
+  margin-right: 30rpx;
+  font-size: 26rpx;
+  color: #949494;
+  border: 2rpx solid #c1c1c1;
+  border-radius: 2rpx;
+}
+
+.submit {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background-image: linear-gradient(-203deg, #ff5e42 0%, #ff1058 96%);
+  font-size: 36rpx;
+  color: #fff;
+}

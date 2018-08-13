@@ -17,7 +17,7 @@
         <view>销量</view>
     </view>
     <view class='content-wrap'>
-        <view class='content' wx:for="{{shopList}}" wx:key="index">
+        <view class='content' wx:for="{{shopList}}" wx:key="index" bindtap='jump_evaluate'>
             <image src='{{item.img}}'></image>
             <view>
                 <text>{{item.title}}</text>

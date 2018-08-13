@@ -65,6 +65,11 @@ Page({
             typeList: typeList
         })
     },
+  jump_shopDetail:function(){
+    wx.navigateTo({
+      url: '../shopDetail/shopDetail',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

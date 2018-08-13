@@ -1,0 +1,45 @@
+<!--pages/classification/classification.wxml-->
+
+<view class='header'>
+  <view class='head_add' bindtap='jump_classificationDetails'>添加分类</view>
+</view>
+<view class='classification_name'>
+  <view class='classification_name_img'>
+    <image></image>
+  </view>
+  <view class='classification_name_cont'>
+    <view>分类名称()
+    </view>
+    <view class='classification_name_btn'>
+      <view class='name_btn'>添加</view>
+      <view class='name_btn'>删除</view>
+      <view class='name_btn'>编辑</view>
+      <view class='name_btn'>查看</view>
+    </view>
+  </view>
+</view>
+
+<view class='classification_content'>
+  <view class='classification_content_main'>
+    <view class='classification_content_img'>
+    <view class='content_img'>原图片
+      <image></image>
+      </view>
+      <view class='classification_content_btn'>上传分类图片</view>
+    </view>
+    <view class='classification_content_name'>
+      <view class='content_name_left'>休闲食品</view>
+      <view class='content_name_cent'></view>
+      
+      <view class='content_name_right'></view>
+    </view>
+    <view class='classification_content_btn'>确定</view>
+  </view>
+  <view class='classification_del'>
+    <view class='classification_del_zi'>确定删除此分类吗?</view>
+    <view class='classification_del_btn'>
+      <view class='del_btnl'>取消</view>
+      <view class='del_btnr'>确定</view>
+    </view>
+  </view>
+</view>
