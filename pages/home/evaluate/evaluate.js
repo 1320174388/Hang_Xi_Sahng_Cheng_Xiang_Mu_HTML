@@ -6,7 +6,7 @@ Page({
    */
   data: {
     myImgs: [],//轮播图
-    navbar: ['商品', ' 详情', '评价'],//导航
+    navbar: ['详情', '评价'],//导航
     currentTab: 0,
   
   },

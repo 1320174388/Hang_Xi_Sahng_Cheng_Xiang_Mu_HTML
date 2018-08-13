@@ -1,31 +1,31 @@
 <!--pages/classification/classification.wxml-->
 
-<view class='header'>
-  <view class='head_add' bindtap='jump_classificationDetails'>添加分类</view>
+<view class='header' bindtap='c_add'>
+  <view class='head_add'>添加分类</view>
 </view>
 <view class='classification_name'>
   <view class='classification_name_img'>
     <image></image>
   </view>
-  <view class='classification_name_cont'>
+  <view class='classification_name_cont' bindtap='c_add'>
     <view>分类名称()
     </view>
     <view class='classification_name_btn'>
-      <view class='name_btn'>添加</view>
+      <view class='name_btn' bindtap='add'>添加</view>
       <view class='name_btn'>删除</view>
       <view class='name_btn'>编辑</view>
-      <view class='name_btn'>查看</view>
+      <view class='name_btn' bindtap='jump_classificationDetails'>查看</view>
     </view>
   </view>
 </view>
 
-<view class='classification_content'>
+<view class='classification_content' hidden='{{hid}}'>
   <view class='classification_content_main'>
     <view class='classification_content_img'>
-    <view class='content_img'>原图片
+    <view class='content_img'>原图片<image src='{{image}}'></image>
       <image></image>
       </view>
-      <view class='classification_content_btn'>上传分类图片</view>
+      <view class='classification_content_btn' bindtap='upImages'>上传分类图片</view>
     </view>
     <view class='classification_content_name'>
       <view class='content_name_left'>休闲食品</view>

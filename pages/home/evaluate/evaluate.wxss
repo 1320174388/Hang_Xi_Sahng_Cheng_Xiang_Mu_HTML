@@ -203,5 +203,7 @@ color: #949494;
 }
 
 .scroll{
-  
+  width: 100%;
+  padding: 20rpx 18rpx;
+  background: #fff;
 }
