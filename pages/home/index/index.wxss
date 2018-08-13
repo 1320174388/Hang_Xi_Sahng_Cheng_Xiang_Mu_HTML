@@ -9,7 +9,15 @@
  view{
      box-sizing: border-box;
  }
+.tel{
+  margin: 2% 4%;
+  background: #fff;
+  text-align: center;
+  color: #E1E1E1;
+  padding: 10rpx 0;
+  border-radius:10rpx; 
 
+}
  .head-swiper image{
      width: 100%;
  }

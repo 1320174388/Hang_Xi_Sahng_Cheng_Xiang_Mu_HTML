@@ -13,6 +13,7 @@
             <image src='../images/swipeImage.png'></image>
         </swiper-item>
     </swiper>
+    <view class='tel' bindtap='tel'>联系我们</view>
     <!-- 中部导航 -->
     <view class='content-nav'>
         <view wx:for="{{navArr}}" wx:key="" bindtap='shopJump'>

@@ -201,3 +201,7 @@ color: #949494;
   height: 108rpx;
   background-image: linear-gradient(-206deg, #ff5e42 0%, #ff1058 95%);
 }
+
+.scroll{
+  
+}

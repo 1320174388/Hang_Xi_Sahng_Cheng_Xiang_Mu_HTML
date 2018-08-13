@@ -15,7 +15,7 @@
 
  }
  .type{
-     width: 35%;
+     width: 28%;
      background: #f3f3f3;
  }
  .type>view{

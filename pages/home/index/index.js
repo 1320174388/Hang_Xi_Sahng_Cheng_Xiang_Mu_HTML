@@ -57,6 +57,11 @@ Page({
           }
       ]
   },
+  tel:function(){
+    wx.makePhoneCall({
+      phoneNumber: '123456',
+    })
+  },
 //   商品页面跳转
   shopJump:function(){
       wx.navigateTo({

@@ -16,7 +16,7 @@
       <view class='row_between'>
         <view class='row'>
           <text class='f_color'>￥5.9</text>
-          <text> ￥509</text>
+         
         </view>
         <view>已售23490份</view>
       </view>
@@ -42,24 +42,34 @@
       <text wx:for="{{navbar}}" data-idx='{{index}}' class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap='navbarTap'>{{item}}</text>
     </view>
   </view>
-  <view class='row cont_head'>
-    <view class='cont_head_item row'>
-      <view class='click'></view>全部
-    </view>
-    <view class='cont_head_item row'>
-      <view class='click'></view>有图片
-    </view>
+
+
+
+
+  <view hidden='{{currentTab!==1}}'>
+    <view wx:for='{{images}}'></view>
   </view>
-  <view class='col list_wrap'>
-    <view class='list'>
-      <image class='list_img' src='../images/my-head-icon.png'></image>
-      <view class='col list_right'>
-        <view class='list_right_head row_between'>
-          <view class='name'>123456</view>
-          <view class='time'>7月7日</view>
+
+  <view hidden="{{currentTab!==0}}">
+    <view class='row cont_head'>
+      <view class='cont_head_item row'>
+        <view class='click'></view>全部
+      </view>
+      <view class='cont_head_item row'>
+        <view class='click'></view>有图片
+      </view>
+    </view>
+    <view class='col list_wrap'>
+      <view class='list'>
+        <image class='list_img' src='../images/my-head-icon.png'></image>
+        <view class='col list_right'>
+          <view class='list_right_head row_between'>
+            <view class='name'>123456</view>
+            <view class='time'>7月7日</view>
+          </view>
+          <view class='text'>很新鲜，味道不错</view>
+          <image class='imgs' src='../images/content.png'></image>
         </view>
-        <view class='text'>很新鲜，味道不错</view>
-        <image class='imgs' src='../images/content.png'></image>
       </view>
     </view>
   </view>
@@ -79,4 +89,12 @@
     <view class='foot_right_left'>加入购物车</view>
     <view class='foot_right_right'>立即购买</view>
   </view>
+</view>
+<view>
+  <scroll-view class='scroll' scroll-y="true">
+    <text>商品名称</text>
+    <view class='scroll_item' wx:for='{{style}}'></view>
+    <view>数量</view>
+    <text>总价</text>
+  </scroll-view>
 </view>
