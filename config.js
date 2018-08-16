@@ -3,7 +3,7 @@
  */
 
 // 此处主机域名修改成腾讯云解决方案分配的域名
-var hostUrl = 'https://langxue2hanxishangchengxiangmu.dlaotianhuang.com/';
+var hostUrl = 'https://langxue2hanxishangchengxiangmu.dlaotianhuang.com';
 
 var config = {
 

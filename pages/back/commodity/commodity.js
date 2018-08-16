@@ -1,4 +1,6 @@
 // pages/commodity/commodity.js
+var config = require('../../../config.js');
+var app = getApp();
 Page({
 
   /**
@@ -23,7 +25,14 @@ wx.navigateTo({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+  var that =this;
+    app.request(
+      config.hostUrl + '/v1/good_module/good_list/' + wx.getStorageSync('token'), {},
+      function (res) {
+        console.log(res)
+        
+      },
+    )
   },
 
   /**

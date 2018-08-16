@@ -1,7 +1,9 @@
 /* pages/Addcommodity/Addcommodity.wxss */
-page{
-  background:  #262d49;
+
+page {
+  background: #262d49;
 }
+
 .wrap {
   padding: 60rpx 105rpx 0 98rpx;
   display: flex;
@@ -10,8 +12,6 @@ page{
   font-size: 28rpx;
   color: #fff;
   letter-spacing: 0;
-  
-  
 }
 
 .upimages {
@@ -19,16 +19,17 @@ page{
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 44rpx;
+  width: 100%;
+  height: 400rpx;
+  border: 1px solid #979797;
+  font-size: 34rpx;
+  line-height: 305rpx;
+  background: #2d3958;
 }
 
 .upimages_img {
-  background: #2d3958;
-  border: 1px solid #979797;
-  width: 403rpx;
-  height: 305rpx;
-  font-size: 34rpx;
-  line-height: 305rpx;
-  text-align: center;
+  width: 100%;
+  height: 100%;
 }
 
 .upimages_left {
@@ -42,9 +43,10 @@ page{
   width: 80rpx;
   height: 80rpx;
 }
+
 .upimages_left_icon.active {
- background: #2D3958;
-border: 1px solid #979797;
+  background: #2d3958;
+  border: 1px solid #979797;
 }
 
 /* .upimages_left_icon.active:after {
@@ -57,13 +59,52 @@ border: 1px solid #979797;
   background: green;
 } */
 
+.selet {
+  width: 100%;
+  margin-bottom: 25rpx;
+  position: relative;
+background: #5e6a96;
+}
+
+.selet_item {
+  width: 40%;
+  padding-left: 20rpx;
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+
+.item_main {
+ 
+  position: absolute;
+  top: 70rpx;
+  width: 48%;
+  border: 1px solid #efefef;
+  box-sizing: border-box;
+  height: 0;
+  overflow-y: auto;
+  border-top: 0;
+  background:green;
+  text-align: center;
+  transition: height 0.3s;
+  z-index: 10;
+}
+
+.item_main_list {
+  display: block;
+  line-height: 40rpx;
+  font-size: 30rpx;
+  border-bottom: 1px solid #efefef;
+  padding: 10rpx;
+}
+
 .upinput {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
 }
-.th{
+
+.th {
   margin-bottom: 21rpx;
 }
 
@@ -81,13 +122,20 @@ border: 1px solid #979797;
   line-height: 52rpx;
 }
 
+input {
+  flex: 1;
+  padding: 0 5rpx;
+  margin-left: 5rpx;
+}
+
 .specifications {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   font-size: 28rpx;
   color: #fff;
-  margin-bottom: 41rpx
+  margin-bottom: 41rpx;
+  flex-flow: row wrap;
 }
 
 .specifications_input {
@@ -101,7 +149,7 @@ border: 1px solid #979797;
   width: 221rpx;
   height: 52rpx;
   line-height: 52rpx;
-  
+  margin-bottom: 10rpx;
 }
 
 .specifications_btn {
@@ -115,7 +163,7 @@ border: 1px solid #979797;
   width: 52rpx;
   height: 52rpx;
   line-height: 52rpx;
-
+  margin-bottom: 10rpx;
 }
 
 .details {
@@ -133,7 +181,7 @@ border: 1px solid #979797;
   width: 243rpx;
   height: 52rpx;
   line-height: 52rpx;
-  margin-bottom: 88rpx;
+  margin-bottom: 50rpx;
 }
 
 .addbtn {

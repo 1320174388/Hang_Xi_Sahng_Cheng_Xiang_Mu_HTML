@@ -1,14 +1,42 @@
 <!--pages/classificationDetails/classificationDetails.wxml-->
-<view class='classification_name'>
-  <view class='classification_name_img'>
-    <image></image>
-  </view>
+<view class='classification_name'  wx:for="{{datas}}" wx:key="index" wx:for-item="d" wx:if="{{d}}" data-index='{{d.class_index}}'>
+  <image class='classification_name_img' src='{{host+"/"+d.class_img_url}}'></image>
   <view class='classification_name_cont'>
-    <view>分类名称()
+    <view>{{d.class_name}}
     </view>
     <view class='classification_name_btn'>
-      <view class='name_btn'>编辑</view>
-      <view class='name_btn'>删除</view>
+      <view class='name_btn' bindtap='c_add' data-index='{{index}}'>编辑</view>
+      <view class='name_btn' bindtap='c_del' data-index='{{index}}'>删除</view>
     </view>
   </view>
+</view>
+<view class='wrap' hidden='{{hid}}'>
+<view class='classification_content'>
+  <form bindsubmit="classAdd">
+    <view class='classification_content_main'>
+      <view class='classification_content_img'>
+        <view>
+          <image src='{{images}}' class='content_img'></image>
+        </view>
+        <view class='classification_content_btn' bindtap='upImages'>上传分类图片</view>
+      </view>
+      <view class='classification_content_name'>
+        <view class='content_name_left'>休闲食品</view>
+        <view class='content_name_right'>
+          <input name='class_name' placeholder='请输入分类名称' bindinput='ipt_name' value='{{names}}'></input>
+        </view>
+      </view>
+      <button class='classification_content_btn' formType="submit"> 确定</button>
+    </view>
+  </form>
+</view>
+</view>
+<view class='wrap' hidden='{{del_hid}}'>
+<view class='classification_del'>
+  <view class='classification_del_zi'>确定删除此分类吗?</view>
+  <view class='classification_del_btn'>
+    <view class='del_btnl'>取消</view>
+    <view class='del_btnr' bindtap='classDel'>确定</view>
+  </view>
+</view>
 </view>
