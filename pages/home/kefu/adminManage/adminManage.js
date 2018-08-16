@@ -221,7 +221,7 @@ Page({
               that.idCardReply();
           }else{
               wx.showToast({
-                  title: '添加失败',
+                  title: e.data.retMsg,
                   icon: 'none',
                   duration: 1000
               })
@@ -304,7 +304,7 @@ Page({
             success: function (res) {
                 if(res.confirm){
                     wx.request({
-                        url: config.service.host + '/v1/talk_module/replys_route/' + wx.getStorageSync('token'),
+                        url: config.hostUrl + '/v1/talk_module/replys_route/' + wx.getStorageSync('token'),
                         method: 'DELETE',
                         data: {
                             sessionIndex: id,
