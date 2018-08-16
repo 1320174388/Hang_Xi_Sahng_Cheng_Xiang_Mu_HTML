@@ -17,7 +17,7 @@
         <view class='ask card'>
             <form bindsubmit='idCardAsk' report-submit>
             <button class='formIdGet' form-type='submit'>
-            <image class='card-icon' src='../../../icon/icon-ask-pressed.svg' style='opacity:{{idCardColorAsk}};'></image>
+            <image class='card-icon' src='../../images/icon-ask-pressed.svg' style='opacity:{{idCardColorAsk}};'></image>
             <view style='opacity:{{idCardColorAsk}};'>用户提问</view>
             </button>
             </form>
@@ -25,7 +25,7 @@
         <view class='reply card'>
         <form  bindsubmit='idCardReply' report-submit>
         <button class='formIdGet' form-type='submit'>
-            <image class='card-icon' src='../../../icon/icon-reply-pressed.svg' style='opacity:{{idCardColorReply}};'></image>
+            <image class='card-icon' src='../../images/icon-reply-pressed.svg' style='opacity:{{idCardColorReply}};'></image>
             <view style='opacity:{{idCardColorReply}};'>自动回复</view>
         </button>
         </form>
