@@ -20,7 +20,11 @@
     "pages/back/Addcommodity/Addcommodity",
     "pages/back/commodityDetails/commodityDetails",
     "pages/back/order/order",
-    "pages/back/orderDetails/orderDetails"
+    "pages/back/orderDetails/orderDetails",
+    "pages/home/kefu/ask/ask",
+    "pages/home/kefu/adminManage/adminManage",
+    "pages/home/kefu/question/question",
+    "pages/home/kefu/questionDetail/questionDetail"
   ],
   "window":{
     "backgroundTextStyle":"light",

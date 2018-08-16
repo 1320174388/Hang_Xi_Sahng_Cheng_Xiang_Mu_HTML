@@ -1,0 +1,41 @@
+<!-- 
+     版权声明 :  地老天荒科技有限公司
+     文件名称 :  talk_plugin_v1_ask.wxml
+     创 建 者 :  Cheng Tao
+     创建日期 :  2018/07/17 17:47
+     文件描述 :  客服模块用户提问wxml文件
+     历史记录 :  ----------------------- 
+-->
+<view id='wrap'>
+    <!-- 头部信息和日期  -->
+    <view class='header'>
+        <text style="font-size:30rpx;align-item:center;">今日</text>\t
+        <text style='color:rgba(255,255,255,0.6);'>{{time}}</text>
+    </view>
+    <!-- 用户提问的问题列表 -->
+    <view class='content-wrap'>
+        <view class='user-ask' wx:for='{{questionList}}' wx:key='index'>
+            <view>
+                <text>标题： </text>
+                <text>{{item.leaving_title}}</text>
+                <form bindsubmit='askContentLook' report-submit id='{{index}}'>
+                <button class='ask-look' form-type='submit'>
+                    查看 >>
+                </button>
+                </form>
+                
+            </view>
+            <view>
+                <text>处理人： <text>{{item.leaving_handle==null?'未处理':item.leaving_handle}}</text></text>
+                <view class='ask-status' wx:if="{{item.leaving_status==1}}">
+                    待处理
+                </view>
+                <view class='ask-status ask-status-complete' wx:if="{{item.leaving_status==2}}">
+                    已处理
+                </view>
+            </view>
+            
+        </view>
+        
+    </view>
+</view>

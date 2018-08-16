@@ -1,0 +1,164 @@
+/**
+ *  版权声明 :  地老天荒科技有限公司
+ *  文件名称 :  talk_plugin_v1_adminManage.wxss
+ *  创 建 者 :  Cheng Tao
+ *  创建日期 :  2018/07/17 19:11
+ *  文件描述 :  客服模块后台管理wxss文件
+ *  历史记录 :  -----------------------
+ */
+page{
+    background: #262c49;
+}
+view{
+    box-sizing: border-box;
+}
+.formIdGet{
+    background: transparent;
+    width: 100%;
+    height: 140rpx;
+    color: #fff;
+    font-size: 24rpx;
+    padding: 0;
+    margin: 0;
+    line-height: 35rpx;
+}
+.formIdGet::after{
+    border: 0;
+}
+/* 头部日期信息 */
+ .header{
+    height: 88rpx;
+    text-align: center;
+    line-height: 88rpx;
+    font-size: 24rpx;
+    color: #fff;
+    border-bottom: 1rpx solid #00163e;
+ }
+ /*用户提问和自动回复  */
+ .id-card{
+     color: #fff;
+     font-size: 22rpx;
+     display: flex;
+ }
+ .card{
+     flex-grow: 1;
+     text-align: center;
+     height: 140rpx;
+     padding-top: 34rpx;
+ }
+ .card-icon{
+     width: 44rpx;
+     height: 41rpx;
+ }
+ /*列表内容  */
+ .content-wrap{
+     padding: 0 40rpx;
+     color: #fff;
+     font-size: 32rpx;
+ }
+ .user-ask{
+     padding: 28rpx 20rpx 38rpx;
+     width: 670rpx;
+     background: #2d3958;
+     border-radius: 3rpx;
+     line-height: 70rpx;
+     margin-top: 30rpx;
+     position: relative;
+ }
+ .ask-look{
+     font-size:24rpx;
+     color:#9197a3;
+     float:right;
+     outline: none;
+     background: transparent;
+     margin: 0;
+     padding: 0;
+     margin-top: 10rpx;
+ }
+ .ask-look::after{
+     border: 0;
+ }
+ .ask-status{
+     font-size: 16rpx;
+     text-align: center;
+     line-height: 74rpx;
+     width: 78rpx;
+     height: 76rpx;
+     border: 1rpx solid #fff;
+     border-radius: 50%;
+     position: absolute;
+     right: 35rpx;
+     bottom: 10rpx;
+     transform: rotate(25deg);
+ }
+ .ask-status-complete{
+     opacity: 0.5;
+ }
+  /*头像  */
+ .headImg{
+     width: 92rpx;
+     height: 92rpx;
+     position: absolute;
+     top: 0;
+ }
+ 
+ /*自动回复内容  */
+ .ask-reply{
+     background: #2d3958;
+     padding: 28rpx 24rpx 18rpx 20rpx;
+     margin-top: 30rpx;
+     font-size: 32rpx;
+     position: relative;
+ }
+ .ask-operation{
+     display: flex;
+     position: absolute;
+     top: 34rpx;
+     right: 27rpx;
+     font-size: 24rpx;
+ }
+ .ask-btn{
+     width: 90rpx;
+     height: 40rpx;
+     margin-right: 20rpx;
+     text-align: center;
+     line-height: 40rpx;
+ }
+ .ask-btn:last-child{
+     margin: 0;
+     background: #262d49;
+ }
+ .ask-content{
+     margin-top: 25rpx;
+ }
+ .foot-time{
+     height: 68rpx;
+     line-height: 68rpx;
+     text-align: right;
+     font-size: 24rpx;
+     opacity: 0.5;
+ }
+ /*添加按钮  */
+ .reply-add{
+    height: 100rpx;
+    width: 100%;
+    position: fixed;
+    background: #2d3958;
+    color: #fff;
+    bottom: 0;
+ }
+ /* 添加框 */
+ .title-inpt{
+     width:300rpx;
+     color: #ccc;
+     position: absolute;
+     top: 27rpx;
+     left: 100rpx;
+ }
+ /* 保存按钮 */
+ .submit{
+     font-size: 24rpx;
+     white-space: nowrap;
+     color: #fff;
+     padding-left: 23rpx;
+ }

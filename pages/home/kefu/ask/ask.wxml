@@ -1,0 +1,107 @@
+<!-- 
+     版权声明 :  地老天荒科技有限公司
+     文件名称 :  talk_plugin_v1_ask.wxml
+     创 建 者 :  Cheng Tao
+     创建日期 :  2018/07/17 17:47
+     文件描述 :  客服模块发起提问wxml文件
+     历史记录 :  ----------------------- 
+-->
+<view class='wrap' id='wrap'>
+  <view wx:for="{{footBtnClick}}" wx:key="index">
+    <!--发起提问  -->
+    <view class='allQuestion-wrap' wx:if="{{item.id==1&&item.index==''}}" id='{{index}}'>
+        <form bindsubmit="ask" report-submit>
+        <view class='time'>{{time}}</view>
+        <view class='question-wrap'>
+            <view class='question-content'>
+                <view class='title'>
+                    <text style='color:#000;'>标题: </text>
+                    <input type='text' placeholder='请输入问题' style='width:470rpx;float:right;margin-top:18rpx;' name="title"></input>
+                </view>
+                <view class='content'>
+                    <text style='color:#000;'>内容:</text>
+                    <textarea class='content-text' placeholder='请输入内容' maxlength='1000' name="textContent" >
+                        
+                    </textarea> 
+                </view>
+            </view>
+            <button class='sub-btn' form-type='submit'>提交</button>
+        </view>
+        </form>
+    </view>
+    
+    <!--历史提问  -->
+    <view class='askHistory' wx:if="{{item.id==2&&item.index==''}}">
+        <view class='time'>{{time}}</view>
+        <view class='ask-wrap'>
+            <view style='text-align:center;'>我的提问</view>
+            <view class='question' wx:for="{{myAsk}}" wx:key="" wx:for-index="askIndex" wx:for-item="askItem" id='{{askIndex}}' catchtap='historyAsk'>
+                <text class='question-text'>{{askItem.leaving_title}}</text>
+                <text class='more'>>></text>
+            </view>
+            
+        </view>
+    </view>
+    <!--历史提问具体内容  -->
+    <view class='allQuestion-wrap' wx:if="{{item.id==4&&item.index==''}}">
+        <form bindsubmit="askContinue" report-submit>
+        <view class='time'>{{time}}</view>
+        <view class='question-wrap'>
+            <view class='question-content'>
+                <view class='title'>
+                    <text style='color:#000;'>标题: </text>
+                    <view style='width:470rpx;float:right;' >
+                        {{historyAskTitle}}
+                    </view>
+                </view>
+                <view class='content'>
+                    
+                    <scroll-view class='content-text' style="height:130rpx;" scroll-y  wx:for='{{historyAskArr}}' wx:key="" wx:for-item="historyAskItem" >
+                    <text wx:if='{{historyAskItem.message_identity=="User"}}' style='color:#000;'>提问内容:</text>\t
+                    <text wx:if='{{historyAskItem.message_identity=="Admin"}}' style='color:#000;'>客服回复:</text>\t
+                        <text>{{historyAskItem.message_content}}
+                        </text>\t
+                    </scroll-view> 
+                </view>
+                
+                <view class='content'>
+                    <text style='color:#000;'>继续提问:</text>
+                    <textarea class='content-text' placeholder='请输入内容' maxlength='1000' name="textContent" value='{{resetContent}}' style="height:130rpx;">
+                        
+                    </textarea> 
+                </view>
+            </view>
+            <button class='sub-btn' form-type='submit' id='{{index}}'>提交</button>
+        </view>
+        </form>
+    </view>
+    <!--客服信息  -->
+    <view class='askHistory' wx:if="{{item.id==0&&item.index==''}}">
+        <view class='time'>{{time}}</view>
+        <view class='ask-wrap'>
+            <view class='question' wx:for="{{kefuInfo}}" wx:key="" wx:for-item="kefuItem" wx:for-index="kefuInfoIndex" id='{{kefuInfoIndex}}' bindtap='kefuReply'>
+                <text class='question-text'>{{kefuItem.session_name}}</text>
+                <text class='more'>>></text>
+            </view>
+            
+        </view>
+    </view>
+    <!--对话框  -->
+    <view class='talk-box' wx:for="{{talkContent}}" wx:for-item="talkContentItem" wx:key="" wx:if="{{item.id==3&&item.index==talkContentItem.index}}">
+        <view class='time'>{{time}}</view>
+
+        <view class='ask-wrap'>
+            <view class='question'>
+                <text class='question-text'>{{talkContentItem.content}}</text>
+                
+            </view>
+            
+        </view>
+    </view>
+  </view>  
+    <!--底部信息  -->
+    <view class='footer'>
+        <view class='footer-btn' wx:for="{{footBtnText}}"  wx:key="index" id="{{index}}" bindtap='askClick'>{{item}}</view>
+    </view>
+  
+</view>

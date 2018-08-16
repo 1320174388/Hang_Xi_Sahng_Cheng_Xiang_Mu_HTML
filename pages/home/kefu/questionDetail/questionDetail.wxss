@@ -1,0 +1,116 @@
+/**
+ *  版权声明 :  地老天荒科技有限公司
+ *  文件名称 :  talk_plugin_v1_adminManage.wxss
+ *  创 建 者 :  Cheng Tao
+ *  创建日期 :  2018/07/17 19:11
+ *  文件描述 :  客服模块后台管理wxss文件
+ *  历史记录 :  -----------------------
+ */
+page{
+    background: #262c49;
+}
+view{
+    box-sizing: border-box;
+}
+.formIdGet{
+    background: transparent;
+    width: 100%;
+    height: 140rpx;
+    color: #fff;
+    font-size: 24rpx;
+    padding: 0;
+    margin: 0;
+    line-height: 35rpx;
+}
+.formIdGet::after{
+    border: 0;
+}
+/* 头部日期信息 */
+ .header{
+    height: 88rpx;
+    text-align: center;
+    line-height: 88rpx;
+    font-size: 24rpx;
+    color: #fff;
+    border-bottom: 1rpx solid #00163e;
+ }
+ /*对话框  */
+ .others{
+     margin-top: 70rpx;
+     padding: 0 30rpx;
+     position: relative;
+ }
+ .own{
+     margin: 70rpx 0 30rpx;
+     text-align: right;
+     padding-right: 25rpx;
+     position: relative;
+ }
+
+ .box{
+     position: relative;
+     display: inline-block;
+     max-width: 430rpx;
+     padding: 14rpx 17rpx 22rpx 25rpx;
+     border-radius: 5rpx;
+     background-color: #fff;
+     line-height: 45rpx;
+     font-size: 28rpx;
+     color: #7c7c7c;
+     margin-left: 30rpx;
+     word-wrap: break-word;
+ }
+ .talk-wrap-own{
+     background-color: #fff;
+     margin-right: 36rpx;
+     padding: 8rpx 21rpx 13rpx 13rpx;
+     text-align: left;
+ }
+  .talk-wrap-other::before{
+    position: absolute;
+    left: -24rpx;
+    top: 10rpx;
+    content: '';
+    border-top: 8rpx solid transparent;
+    border-bottom: 8rpx solid transparent;
+    border-left: 12rpx solid transparent;
+    border-right: 12rpx solid #fff;
+ }
+ .talk-wrap-own::after{
+    position: absolute;
+    left: 100%;
+    top: 10rpx;
+    content: '';
+    border-top: 8rpx solid transparent;
+    border-bottom: 8rpx solid transparent;
+    border-left: 12rpx solid #fff;
+    border-right: 12rpx solid transparent;
+ }
+ /*发送消息  */
+ .sendMessage{
+     width: 100%;
+     height: 100rpx;
+     background: #2c3958;
+     position: fixed; 
+     bottom: 0;
+ }
+ .message{
+     width: 608rpx;
+     height: 72rpx;
+     margin: 13rpx 0 14rpx 30rpx;
+     border-radius: 4rpx;
+     color: #7c7c7c;
+     background: #262c49;
+ }
+ .send{
+     background: #8ddfff;
+     width: 80rpx;
+     height: 60rpx;
+     float: right;
+     font-size: 24rpx;
+     color: #fff;
+     margin: -79rpx 15rpx 0 0;
+     white-space: nowrap;
+     text-align: center;
+     padding: 0;
+ }

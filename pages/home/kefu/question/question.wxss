@@ -1,0 +1,80 @@
+/**
+ *  版权声明 :  地老天荒科技有限公司
+ *  文件名称 :  talk_plugin_v1_adminManage.wxss
+ *  创 建 者 :  Cheng Tao
+ *  创建日期 :  2018/07/17 19:11
+ *  文件描述 :  客服模块后台管理wxss文件
+ *  历史记录 :  -----------------------
+ */
+page{
+    background: #262c49;
+}
+view{
+    box-sizing: border-box;
+}
+.formIdGet{
+    background: transparent;
+    width: 100%;
+    height: 140rpx;
+    color: #fff;
+    font-size: 24rpx;
+    padding: 0;
+    margin: 0;
+    line-height: 35rpx;
+}
+.formIdGet::after{
+    border: 0;
+}
+/* 头部日期信息 */
+ .header{
+    height: 88rpx;
+    text-align: center;
+    line-height: 88rpx;
+    font-size: 24rpx;
+    color: #fff;
+    border-bottom: 1rpx solid #00163e;
+ }
+ /*列表内容  */
+ .content-wrap{
+     padding: 0 40rpx;
+     color: #fff;
+     font-size: 32rpx;
+ }
+ .user-ask{
+     padding: 28rpx 20rpx 38rpx;
+     width: 670rpx;
+     background: #2d3958;
+     border-radius: 3rpx;
+     line-height: 70rpx;
+     margin-top: 30rpx;
+     position: relative;
+ }
+ .ask-look{
+     font-size:24rpx;
+     color:#9197a3;
+     float:right;
+     outline: none;
+     background: transparent;
+     margin: 0;
+     padding: 0;
+     margin-top: 10rpx;
+ }
+ .ask-look::after{
+     border: 0;
+ }
+ .ask-status{
+     font-size: 16rpx;
+     text-align: center;
+     line-height: 74rpx;
+     width: 78rpx;
+     height: 76rpx;
+     border: 1rpx solid #fff;
+     border-radius: 50%;
+     position: absolute;
+     right: 35rpx;
+     top: 120rpx;
+     transform: rotate(25deg);
+ }
+ .ask-status-complete{
+     opacity: 0.5;
+ }

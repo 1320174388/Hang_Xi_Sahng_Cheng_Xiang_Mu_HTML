@@ -1,0 +1,134 @@
+<!-- 
+     版权声明 :  地老天荒科技有限公司
+     文件名称 :  talk_plugin_v1_adminManage.wxml
+     创 建 者 :  Cheng Tao
+     创建日期 :  2018/07/17 19:11
+     文件描述 :  客服模块后台管理wxml文件
+     历史记录 :  ----------------------- 
+-->
+<view id='wrap'>
+    <!-- 头部信息和日期  -->
+    <view class='header'>
+        <text style="font-size:30rpx;align-item:center;">今日</text>\t
+        <text style='color:rgba(255,255,255,0.6);'>{{time}}</text>
+    </view>
+    <!--选项卡部分  -->
+    <view class='id-card'>
+        <view class='ask card'>
+            <form bindsubmit='idCardAsk' report-submit>
+            <button class='formIdGet' form-type='submit'>
+            <image class='card-icon' src='../../../icon/icon-ask-pressed.svg' style='opacity:{{idCardColorAsk}};'></image>
+            <view style='opacity:{{idCardColorAsk}};'>用户提问</view>
+            </button>
+            </form>
+        </view>
+        <view class='reply card'>
+        <form  bindsubmit='idCardReply' report-submit>
+        <button class='formIdGet' form-type='submit'>
+            <image class='card-icon' src='../../../icon/icon-reply-pressed.svg' style='opacity:{{idCardColorReply}};'></image>
+            <view style='opacity:{{idCardColorReply}};'>自动回复</view>
+        </button>
+        </form>
+        </view>
+        
+    </view>
+    <!--用户提问的用户信息  -->
+    <view class='content-wrap' wx:if="{{idCardShow==0}}">
+        <view class='user-ask' wx:for="{{userList}}" wx:key="index">
+            <view>
+                <text style='float:left;'>姓名： </text>
+                <text style='display:inline-block;width:400rpx;word-wrap: break-word;'>{{item.people_name}}</text>
+                <form bindsubmit='askLook' report-submit id='{{index}}'>
+                <button class='ask-look' form-type='submit'>
+                    查看 >>
+                </button>
+                </form>
+            </view>
+            <view>
+                <text>性别： {{item.sex}}</text>
+                <view class='ask-status ask-status-complete' wx:if="{{item.people_status==2}}">
+                    已处理
+                </view>
+                <view class='ask-status' wx:if="{{item.people_status==1}}">
+                    待处理
+                </view>
+            </view>
+        </view>
+        
+    </view>
+    
+    
+    <!-- 自动回复 -->
+    <view class='content-wrap' wx:if="{{idCardShow==3}}">
+        <view class="ask-reply" wx:for="{{askList}}" wx:key="index">
+        
+            <view class='ask-title'>
+                <text>问题: <text>{{item.session_name}}</text></text>
+                <view class='ask-operation'>
+                    <form bindsubmit='replyRemove' report-submit>
+                    <button class='ask-btn submit' id='{{index}}' form-type='submit' style='background:#2d3958;'>删除</button>
+                    </form>
+                    <form bindsubmit='replyEdit' report-submit>
+                    <button class='ask-btn submit' id='{{index}}' form-type='submit'>编辑</button>
+                    </form>
+                </view>
+            </view>
+            <view class='ask-content'>
+                <text>内容:</text>
+                <scroll-view style='margin:30rpx 0;word-wrap:break-word;height:200rpx;' scroll-y>{{item.session_content}}</scroll-view>
+            </view>
+            <view class='foot-time'>
+                2017年3月23日 10:00
+            </view>
+            
+        </view>
+        
+        
+    </view>
+    <!-- 添加自动回复 -->
+    <view class='content-wrap' wx:if="{{addBoolear}}">
+        <form bindsubmit='addAskUpload'  report-submit>
+        <view class="ask-reply">
+            <view class='ask-title'>
+                <text>问题: </text>
+                <input class='title-inpt' placeholder='请输入问题' placeholder-style='color:#ccc;' name="titleInpt"></input>
+                <view class='ask-operation'>
+                    <button class='ask-btn submit' form-type='submit'>保存</button>
+                </view>
+            </view>
+            <view class='ask-content'>
+                <text>内容:</text>
+                <textarea style='margin:30rpx 0;color:#ccc;' placeholder='请输入内容' maxlength='1000' placeholder-style='color:#ccc;' name="askContent"></textarea>
+            </view>
+            <view class='foot-time'>
+                {{asktime}}
+            </view>
+        </view>
+        </form>
+    </view>
+    <!-- 编辑自动回复 -->
+    <view class='content-wrap' wx:if="{{editBoolear}}">
+        <form bindsubmit='replyEditUp' report-submit>
+        <view class="ask-reply">
+            <view class='ask-title'>
+                <text>问题: </text>
+                <input class='title-inpt' placeholder='请输入问题' placeholder-style='color:#ccc;' name="titleInpt" value='{{editShowTitle}}'></input>
+                <view class='ask-operation'>
+                    <button class='ask-btn submit' form-type='submit'>保存</button>
+                </view>
+            </view>
+            <view class='ask-content'>
+                <text>内容:</text>
+                <textarea style='margin:30rpx 0;color:#ccc;' placeholder='请输入内容' maxlength='1000' placeholder-style='color:#ccc;' name="askContent" value='{{editShowContent}}'></textarea>
+            </view>
+            <view class='foot-time'>
+                {{asktime}}
+            </view>
+        </view>
+        </form>
+    </view>
+    <view wx:if="{{idCardShow==3}}" style='height:120rpx;'></view>
+    <form bindsubmit='addAsk' report-submit>
+    <button wx:if="{{idCardShow==3}}" class='reply-add' form-type='submit'>添加</button>
+    </form>
+</view>

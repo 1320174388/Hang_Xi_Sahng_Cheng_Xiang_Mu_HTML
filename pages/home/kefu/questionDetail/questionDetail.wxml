@@ -1,0 +1,38 @@
+<!-- 
+     版权声明 :  地老天荒科技有限公司
+     文件名称 :  talk_plugin_v1_ask.wxml
+     创 建 者 :  Cheng Tao
+     创建日期 :  2018/07/17 17:47
+     文件描述 :  客服模块用户提问wxml文件
+     历史记录 :  ----------------------- 
+-->
+<view id='wrap'>
+    <!-- 头部信息和日期  -->
+    <view class='header'>
+        <text style="font-size:30rpx;align-item:center;">今日</text>\t
+        <text style='color:rgba(255,255,255,0.6);'>{{time}}</text>
+    </view>
+
+    <!-- 用户提问的问题对话 -->
+    <view class='content-wrap' style='padding:0;' wx:for="{{talkList}}" wx:key="index">
+        <view class='others' wx:if="{{item.message_identity=='User'}}">
+            <view style='color:#fff;width:100rpx;overflow:hidden;float:left;text-align:center;border:1rpx solid #fff;'>用户</view>
+            <view class='box talk-wrap-other'>
+                {{item.message_content}}
+            </view>
+        </view>
+        <view class='own' wx:if="{{item.message_identity=='Admin'}}">
+            <view style='color:#fff;width:100rpx;overflow:hidden;float:right;text-align:center;border:1rpx solid #fff;'>客服</view>
+            <view class='box talk-wrap-own'>
+                {{item.message_content}}
+            </view>
+        </view>
+    </view>
+    <!-- 发送消息 -->
+    <view class='sendMessage'>
+        <form bindsubmit='send' report-submit>
+        <input class='message' name='message' value='{{messageInpt}}'></input>
+        <button class='send' form-type='submit'>发送</button>
+        </form>
+    </view>
+</view>

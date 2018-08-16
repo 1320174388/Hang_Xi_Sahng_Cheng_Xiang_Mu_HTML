@@ -61,4 +61,13 @@
             </view>
         </view>
     </view>
+
+    <!-- 客服图标 -->
+    <view class='kefu_rexian_dizhi'>
+        <form bindsubmit='costom' report-submit>
+            <button class='btn' form-type='submit' open-type="getUserInfo">
+                <image src='../images/kefu_icon.png' class='btn_img'></image>
+            </button>
+        </form>
+    </view>
 </view>

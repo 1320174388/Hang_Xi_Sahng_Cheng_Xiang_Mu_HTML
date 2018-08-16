@@ -1,4 +1,5 @@
 // pages/my/my.js
+var config = require("../../../config.js");
 Page({
 
   /**
@@ -112,5 +113,38 @@ wx.navigateTo({
    */
   onShareAppMessage: function () {
   
-  }
+  },
+    // 聊天跳转
+    costom: function (res) {
+        var response = res;
+        // 查看是否授权
+
+        wx.getSetting({
+            success: function (res) {
+                if (res.authSetting['scope.userInfo']) {
+
+                    getApp().request(config.hostUrl + '/v1/login_module/login_admin/' + wx.getStorageSync('token'), {},
+                        function (res) {
+                            if (res.data.retData) {
+                                getApp().request(config.hostUrl + '/v1/talk_module/admin_route/' + wx.getStorageSync('token'), {
+                                    adminFormid: response.detail.formId
+                                }, function (res) {
+                                    console.log(res);
+                                }, 'post');
+                                wx.navigateTo({
+                                    url: '../kefu/adminManage/adminManage',
+                                })
+                            } else {
+                                wx.navigateTo({
+                                    url: '../kefu/ask/ask',
+                                })
+                            }
+                        }, 'post')
+                } else {
+                    return false;
+                }
+            }
+        })
+
+    },
 })

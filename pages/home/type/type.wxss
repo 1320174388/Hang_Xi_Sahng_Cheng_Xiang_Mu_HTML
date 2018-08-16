@@ -55,3 +55,27 @@
      height: 100rpx;
      margin-bottom: 10rpx;
  }
+
+ /*客服  */
+.kefu_rexian_dizhi{
+  position:fixed;
+  top: 360rpx;
+  right: 0;
+  width: 90rpx;
+}
+.btn{
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.41);
+  margin-bottom: 20rpx;
+  padding-top: 3rpx;
+  position: relative;
+}
+.btn_img{
+  width: 45rpx;
+  height: 45rpx;
+  position: absolute;
+  left: 27%;
+  top: 25%;
+}
