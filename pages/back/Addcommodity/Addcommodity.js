@@ -12,13 +12,20 @@ Page({
     index: 0, //
     index1: 0,
     movies: [], //获取轮播图
-    int_name: [{ styleName: 12, stylePrice:32}], //商品规格信息
+    int_name: [{
+      "styleName": "规格名称",
+      "stylePrice": "123"
+    }, {
+      "styleName": "规格名称",
+      "stylePrice": "123"
+    }], //商品规格信息
     upimgs: [], //商品详情图
     names: '', //商品名
     prices: '', //商品价格
     num: '', //商品数
-    gs:[],
+    gs: [],
     hidden: true,
+    show: false,
     selet_show: true,
     selet_show1: true,
     hid: true,
@@ -30,7 +37,6 @@ Page({
       this.setData({
         selet_show: false
       })
-      console.log(this.data.selet_show)
     }
   },
   item_list: function(e) {
@@ -73,12 +79,29 @@ Page({
   upImages: function() {
     var that = this;
     wx.chooseImage({
-      count: 1,
+      count: 9,
       sizeType: ['original'],
       sourceType: ['album', 'camera'],
       success: function(res) {
+        console.log(res)
         that.setData({
-          images: res.tempFilePaths
+          movies: res.tempFilePaths
+        })
+      },
+    })
+  },
+  //上传图片
+  Upimgs: function(e) {
+    console.log(e)
+    var that = this;
+    wx.chooseImage({
+      count: 9,
+      sizeType: ['original'],
+      sourceType: ['album', 'camera'],
+      success: function(res) {
+        console.log(res)
+        that.setData({
+          upimgs: res.tempFilePaths
         })
       },
     })
@@ -93,38 +116,117 @@ Page({
     console.log(this.data.s_parent)
     console.log(this.data.s_parent[index].son_class)
   },
-  upimages: function() {},
 
-  add_name: function(e) {
+
+  int_name_add: function(e) {
+    console.log(e)
+    var arr = {}
     this.setData({
-      s_hid: false,
+      int_name: this.data.int_name.concat(arr)
     })
+    console.log(this.data.int_name)
+    console.log(e.currentTarget.dataset.index)
   },
-  add_name_add:function() {
+  int_name_del: function(e) {
+    console.log(e)
+    var list = this.data.int_name;
 
+    var index = e.currentTarget.dataset.index;
+    list.splice(index, 1);
+    this.setData({
+      int_name: list
+    })
+    if (list == "") {
+      var arr = {};
+      this.setData({
+        int_name: this.data.int_name.concat(arr)
+      })
+    }
+
+    console.log(this.data.int_name)
   },
-  upimgs: function() {},
+  styleName: function(e) {
+    console.log(e)
+    var i = e.currentTarget.dataset.index;
+    console.log(i)
+    this.data.int_name[i].styleName = e.detail.value;
+    this.setData({
+      int_name: this.data.int_name,
+    })
+    console.log(this.data.int_name)
+  },
+  stylePrice: function(e) {
+ 
+     var i = e.currentTarget.dataset.index
+    this.data.int_name[i].stylePrice = e.detail.value;
+    this.setData({
+      int_name: this.data.int_name,
+    })
+    console.log(this.data.int_name)
+  },
 
   classAdd: function(e) {
+    console.log(e)
     var that = this;
+    if (that.data.son_class == "") {
+      var classindex = that.data.s_parent[that.data.index].class_index;
+    } else {
+      var classindex = that.data.son_class[that.data.index1].class_index;
+    }
+    var inpt = that.data.int_name;
+var class_index= JSON.stringify(inpt);
+    /** if (!This.data.movies) {
+      app.point(
+        '请上传轮播图片',
+        'none',
+        1000
+      )
+      return false;
+    }else
+      if (!This.data.upimgs) {
+      app.point(
+        '请上传详情图片',
+        'none',
+        1000
+      )
+      return false;
+    // }**/
+
     //添加商品
-    app.flie(
-      config.hostUrl + 'post/v1/good_module/good_post/' + wx.getStorageSync('token'), {
-        'goodName': that.data.names,
-        'classIndex': that.data.s_parent[that.data.index].son_class.class_index,
-        'goodPrice': that.data.price,
-        'goodSales': that.data.num,
-        'goodStyle': that.data.int_name,
-
+    app.request(
+      config.hostUrl + '/v1/good_module/good_post/' +
+      wx.getStorageSync('token'), {
+        'goodName': e.detail.value.names,
+        'classIndex': classindex,
+        'goodPrice': e.detail.value.price,
+        'goodSales': e.detail.value.num,
+        'goodStyle': class_index,
       },
-      that.data.images[0],
-      'images', {},
       function(res) {
+        console.log(res)
+        console.log(that.data)
+        app.file(
+          config.hostUrl + 'v1/good_module/good_image_post/' + wx.getStorageSync('token'),
+          that.data.movies,
+          'name', {
 
-      }, 'POST',
-    )
+          },
+          function() {
+            回调函数
+          }
+        );
+        app.file(
+          config.hostUrl + 'v1/good_module/good_image_post/' + wx.getStorageSync('token'), {
 
+          },
+          that.data.images,
+          'images', {},
+          function(res) {}
+        )
+
+      }, 'POST')
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -133,7 +235,6 @@ Page({
     app.request(
       config.hostUrl + '/v1/assortment_module/getGoodsClass/' + wx.getStorageSync('token'), {},
       function(res) {
-        console.log(res.data.retData)
         var s = [];
         for (var i = 0; i < res.data.retData.length; i++) {
           s = res.data.retData[i].class_name
@@ -141,7 +242,7 @@ Page({
         console.log()
         that.setData({
           s_parent: res.data.retData,
-          son_class:res.data.retData[0].son_class
+          son_class: res.data.retData[0].son_class
         })
       },
     )

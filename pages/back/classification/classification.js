@@ -55,7 +55,6 @@ Page({
   },
   //删除事件
   del: function(e) {
-
     var index = e.target.dataset.index;
     console.log(index)
     this.setData({
