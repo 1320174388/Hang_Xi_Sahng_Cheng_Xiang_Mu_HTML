@@ -58,6 +58,7 @@ page{
   padding: 24rpx 36rpx;
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
   align-items: center;
   font-family: PingFangSC-Regular;
   font-size: 24rpx;
@@ -73,7 +74,10 @@ page{
   height: 100rpx;
 }
 
-.order_name_cont {
+.order_name_right {
+  float: left;
+  align-self: right; 
+  
 }
 
 .cont_name {
@@ -115,10 +119,10 @@ page{
   font-size: 28rpx;
   color: #fff;
   letter-spacing: 0;
-  text-align: right;
-  display: flex;
-  flex-direction: row-reverse;
-  align-self: right;
+  /* text-align: right;
+  /* display: flex;
+  flex-direction: row-reverse; *
+  align-self: right; */
   padding-right: 54rpx;
   border-bottom: 1px solid #0e1222;
 }
@@ -128,16 +132,10 @@ page{
 }
 
 .state {
-  display: flex;
-  flex-direction: column;
-  padding: 43rpx 54rpx 0 36rpx;
+  padding: 43rpx 54rpx 20rpx 36rpx;
   font-size: 28rpx;
 }
 
-.state_item {
-  padding: 29rpx 0;
-  font-size: 28rpx;
-}
 
 .state_item_btn {
   background-image: linear-gradient(-180deg, #5e6a96 0%, #4c557b 100%);
@@ -147,4 +145,5 @@ page{
   text-align: center;
   line-height: 52rpx;
   margin-top: 15rpx;
+  float: right;
 }

@@ -156,8 +156,8 @@ Page({
     console.log(this.data.int_name)
   },
   stylePrice: function(e) {
- 
-     var i = e.currentTarget.dataset.index
+
+    var i = e.currentTarget.dataset.index
     this.data.int_name[i].stylePrice = e.detail.value;
     this.setData({
       int_name: this.data.int_name,
@@ -174,7 +174,7 @@ Page({
       var classindex = that.data.son_class[that.data.index1].class_index;
     }
     var inpt = that.data.int_name;
-var class_index= JSON.stringify(inpt);
+    var class_index = JSON.stringify(inpt);
     /** if (!This.data.movies) {
       app.point(
         '请上传轮播图片',
@@ -215,18 +215,56 @@ var class_index= JSON.stringify(inpt);
             回调函数
           }
         );
-        app.file(
-          config.hostUrl + 'v1/good_module/good_image_post/' + wx.getStorageSync('token'), {
-
-          },
-          that.data.images,
-          'images', {},
-          function(res) {}
-        )
+        // app.file(
+        //   config.hostUrl + 'v1/good_module/good_image_post/' + wx.getStorageSync('token'), {
+        //   },
+        //   that.data.images,
+        //   'images', {},
+        //   function(res) {}
+        // )
 
       }, 'POST')
   },
+  uploadimgs: function(page, path) {
+    var that = this;
+    var curImgList = [];
+    console.log(that.data.movies)
+    for (var i = 0; i < path.length; i++) {
+      wx.showToast({
+          icon: 'loading',
+          title: '正在上传',
+        }),
+        app.file(
+          config.hostUrl + 'v1/good_module/good_image_post/' + wx.getStorageSync('token'),
+          that.data.movies[i],
+          'file', {
+            'goodIndex':'',
+            'imageType':master,
+            'imageSort':i,
+            'imageFile':'',
+          },
+          function(res) {
+            console.log(res);
+            curImgList.push(res.data);
+            var evalList =this.data.movies;
+            evalList[0] =curImgList;
+            that.setData({
+              movies:evalList
+            })
+            if (res.statusCode != 200) {
+              wx.showModal({
+                title: '提示',
+                content: retMsg,
+                showCancel: false
+              })
+              return; 
+            }
+          },
 
+        )
+    }
+
+  },
   /**
    * 生命周期函数--监听页面加载
    */
