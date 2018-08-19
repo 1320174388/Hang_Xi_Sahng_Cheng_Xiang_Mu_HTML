@@ -21,13 +21,13 @@
   </view>
   <view class='upinput'>
     <view class='upinput_item row'>商品名称
-      <input name='names' placeholder='请输入商品名称' bindinput='ipt_name' value='{{names}}'></input>
+      <input name='names' placeholder='请输入商品名称' value='{{names}}'></input>
     </view>
     <view class='upinput_item row'>商品价格
-      <input name='price' placeholder='请输入商品' bindinput='ipt_price' value='{{price}}'></input>
+      <input name='price' placeholder='请输入商品' value='{{price}}'></input>
     </view>
     <view class='upinput_item row'>商品销量
-      <input name='num' placeholder='请输入商品' bindinput='ipt_num' value='{{num}}'></input>
+      <input name='num' placeholder='请输入商品' value='{{num}}'></input>
     </view>
   </view>
   <view class='th'>商品规格</view>
@@ -44,7 +44,7 @@
   <view class='th'>商品详情</view>
   <view class='specifications row_around'>
   <view class='imgs' wx:for="{{upimgs}}" wx:key=''>
-    <image class='imgs' src='{{item}}'></image>
+    <image class='imgs' mode="widthFix" src='{{item}}'></image>
     </view>
   </view>
   <view class='details_btn' bindtap='Upimgs'>上传图片</view>

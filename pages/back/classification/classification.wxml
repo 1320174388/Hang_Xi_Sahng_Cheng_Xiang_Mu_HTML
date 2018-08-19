@@ -19,33 +19,33 @@
   </view>
 </view>
 
-<view class='wrap' data-hiddenisAddDEl='true' catchtap='hiddenisAddDEl' hidden='{{hid}}'>
-  <view data-hiddenisAddDEl='' catchtap='hiddenisAddDEl' class='classification_content' hidden='{{hid}}'>
-    <form bindsubmit="classAdd" data-status='{{addtype}}'>
-      <view class='classification_content_main'>
-        <view class='classification_content_img'>
-          <view>
-            <image src='{{images}}' class='content_img'></image>
-          </view>
-          <view class='classification_content_btn' bindtap='upImages'>上传分类图片</view>
+<view class='wrap' hidden='{{hid}}'>
+<view class='classification_content'>
+  <form bindsubmit="classAdd" data-status='{{addtype}}'>
+    <view class='classification_content_main'>
+      <view class='classification_content_img'>
+        <view>
+          <image src='{{images}}' class='content_img'></image>
         </view>
-        <view class='classification_content_name'>
-          <view class='content_name_left'>休闲食品</view>
-          <view class='content_name_right'>
-            <input name='class_name' placeholder='请输入分类名称' bindinput='ipt_name' value='{{names}}'></input>
-          </view>
-        </view>
-        <button class='classification_content_btn' formType="submit"> 确定</button>
+        <view class='classification_content_btn' bindtap='upImages'>上传分类图片</view>
       </view>
-    </form>
-  </view>
+      <view class='classification_content_name'>
+        <view class='content_name_left'>休闲食品</view>
+        <view class='content_name_right'>
+          <input name='class_name' placeholder='请输入分类名称' bindinput='ipt_name' value='{{names}}'></input>
+        </view>
+      </view>
+      <button class='classification_content_btn' formType="submit"> 确定</button>
+    </view>
+  </form>
+</view>
 </view>
 <view class='wrap' hidden='{{del_hid}}'>
-  <view class='classification_del'>
-    <view class='classification_del_zi'>确定删除此分类吗?</view>
-    <view class='classification_del_btn'>
-      <view class='del_btnl'>取消</view>
-      <view class='del_btnr' bindtap='classDel'>确定</view>
-    </view>
+<view class='classification_del'>
+  <view class='classification_del_zi'>确定删除此分类吗?</view>
+  <view class='classification_del_btn'>
+    <view class='del_btnl'>取消</view>
+    <view class='del_btnr' bindtap='classDel'>确定</view>
   </view>
+</view>
 </view>
