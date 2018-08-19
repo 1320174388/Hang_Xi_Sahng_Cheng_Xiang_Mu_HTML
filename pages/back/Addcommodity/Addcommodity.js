@@ -41,7 +41,6 @@ Page({
   },
   item_list: function(e) {
     var idx = e.currentTarget.dataset.index;
-    console.log(idx)
     this.setData({
       'index': idx,
       selet_show: true,

@@ -1,18 +1,37 @@
 // pages/home/myCollect//myCollect.js
+var config = require('../../../config.js');
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    datas:'',
+    host: config.hostUrl,
+  },
+  jump_evaluate:function(){
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this;
+    var token = wx.getStorageSync('token')
+    app.request(
+      config.hostUrl + '/v1/collect_module/collect_get', {
+        'userToken': token
+      },
+      function (res) {
+        console.log(res)
+        that.setData({
+          datas:res.data.retData
+        })
+        console.log(that.data.datas)
+      }
+    );
   },
 
   /**

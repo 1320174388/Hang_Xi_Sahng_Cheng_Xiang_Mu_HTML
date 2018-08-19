@@ -1,14 +1,14 @@
 <!--pages/home/myCollect//myCollect.wxml-->
 
 <view>
-  <view class='list row'>
+  <view class='list row' wx:for="{{datas}}" wx:key="" wx:for-item="d" bindtap='jump_evaluate'>
     <view class='list_left row_between'>
       <view class='list_left_left click'></view>
-      <image src='../images/content.png' class='list_left_right'/>
+      <image src='{{host+"/"+d.image_url}}' class='list_left_right'/>
     </view>
     <view class='list_right col'>
-      <view class='list_right_top'>四川梅干菜180-208g*2个</view>
-      <view class='list_right_bot'>￥5.9</view>
+      <view class='list_right_top'>{{d.good_name}}</view>
+      <view class='list_right_bot'>￥5.9{{d.good_price}}</view>
     </view>
 
   </view>

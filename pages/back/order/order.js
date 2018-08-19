@@ -16,19 +16,12 @@ Page({
   navbarTap: function(e) {
     var x = e.currentTarget.dataset.idx+1;
     console.log(x)
-    // this.setData({
-    //   currentTab: e.currentTarget.dataset.idx
-    // })
     var list = [];
     for (var i = 0; i < this.data.orider_list.length; i++) {  
       if (this.data.orider_list[i].order_status==x){
         list[i] =this.data.orider_list[i];
         console.log(list)
         console.log(i)
-        // this.setData({
-        //   currentTab: e.currentTarget.dataset.idx,
-        //   list:list
-        // })
       }
     }
     this.setData({
@@ -66,10 +59,8 @@ Page({
           'list': list
         })
         console.log(res.data.retData)
-        console.log(that.data.list)
-        
-      },
-
+     console.log(that.data.list)   
+      }
     );
   },
 
