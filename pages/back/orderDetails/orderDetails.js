@@ -7,9 +7,69 @@ Page({
    * 页面的初始数据
    */
   data: {
-    orider:""
+    status: ['买家未付款', '买家已付款', '正在发货中', '等待买家收货', '订单已完成'],
+    idx: "",
+    orider: "",
+    btn: ["取消", "确认发货", "确认收货", "完成", "完成"],
+    hid: true,
   },
-
+  btn_tap: function() {
+    var that = this;
+    if (that.data.idx == 0) {
+      app.request(
+        config.hostUrl + '/v1/order_module/setOrderState', {
+          'order_number': that.data.orider.order_number,
+          'order_status': 0
+        },
+        function (res) {},
+      )
+    } else if (that.data.idx == 1) {
+      app.request(
+        config.hostUrl + '/v1/order_module/setOrderState', {
+          'order_number': that.data.orider.order_number,
+          'order_status': 3
+        },
+        function (res) { console.log(res)},
+      )
+    }
+    if (that.data.idx == 2) {
+      app.request(
+        config.hostUrl + '/v1/order_module/setOrderState', {
+          'order_number': that.data.orider.order_number,
+          'order_status': 4
+        },
+        function (res) {console.log(res)},
+      )
+    } else if (that.data.idx == 3 || that.data.idx == 4) {
+      app.request(
+        config.hostUrl + '/v1/order_module/setOrderState', {
+          'order_number': that.data.orider.order_number,
+          'order_status': 5
+        },
+        function (res) {
+          console.log(res)
+        },
+      )
+    }
+    wx.navigateTo({
+      url: '../order/order',
+    })
+  },
+  btn_add_tap: function() {
+    var that = this;
+    app.request(
+      config.hostUrl + '/v1/order_module/setOrderState', {
+        'order_number': that.data.orider.order_number,
+        'order_status': 2
+      },
+      function(res) {
+        console.log(res)
+      },
+    )
+    wx.navigateTo({
+      url: '../order/order',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -22,12 +82,11 @@ Page({
         'order_number': num
       },
       function(res) {
-        console.log(res.data.retData[0])
+        var idx = res.data.retData.order_status - 1;
         that.setData({
-'orider':res.data.retData[0],
-'num':num
+          'orider': res.data.retData,
+          'idx': idx,
         })
-        console.log(that.data.orider)
       },
 
     );

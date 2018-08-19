@@ -22,7 +22,7 @@ Page({
     var list = [];
     for (var i = 0; i < this.data.orider_list.length; i++) {  
       if (this.data.orider_list[i].order_status==x){
-        list =this.data.orider_list[i];
+        list[i] =this.data.orider_list[i];
         console.log(list)
         console.log(i)
         // this.setData({
@@ -35,6 +35,7 @@ Page({
       currentTab: e.currentTarget.dataset.idx,
       list: list
     })
+    console.log(list)
   },
   jump_oriderDetails: function(e) {
     console.log(e)
@@ -53,6 +54,7 @@ Page({
     app.request(
       config.hostUrl + '/v1/order_module/getAllOrderList', {},
       function(res) {
+        console.log(res)
         var list = [];
         for (var i = 0; i < res.data.retData.length; i++) {
           if (res.data.retData[i].order_status == 1) {
@@ -65,7 +67,7 @@ Page({
         })
         console.log(res.data.retData)
         console.log(that.data.list)
-        console.log(that.data.list[0].order_number)
+        
       },
 
     );
