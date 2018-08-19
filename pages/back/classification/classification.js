@@ -280,7 +280,6 @@ Page({
     app.request(
       config.hostUrl + '/v1/assortment_module/getGoodsClass', {},
       function(res) {
-        console.log(res.data.retData)
         that.setData({
           datas: res.data.retData
         })
