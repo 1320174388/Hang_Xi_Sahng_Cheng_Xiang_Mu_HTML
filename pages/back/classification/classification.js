@@ -16,6 +16,17 @@ Page({
     addtype: 0,
     index: '',
   },
+  hiddenisAddDEl:function(res)
+  {
+    if (res.currentTarget.dataset.hiddenisadddel)
+    {
+      this.setData({
+        hid: true,
+        del_hid: true,
+      });
+    }
+      
+  },
   //跳转到查看子类页面
   jump_classificationDetails: function(e) {
     var index = e.currentTarget.dataset.index;
