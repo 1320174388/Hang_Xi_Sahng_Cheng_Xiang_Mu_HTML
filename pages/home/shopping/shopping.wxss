@@ -90,6 +90,22 @@
 .list_right_item {
   height: 50%;
 }
+.list_right_item_right{
+  width: 300rpx;
+  height: 100%;
+
+  color: #000;
+  text-align: center;
+  align-items: center;
+}
+.list_right_item_right .right_flex{
+  flex: 1;
+  height: 100%;
+  line-height: 1.8;
+   padding: auto;
+
+  font-size: 40rpx;
+}
 
 .list_main {
   border-top: 2px solid #f2f2f2;

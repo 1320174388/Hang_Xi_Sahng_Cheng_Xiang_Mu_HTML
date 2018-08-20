@@ -9,17 +9,17 @@
 <view id='wrap'>
     <!-- 分类 -->
     <view class='type'>
-        <view wx:for="{{typeList}}" wx:key="index" id='{{index}}' bindtap='typeActive' class='{{item.active==true?"active":""}}'>{{item.title}}</view>
+        <view wx:for="{{typeList}}" wx:key="index" id='{{index}}' bindtap='typeActive' class='{{item.active==true?"active":""}}'>{{item.class_name}}</view>
     </view>
     <!-- 商品 -->
     <view class='type-content'>
         <view wx:for="{{contentList}}" wx:key="index" bindtap='jump_shopDetail'>
-            <image src='{{item.img}}'></image>
-            <text>{{item.text}}</text>
+            <image src='{{host+"/"+item.class_img_url}}'></image>
+            <text>{{item.class_name}}</text>
         </view>
     </view>
     <!-- 默认高 -->
-    <view style='height:100vh;width:1%;'></view>
+    <view style='height:100vh;width:0.1%;'></view>
     <!-- 客服图标 -->
     <view class='kefu_rexian_dizhi'>
         <form bindsubmit='costom' report-submit>
