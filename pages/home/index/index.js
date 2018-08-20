@@ -6,6 +6,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+
+    //   公告修改的显示和隐藏
+    noEditShow:'none',
+    // 公告显示内容
+    noticeCont:'',
     //   轮播图
       swiperArr:[
           "../images/swipeImage.png",
@@ -76,11 +81,64 @@ Page({
       url: '../evaluate/evaluate',
     })
   },
+  //点击公告弹出修改框
+    noticeShow: function () {
+        var that = this;
+        getApp().request(config.hostUrl + '/v1/login_module/login_admin/' + wx.getStorageSync('token'),
+         {},
+         function (res){
+             if(res.data.retData){
+                that.setData({
+                    noEditShow:'block'
+                })
+             }
+         },
+         "post"
+        );
+    },
+    // 隐藏弹出框事件
+    noticeHide:function(){
+        this.setData({
+            noEditShow:'none'
+        })
+    },
+    // 修改公告事件
+    noticeEdit:function(res){
+        var that = this;
+        getApp().request(config.hostUrl + '/v1/noctice_module/noctice_put/'+wx.getStorageSync('token')
+        ,{
+            nocticeIndex: this.data.noticeCont.notice_index,
+            nocticeContent:res.detail.value.content
+            
+        },function(res){
+            if(res.data.retData){
+                that.setData({
+                    noEditShow: 'none'
+                });
+                getApp().point('修改成功', 'success', 1000);
+                setTimeout(function () {
+                    that.onLoad();
+                }, 1000)
+            }else{
+                getApp().point(res.data.retMsg, 'none', 1000);
+            }
+            
+            
+        },'put');
+
+    },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+      
+      var that = this;
+      getApp().request(config.hostUrl + '/v1/noctice_module/noctice_get',{},function(res){
+          that.setData({
+              noticeCont: res.data.retData,
+          })
+      })
+      
   },
 
   /**
