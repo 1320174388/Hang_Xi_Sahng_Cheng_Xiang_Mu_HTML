@@ -6,17 +6,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isAllSelect: false,//是否全选
-    totalMoney: 0,//价钱总和
+    carts: [], // 购物车列表
+    hasList: false, // 列表是否有数据
+    totalPrice: 0, // 总价，初始为0
+    selectAllStatus: true // 全选状态，默认全选
 
-    carts: [],
-    /*加减按钮*/
-    input: {
-      // input默认是1  
-      num: 1,
-      // 使用data数据对象设置样式名  
-      minusStatus: 'disabled',
-    },
   },
   //跳转到填写订单
   jump_fillOrider: function() {
@@ -25,117 +19,88 @@ Page({
     })
   },
 
-  /* 点击减号 */
-  bindMinus: function() {
-    var input = this.data.input;
-    var num = this.data.input.num;
-    // 如果大于1时，才可以减  
-    if (num > 1) {
-      num--;
+  getTotalPrice() {
+    let carts = this.data.carts; // 获取购物车列表
+    let total = 0;
+    for (let i = 0; i < carts.length; i++) { // 循环列表得到每个数据
+      if (carts[i].selected) { // 判断选中才会计算价格
+        total += carts[i].num * carts[i].price; // 所有价格加起来
+      }
     }
-    // 只有大于一件的时候，才能normal状态，否则disable状态  
-    var minusStatus = num <= 1 ? 'disabled' : 'normal';
-    // 将数值与状态写回  
-    this.setData({
-      'input.num': num,
-      'input.minusStatus': minusStatus,
+    this.setData({ // 最后赋值到data中渲染到页面
+      carts: carts,
+      totalPrice: total.toFixed(2)
     });
-    //获取返回后的数量
-    var num = this.data.input.num;
-    //获取请求后的单价
-    var price = this.data.price;
-    var preferential = this.data.item.preferential;
-    var total_fee = num * price - preferential;
-    if (this.data.sx == true) {
-      var total_fee = num * price - preferential;
-    } else {
-      var total_fee = num * price;
-    }
-    //返回改动后的金额
-    this.setData({
-      'total_fee': total_fee
-    })
-  },
-  /* 点击加号 */
-  bindPlus: function() {
-    var input = this.data.input;
-    var num = this.data.input.num;
-    // 不作过多考虑自增1  
-    num++;
-    // 只有大于一件的时候，才能normal状态，否则disable状态  
-    var minusStatus = num < 1 ? 'disabled' : 'normal';
-    // 将数值与状态写回  
-    this.setData({
-      'input.num': num,
-      'input.minusStatus': minusStatus,
-    });
-    //获取返回后的数量
-    var num = this.data.input.num;
-    //获取请求后的单价
-    var price = this.data.price;
-    var preferential = this.data.item.preferential;
-    var total_fee = num * price - preferential;
-    if (this.data.sx == true) {
-      var total_fee = num * price - preferential;
-    } else {
-      var total_fee = num * price;
-    }
-    //返回改动后的金额
-    this.setData({
-      'total_fee': total_fee
-    })
   },
 
-  //勾选事件处理函数  
-  switchSelect: function(e) {
-    // 获取item项的id，和数组的下标值  
-    var Allprice = 0,
-      i = 0;
-    let id = e.target.dataset.id,
-
-      index = parseInt(e.target.dataset.index);
-    this.data.carts[index].isSelect = !this.data.carts[index].isSelect;
-    //价钱统计
-    if (this.data.carts[index].isSelect) {
-      this.data.totalMoney = this.data.totalMoney + this.data.carts[index].price;
-    } else {
-      this.data.totalMoney = this.data.totalMoney - this.data.carts[index].price;
-    }
-    //是否全选判断
-    for (i = 0; i < this.data.carts.length; i++) {
-      Allprice = Allprice + this.data.carts[i].price;
-    }
-    if (Allprice == this.data.totalMoney) {
-      this.data.isAllSelect = true;
-    } else {
-      this.data.isAllSelect = false;
-    }
+  selectList(e) {
+    const index = e.currentTarget.dataset.index;    // 获取data- 传进来的index
+    let carts = this.data.carts;                    // 获取购物车列表
+    const selected = carts[index].selected;         // 获取当前商品的选中状态
+    carts[index].selected = !selected;              // 改变状态
     this.setData({
-      carts: this.data.carts,
-      totalMoney: this.data.totalMoney,
-      isAllSelect: this.data.isAllSelect,
-    })
+      carts: carts
+    });
+    this.getTotalPrice();                           // 重新获取总价
   },
-  //全选
-  allSelect: function(e) {
-    //处理全选逻辑
-    let i = 0;
-    if (!this.data.isAllSelect) {
-      for (i = 0; i < this.data.carts.length; i++) {
-        this.data.carts[i].isSelect = true;
-        this.data.totalMoney = this.data.totalMoney + this.data.carts[i].price;
-      }
-    } else {
-      for (i = 0; i < this.data.carts.length; i++) {
-        this.data.carts[i].isSelect = false;
-      }
-      this.data.totalMoney = 0;
+
+  selectAll(e) {
+    let selectAllStatus = this.data.selectAllStatus;    // 是否全选状态
+    selectAllStatus = !selectAllStatus;
+    let carts = this.data.carts;
+
+    for (let i = 0; i < carts.length; i++) {
+      carts[i].selected = selectAllStatus;            // 改变所有商品状态
     }
     this.setData({
-      carts: this.data.carts,
-      isAllSelect: !this.data.isAllSelect,
-      totalMoney: this.data.totalMoney,
-    })
+      selectAllStatus: selectAllStatus,
+      carts: carts
+    });
+    this.getTotalPrice();                               // 重新获取总价
+  },
+
+  // 增加数量
+  addCount(e) {
+    const index = e.currentTarget.dataset.index;
+    let carts = this.data.carts;
+    let num = carts[index].num;
+    num = num + 1;
+    carts[index].num = num;
+    this.setData({
+      carts: carts
+    });
+    this.getTotalPrice();
+  },
+  // 减少数量
+  minusCount(e) {
+    const index = e.currentTarget.dataset.index;
+    let carts = this.data.carts;
+    let num = carts[index].num;
+    if (num <= 1) {
+      return false;
+    }
+    num = num - 1;
+    carts[index].num = num;
+    this.setData({
+      carts: carts
+    });
+    this.getTotalPrice();
+  },
+
+  deleteList(e) {
+    const index = e.currentTarget.dataset.index;
+    let carts = this.data.carts;
+    carts.splice(index, 1);              // 删除购物车列表里这个商品
+    this.setData({
+      carts: carts
+    });
+    if (!carts.length) {                  // 如果购物车为空
+      this.setData({
+        hasList: false              // 修改标识为false，显示购物车为空页面
+      });
+    } else {                              // 如果不为空
+      this.getTotalPrice();           // 重新计算总价格
+    }
   },
 
   /**
@@ -156,74 +121,94 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    this.setData({
+      hasList: true, // 既然有数据了，那设为true吧
+      carts: [{
+          id: 1,
+          title: '新鲜芹菜 半斤',
+          image: '/image/s5.png',
+          num: 4,
+          price: 0.01,
+          selected: true
+        },
+        {
+          id: 2,
+          title: '素米 500g',
+          image: '/image/s6.png',
+          num: 1,
+          price: 0.03,
+          selected: true
+        }]
+    });
+console.log(this.data.carts)
 
-  },
+},
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
+/**
+ * 生命周期函数--监听页面隐藏
+ */
+onHide: function() {
 
-  },
+},
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
+/**
+ * 生命周期函数--监听页面卸载
+ */
+onUnload: function() {
 
-  },
+},
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
+/**
+ * 页面相关事件处理函数--监听用户下拉动作
+ */
+onPullDownRefresh: function() {
 
-  },
+},
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
+/**
+ * 页面上拉触底事件的处理函数
+ */
+onReachBottom: function() {
 
-  },
+},
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
+/**
+ * 用户点击右上角分享
+ */
+onShareAppMessage: function() {
 
-  },
-    // 聊天跳转
-    costom: function (res) {
-        var response = res;
-        // 查看是否授权
+},
+// 聊天跳转
+costom: function(res) {
+  var response = res;
+  // 查看是否授权
 
-        wx.getSetting({
-            success: function (res) {
-                if (res.authSetting['scope.userInfo']) {
+  wx.getSetting({
+    success: function(res) {
+      if (res.authSetting['scope.userInfo']) {
 
-                    getApp().request(config.hostUrl + '/v1/login_module/login_admin/' + wx.getStorageSync('token'), {},
-                        function (res) {
-                            if (res.data.retData) {
-                                getApp().request(config.hostUrl + '/v1/talk_module/admin_route/' + wx.getStorageSync('token'), {
-                                    adminFormid: response.detail.formId
-                                }, function (res) {
-                                    console.log(res);
-                                }, 'post');
-                                wx.navigateTo({
-                                    url: '../kefu/adminManage/adminManage',
-                                })
-                            } else {
-                                wx.navigateTo({
-                                    url: '../kefu/ask/ask',
-                                })
-                            }
-                        }, 'post')
-                } else {
-                    return false;
-                }
+        getApp().request(config.hostUrl + '/v1/login_module/login_admin/' + wx.getStorageSync('token'), {},
+          function(res) {
+            if (res.data.retData) {
+              getApp().request(config.hostUrl + '/v1/talk_module/admin_route/' + wx.getStorageSync('token'), {
+                adminFormid: response.detail.formId
+              }, function(res) {
+                console.log(res);
+              }, 'post');
+              wx.navigateTo({
+                url: '../kefu/adminManage/adminManage',
+              })
+            } else {
+              wx.navigateTo({
+                url: '../kefu/ask/ask',
+              })
             }
-        })
+          }, 'post')
+      } else {
+        return false;
+      }
+    }
+  })
 
-    },
+},
 })

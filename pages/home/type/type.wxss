@@ -31,7 +31,7 @@
      background: #fff;
  }
  .type-content{
-     width: 64%;
+     width: 72%;
      padding: 70rpx 0 0 10rpx;
      background: #fff;
  }

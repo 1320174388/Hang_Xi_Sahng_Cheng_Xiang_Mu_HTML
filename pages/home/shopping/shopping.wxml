@@ -17,7 +17,10 @@
 <view class='list col'>
   <view class='list_head row_between'>
     <view class='list_left row'>
-      <view class='click'></view>
+      <!-- wx:if 是否选择显示不同图标 -->
+      <icon wx:if="{{item.selected}}" type="success" color="red" bindtap="selectList" data-index="{{index}}" />
+      <icon wx:else type="circle" bindtap="selectList" data-index="{{index}}" />
+
       <view>次日达</view>
     </view>
     <view class='list_right row'>
@@ -25,45 +28,43 @@
       >
     </view>
   </view>
-<scroll-view scroll-y="true">
+  <scroll-view scroll-y="true">
 
-  <view class='list_main row_between' wx:for ="{{carts}}">
-    <view class='main_left row'>
-      <view class='click' bindtap='switchSelect' data-index='{{index}}' data-id='{{index}}'></view>
-      <image class='imgs' src='../images/content.png'></image>
-    </view>
-    
+    <view class='list_main row_between' wx:for="{{carts}}" wx:key="" wx:for-item="c">
+      <view class='main_left row'>
+        <!-- wx:if 是否选择显示不同图标 -->
+        <icon wx:if="{{c.selected}}" type="success" color="red" bindtap="selectList" data-index="{{index}}" />
+        <icon wx:else type="circle" bindtap="selectList" data-index="{{index}}" />
+
+        <image class='imgs' src='../images/content.png'></image>
+      </view>
+
 
       <view class='main_right col'>
-        <view class='f_color5 list_right_item'>四川梅干菜180-280g*2个</view>
+        <view class='f_color5 list_right_item'>{{c.title}}</view>
         <view class='row_between list_right_item'>
           <view>
-            <text class='f_color'>￥5.9</text>
-            <text>#7.9</text>
+            <text class='f_color'>￥{{c.price}}</text>
           </view>
-          <!-- 主容器 -->
-          <view class="stepper row">
-            <!-- 减号 -->
-            <view class="{{minusStatus}}" bindtap="bindMinus">-</view>
-            <!-- 数值 -->
-            <input type="number" disabled='true' value="{{input.num}}"></input>
-            <!-- 加号 -->
-            <view class="normal" bindtap="bindPlus">+</view>
+          <view class='list_right_item_right row_around'>
+            <text class='right_flex' bindtap="minusCount" data-index="{{index}}">-</text>
+            <text>{{c.num}}</text>
+            <text class='right_flex' bindtap="addCount" data-index="{{index}}">+</text>
           </view>
         </view>
       </view>
-  </view>
+    </view>
   </scroll-view>
 </view>
 <view class='price'>
-  <view class='price_top row_between'>
+  <!-- <view class='price_top row_between'>
     <view>商品总价</view>
     <view class='f_color2'>￥65.9</view>
-  </view>
+  </view> -->
   <view class='price_bot col'>
     <view class='row_between'>
-      <view>商品实付</view>
-      <view class='f_color2'>￥65.9</view>
+      <view>商品总价</view>
+      <view class='f_color2'>￥{{totalPrice}}</view>
     </view>
     <view class='row_between'>
       <view class='row'>
@@ -77,24 +78,28 @@
 <view class='foot row'>
   <view class='foot_left row'>
     <view class='row'>
-      <view class='click' bindtap='allselect'></view>全选
+      <!-- wx:if 是否全选显示不同图标 -->
+      <icon wx:if="{{selectAllStatus}}" type="success_circle" color="red" bindtap="selectAll" />
+      <icon wx:else type="circle" color="gray" bindtap="selectAll" />
+      <text>全选</text>
     </view>
     <view class='row'>
       <view>合计：</view>
-      <view class='f_color'>￥{{totalMomey}}</view>
+      <view class='f_color'>￥{{totalPrice}}</view>
     </view>
   </view>
   <view class='foot_right row_between' bindtap='jump_fillOrider'>
     <text>去结算</text>
-    <view class='foot_right_r'></view>
+    <text>></text>
+    <!-- <view class='foot_right_r'>></view> -->
   </view>
 
 </view>
 <!-- 客服图标 -->
-    <view class='kefu_rexian_dizhi'>
-        <form bindsubmit='costom' report-submit>
-            <button class='btn' form-type='submit' open-type="getUserInfo">
-                <image src='../images/kefu_icon.png' class='btn_img'></image>
-            </button>
-        </form>
-    </view>
+<view class='kefu_rexian_dizhi'>
+  <form bindsubmit='costom' report-submit>
+    <button class='btn' form-type='submit' open-type="getUserInfo">
+      <image src='../images/kefu_icon.png' class='btn_img'></image>
+    </button>
+  </form>
+</view>

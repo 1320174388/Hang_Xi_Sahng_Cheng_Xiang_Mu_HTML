@@ -1,5 +1,6 @@
 // pages/type/type.js
-var config = require("../../../config.js");
+var config = require('../../../config.js');
+var app = getApp();
 Page({
 
   /**
@@ -8,62 +9,28 @@ Page({
   data: {
     //   类型列表
       typeList:[
-          {
-              title: "休闲食品",
-              active:true
-          },
-          {
-              title: "水果生鲜",
-              active: false
-          },
-          {
-              title: "儿童玩具",
-              active: false
-          },
-          {
-              title: "休闲食品",
-              active: false
-          },
-          {
-              title: "水果生鲜",
-              active: false
-          },
-          {
-              title: "儿童玩具",
-              active: false
-          }
-          
-      ],
+          // {
+          //     title: "休闲食品",
+          //     active:true
+          // }
+           ],
+           
     //   内容列表
-      contentList:[
-          {
-              img:"../images/content.png",
-              text:"分类一"
-          },
-          {
-              img: "../images/content.png",
-              text: "分类二"
-          },
-          {
-              img: "../images/content.png",
-              text: "分类三"
-          },
-          {
-              img: "../images/content.png",
-              text: "分类四"
-          }
-          
-      ],
+      contentList:[],
+    host: config.hostUrl,
   },
     // 分类选择
     typeActive:function(res){
+      console.log(res)
         var typeList = this.data.typeList;
         for (var i = 0; i < typeList.length;i++){
             typeList[i].active = false;
         }
         typeList[res.currentTarget.id].active = true;
+      console.log(typeList[res.currentTarget.id].son_class)
         this.setData({
-            typeList: typeList
+            typeList: typeList,
+          contentList: typeList[res.currentTarget.id].son_class
         })
     },
   jump_shopDetail:function(){
@@ -75,7 +42,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this;
+    app.request(
+      config.hostUrl + '/v1/assortment_module/getGoodsClass', {},
+      function (res) {
+        console.log(res)
+        that.setData({
+          typeList: res.data.retData,
+          'typeList[0].active':true,
+          contentList: res.data.retData[0].son_class
+        })
+        console.log(that.data.typeList)
+      }
+    );
   },
 
   /**
