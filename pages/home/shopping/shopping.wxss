@@ -250,7 +250,7 @@ color: #fff;
 /*客服  */
 .kefu_rexian_dizhi{
   position:fixed;
-  top: 360rpx;
+  top: 60%;
   right: 0;
   width: 90rpx;
 }

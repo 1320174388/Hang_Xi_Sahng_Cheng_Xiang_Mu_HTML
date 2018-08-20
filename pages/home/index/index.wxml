@@ -7,6 +7,19 @@
      历史记录 :  ----------------------- 
 -->
 <view id='wrap'>
+    <swiper class='head-notice' autoplay interval='7000' circular duration='7000' bindtap='noticeShow'>
+        <swiper-item>{{noticeCont.notice_content}}</swiper-item>
+        <swiper-item>{{noticeCont.notice_content}}</swiper-item>
+    </swiper>
+    <view class='notice-edit' style='display:{{noEditShow}}' >
+        <view>
+            <form bindsubmit='noticeEdit'>
+                <textarea maxlength='22' name="content" placeholder='最多输入22个字符'></textarea>
+                <button form-type='submit'>保存</button>
+            </form>
+        </view>
+    </view>
+    <view class='xc' catchtap='noticeHide' style='display:{{noEditShow}}'>x</view>
     <!-- 轮播图 -->
     <swiper class='head-swiper' indicator-dots='true' autoplay='true' interval='2000' indicator-color='#fff' indicator-active-color='#ff4000' circular='true'>
         <swiper-item wx:for='{{swiperArr}}' wx:key=''>
