@@ -334,5 +334,15 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+  /**
+   * 点击添加分类弹框外部，弹框消失
+   */
+  classification:function(e){
+    if(e.currentTarget.dataset.classification){
+      this.setData({
+        hid:true
+      })
+    }
   }
 })

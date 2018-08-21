@@ -19,8 +19,8 @@
   </view>
 </view>
 
-<view class='wrap' hidden='{{hid}}'>
-<view class='classification_content'>
+<view data-classification='true' catchtap='classification' class='wrap' hidden='{{hid}}'>
+<view data-classification='' catchtap='classification' class='classification_content'>
   <form bindsubmit="classAdd" data-status='{{addtype}}'>
     <view class='classification_content_main'>
       <view class='classification_content_img'>
