@@ -13,7 +13,7 @@
     </view>
     <!-- 商品 -->
     <view class='type-content'>
-        <view wx:for="{{contentList}}" wx:key="index" bindtap='jump_shopDetail'>
+        <view wx:for="{{contentList}}" wx:key="index" bindtap='jump_shopDetail' id='{{index}}'>
             <image src='{{host+"/"+item.class_img_url}}'></image>
             <text>{{item.class_name}}</text>
         </view>

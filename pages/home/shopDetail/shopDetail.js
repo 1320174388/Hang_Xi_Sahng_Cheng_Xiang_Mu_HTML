@@ -1,4 +1,5 @@
 // pages/shopDetail/shopDetail.js
+var config = require('../../../config.js');
 Page({
 
   /**
@@ -6,35 +7,17 @@ Page({
    */
   data: {
       shopList:[
-          {
-              img:"../images/content.png",
-              title:"四川梅干菜100-120g*2个",
-              detail:"榨果汁做烹饪，样样精通",
-              price:6.1,
-              sell:12345
-          },
-          {
-              img: "../images/content.png",
-              title: "四川梅干菜100-120g*2个",
-              detail: "榨果汁做烹饪，样样精通",
-              price: 5.9,
-              sell: 1234
-          },
-          {
-              img: "../images/content.png",
-              title: "四川梅干菜100-120g*2个",
-              detail: "榨果汁做烹饪，样样精通",
-              price: 7.2,
-              sell: 123
-          },
-          {
-              img: "../images/content.png",
-              title: "四川梅干菜100-120g*2个",
-              detail: "榨果汁做烹饪，样样精通",
-              price: 8.8,
-              sell: 12
-          }
-      ]
+        //   {
+        //       img:"../images/content.png",
+        //       title:"四川梅干菜100-120g*2个",
+        //       detail:"榨果汁做烹饪，样样精通",
+        //       price:6.1,
+        //       sell:12345
+        //   }
+      ],
+      orderType:'no',
+        //   img地址前缀
+      imgHost: config.hostUrl,
   },
   jump_evaluate: function () {
     wx.navigateTo({
@@ -46,7 +29,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+      var that = this;
+      getApp().request(config.hostUrl +'/v1/good_module/good_get_list',{
+          classIndex: options.classIndex,
+          goodLimit: that.data.shopList.length,
+          orderType: that.data.orderType
+      },function(res){
+          if(res.data.retData){
+              that.setData({
+                  shopList: res.data.retData
+            })
+          }
+          
+      })
   },
 
   /**

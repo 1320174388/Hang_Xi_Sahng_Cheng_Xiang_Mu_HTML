@@ -11,6 +11,8 @@ Page({
     noEditShow:'none',
     // 公告显示内容
     noticeCont:'',
+    // 公告轮播
+    noticeDis:0,
     //   轮播图
       swiperArr:[
           "../images/swipeImage.png",
@@ -133,12 +135,46 @@ Page({
   onLoad: function (options) {
       
       var that = this;
+    //   公告的获取
       getApp().request(config.hostUrl + '/v1/noctice_module/noctice_get',{},function(res){
           that.setData({
               noticeCont: res.data.retData,
           })
-      })
+      });
+
+      //  判断公告是否需要滚动
+      setTimeout(function(){
+          var query = wx.createSelectorQuery();
+          var wrapWidth = "";
+          var contWidth = "";
+          query.select('#notice-wrap').boundingClientRect(function(res){
+              wrapWidth = res.width;
+          }).exec();
+          query.select('#notice-cont').boundingClientRect(function (res) {
+              contWidth = res.width;
+          }).exec();
+          setTimeout(function(){
+              if (contWidth > wrapWidth) {
+                  var timer = setInterval(function () {
+                      var noticeDis = that.data.noticeDis;
+                      noticeDis++;
+
+                      that.setData({
+                          noticeDis: noticeDis
+                      });
+                      if (noticeDis >= contWidth) {
+                          clearInterval(timer);
+                      }
+
+                  }, 30)
+
+              }
+          },1000)
+          
+          
+      },1000)
       
+    
   },
 
   /**
@@ -152,7 +188,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+      
+
+
   },
 
   /**

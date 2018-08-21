@@ -9,7 +9,6 @@
 <view id='wrap'>
     <view class='header'>
         <view>全部</view>
-        <view>最新</view>
         <view>
             <text>价格</text>
             <image src='../images/sort.svg' mode='widthFix'></image>
@@ -18,15 +17,15 @@
     </view>
     <view class='content-wrap'>
         <view class='content' wx:for="{{shopList}}" wx:key="index" bindtap='jump_evaluate'>
-            <image src='{{item.img}}'></image>
+            <image src='{{imgHost+item.image_url[0]}}'></image>
             <view>
-                <text>{{item.title}}</text>
-                <view>{{item.detail}}</view>
+                <text>{{item.good_name}}</text>
+                <view></view>
                 <view>
                     100% 品控检测
                 </view>
-                <view>￥{{item.price}}</view>
-                <text>已售:{{item.sell}}件</text>
+                <view>￥{{item.good_price}}</view>
+                <text>已售:{{item.good_sales}}件</text>
                 <view>
                     <image src='../images/shopping.svg' mode='widthFix'></image>
                 </view>
