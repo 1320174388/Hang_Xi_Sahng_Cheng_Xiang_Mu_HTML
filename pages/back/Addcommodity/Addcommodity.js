@@ -11,9 +11,9 @@ Page({
     son_class: [],
     index: 0, //
     index1: 0,
-    movies: [], //获取轮播图
+    movies: null, //获取轮播图
     int_name: [{}], //商品规格信息
-    upimgs: [], //商品详情图
+    upimgs: null, //商品详情图
     names: '', //商品名
     prices: '', //商品价格
     num: '', //商品数
@@ -123,7 +123,6 @@ Page({
   int_name_del: function(e) {
     console.log(e)
     var list = this.data.int_name;
-
     var index = e.currentTarget.dataset.index;
     list.splice(index, 1);
     this.setData({
@@ -168,33 +167,48 @@ Page({
     }
     var inpt = that.data.int_name;
     var class_index = JSON.stringify(inpt);
-    
+    console.log(that.data.movies)
+    if (!that.data.movies) {
+      console.log(that.data.movies)
+      app.point('请上传主图片', 'none', 2000);
+      return false;
+    } else {
 
-    //添加商品
-    app.request(
-      config.hostUrl + '/v1/good_module/good_post/'
-      +wx.getStorageSync('token')
-      , {
-        'goodName': e.detail.value.names,
-        'classIndex': classindex,
-        'goodPrice': e.detail.value.price,
-        'goodSales': e.detail.value.num,
-        'goodStyle': class_index,
-      },
-      function(res) {
-        console.log(res.data)
-        if (res.data.errNum == 0) {
-          that.uploadfiles(that.data.movies, 'master', 1, res.data.retData, function () { 
-            that.uploadfiles(that.data.upimgs, 'son', 1, res.data.retData, function(){
-            })
-          }); 
-        }else{
-          app.point(res.data.retMsg,'none',2000)
-        }
-      }, 'POST')
+      //添加商品
+      app.request(
+        config.hostUrl + '/v1/good_module/good_post/' +
+        wx.getStorageSync('token'), {
+          'goodName': e.detail.value.names,
+          'classIndex': classindex,
+          'goodPrice': e.detail.value.price,
+          'goodSales': e.detail.value.num,
+          'goodStyle': class_index,
+        },
+        function(res) {
+          console.log(res.data)
+          if (res.data.errNum == 0) {
+            if (!that.data.upimgs) {
+              that.uploadfiles(that.data.movies, 'master', 1, res.data.retData, function() {
+                app.point(res.data.retMsg, 'success', 2000);
+                app.timeBack(2000)
+              })
+            } else {
+              that.uploadfiles(that.data.movies, 'master', 1, res.data.retData, function() {
+                that.uploadfiles(that.data.upimgs, 'son', 1, res.data.retData, function() {
+                  app.point(res.data.retMsg, 'success', 2000);
+                  app.timeBack(2000)
+                })
+              });
+            }
+          } else {
+            app.point(res.data.retMsg, 'none', 2000);
+          }
+
+        }, 'POST')
+    }
   },
   // 上传文件 数组 类型 排序 id 函数
-  uploadfiles: function (filePathArr, imageType, imageSort, goodIndex,success) {
+  uploadfiles: function(filePathArr, imageType, imageSort, goodIndex, success) {
     var that = this;
     if (imageType == 'master') {
       var pot = '商品';
@@ -204,67 +218,28 @@ Page({
     }
     app.point('上传' + pot + '图片' + imageSort, 'loading', 20000);
     app.file(
-      config.hostUrl + '/v1/good_module/good_image_post/'
-      +wx.getStorageSync('token')
-      , filePathArr[imageSort-1],
+      config.hostUrl + '/v1/good_module/good_image_post/' +
+      wx.getStorageSync('token'), filePathArr[imageSort - 1],
       'imageFile', {
         'goodIndex': goodIndex,
         'imageType': imageType,
         'imageSort': imageSort
       },
-      function (ort) {
+      function(ort) {
         console.log(ort)
         if (ort.errNum == 0) {
           app.point('上传成功', 'success', 2000);
           if (filePathArr[imageSort]) {
             that.uploadfiles(that.data.movies, imageType, imageSort + 1, goodIndex, success);
-          }else{
+          } else {
             success()
           }
         }
       }
     );
+
   },
-  // uploadimgs: function(page, path) {
-  //   var that = this;
-  //   var curImgList = [];
-  //   console.log(that.data.movies)
-  //   for (var i = 0; i < path.length; i++) {
-  //     wx.showToast({
-  //         icon: 'loading',
-  //         title: '正在上传',
-  //       }),
-  //       app.file(
-  //         config.hostUrl + 'v1/good_module/good_image_post/' + wx.getStorageSync('token'),
-  //         that.data.movies[i],
-  //         'file', {
-  //           'goodIndex': '',
-  //           'imageType': master,
-  //           'imageSort': i,
-  //           'imageFile': '',
-  //         },
-  //         function(res) {
-  //           console.log(res);
-  //           curImgList.push(res.data);
-  //           var evalList = this.data.movies;
-  //           evalList[0] = curImgList;
-  //           that.setData({
-  //             movies: evalList
-  //           })
-  //           if (res.statusCode != 200) {
-  //             wx.showModal({
-  //               title: '提示',
-  //               content: retMsg,
-  //               showCancel: false
-  //             })
-  //             return;
-  //           }
-  //         },
 
-  //       )
-  //   }
-
-  // },
   /**
    * 生命周期函数--监听页面加载
    */

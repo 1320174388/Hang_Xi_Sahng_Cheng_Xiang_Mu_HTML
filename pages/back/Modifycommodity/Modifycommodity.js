@@ -136,17 +136,28 @@ Page({
           if (good_master_type) {
             that.uploadfiles(that.data.good_img_master, 'master', 1, that.data.good_index, function() {
               if (good_detsils_type) {
-                that.uploadfiles(that.data.good_img_details, 'son', 1, that.data.good_index, function() {})
+                that.uploadfiles(that.data.good_img_details, 'son', 1, that.data.good_index, function() {
+                  app.point(res.data.retMsg, 'success', 3000);
+                  app.timeBack(2000)
+                })
+              } else {
+                app.point(res.data.retMsg, 'success', 3000);
+                app.timeBack(2000)
               }
             });
           } else if (good_detsils_type) {
-            that.uploadfiles(that.data.good_img_details, 'son', 1, that.data.good_index, function() {})
+            that.uploadfiles(that.data.good_img_details, 'son', 1, that.data.good_index, function() {
+              app.point(res.data.retMsg, 'success', 3000);
+              app.timeBack(2000)
+            })
+          } else {
+            app.point(res.data.retMsg, 'success', 3000);
+            app.timeBack(2000)
           }
         } else {
-          app.point(res.data.retMsg, 'none', 3000);
-          app.timeBack(2000)
+          app.point(res.data.retMsg, 'none', 2000);
         }
-       
+
       }, 'PUT'
     )
   },
@@ -225,6 +236,8 @@ Page({
   onLoad: function(options) {
     var that = this;
     var idx = options.idx;
+    good_master_type = false;
+    good_detsils_type = false;
     app.request(
       config.hostUrl + '/v1/good_module/good_get/' + wx.getStorageSync('token'), {
         goodIndex: idx

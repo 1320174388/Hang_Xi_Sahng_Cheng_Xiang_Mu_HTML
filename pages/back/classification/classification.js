@@ -14,6 +14,7 @@ Page({
     names: "",
     datas: [],
     addtype: 0,
+    deltype: 0,
     index: '',
   },
   //跳转到查看子类页面
@@ -28,11 +29,22 @@ Page({
   //添加事件显示
   c_add: function(e) {
     var d = this.data.datas[e.currentTarget.dataset.index];
+    if (e.currentTarget.dataset.status == 1) {
+      this.setData({
+        hid: false,
+        addtype: e.currentTarget.dataset.status,
+        names: '',
+        images: ''
+      })
+      wx.setStorageSync('classAdd', d);
+    }
     if ((d == 0) || (d)) {
       if (e.currentTarget.dataset.status == 2) {
         this.setData({
           hid: false,
           addtype: e.currentTarget.dataset.status,
+          names: '',
+          images: ''
         })
         wx.setStorageSync('classAdd', d);
       }
@@ -56,7 +68,6 @@ Page({
   //删除事件
   del: function(e) {
     var index = e.target.dataset.index;
-    console.log(index)
     this.setData({
       del_hid: false,
       index: index
@@ -96,7 +107,6 @@ Page({
         'images', {},
         function(res) {
           if (res.errNum == 0) {
-            console.log(res.retData);
             app.request(
               config.hostUrl + '/v1/assortment_module/addGoodsClass/' +
               wx.getStorageSync('token'), {
@@ -105,7 +115,6 @@ Page({
                 'class_img_url': res.retData,
               },
               function(res) {
-                console.log(res)
                 if (res.data.errNum == 0) {
                   app.point(res.data.retMsg, 'success', 3000)
                   This.setData({
@@ -124,11 +133,9 @@ Page({
         }
       );
     }
-
     if (e.currentTarget.dataset.status == 2) {
       var data = wx.getStorageSync('classAdd');
       wx.removeStorageSync('classAdd');
-      console.log(data)
       if (!This.data.images) {
         app.point(
           '请上传分类图片',
@@ -143,7 +150,6 @@ Page({
         'images', {},
         function(res) {
           if (res.errNum == 0) {
-            console.log(res.retData);
             app.request(
               config.hostUrl + '/v1/assortment_module/addGoodsClass/' +
               wx.getStorageSync('token'), {
@@ -153,7 +159,6 @@ Page({
                 'class_parent': data.class_index
               },
               function(res) {
-                console.log(res)
                 if (res.data.errNum == 0) {
                   app.point(res.data.retMsg, 'success', 3000)
                   This.setData({
@@ -171,27 +176,19 @@ Page({
           }
         }
       );
-
     }
-
     if (e.currentTarget.dataset.status == 3) {
       var data = wx.getStorageSync('classEdit');
       wx.removeStorageSync('classEdit');
-      console.log(data)
-      console.log(This.data)
       //  判断图片是否新上传
       if (config.hostUrl + '/' + data.class_img_url !== This.data.images) {
-        console.log(This.data)
-        console.log(data)
         // 如果上传新图片 请求图片添加接口，将返回的图片路径和新的分类名称数据一起请求分类修改接口完成修改
         app.file(
           config.hostUrl + '/v1/assortment_module/uploadImage',
           This.data.images[0],
           'images', {},
           function(res) {
-            console.log(res)
             if (res.errNum == 0) {
-              console.log(res);
               app.request(
                 config.hostUrl + '/v1/assortment_module/modifyGoodsClass/' + wx.getStorageSync('token'), {
                   'class_index': data.class_index,
@@ -199,7 +196,6 @@ Page({
                   'class_img_url': res.retData
                 },
                 function(res) {
-                  console.log(res.data)
                   This.setData({
                     del_hid: true,
                     hid: true
@@ -220,7 +216,6 @@ Page({
             'class_img_url': data.class_img_url
           },
           function(res) {
-            console.log(res.data)
             This.setData({
               del_hid: true,
               hid: true
@@ -233,7 +228,12 @@ Page({
 
     }
   },
+  claa_del: function(e) {
+    this.setData({
+      del_hid: true,
 
+    })
+  },
   /**
    * 删除分类事件
    */
@@ -264,9 +264,7 @@ Page({
         'class_name': that.data.datas.class_name,
         'class_img_url': that.data.datas.class_img_url
       },
-      function(res) {
-        console.log(res)
-      },
+      function(res) {},
       'POST',
     )
   },
@@ -280,6 +278,7 @@ Page({
     app.request(
       config.hostUrl + '/v1/assortment_module/getGoodsClass', {},
       function(res) {
+        console.log(res.data.retData)
         that.setData({
           datas: res.data.retData
         })
@@ -338,11 +337,19 @@ Page({
   /**
    * 点击添加分类弹框外部，弹框消失
    */
-  classification:function(e){
-    if(e.currentTarget.dataset.classification){
+  classification: function(e) {
+    if (e.currentTarget.dataset.classification) {
       this.setData({
-        hid:true
+        hid: true
       })
     }
-  }
+  },
+
+  delification: function(e) {
+    if (e.currentTarget.dataset.classification) {
+      this.setData({
+        del_hid: true
+      })
+    }
+  },
 })

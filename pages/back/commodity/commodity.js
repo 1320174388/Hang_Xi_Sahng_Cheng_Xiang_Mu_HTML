@@ -1,6 +1,7 @@
 // pages/commodity/commodity.js
 var config = require('../../../config.js');
 var app = getApp();
+var DEL_TYPE = true;
 Page({
 
   /**
@@ -25,25 +26,32 @@ Page({
   jump_commodityDetails: function(e) {
     var index = e.target.dataset.index;
     var idx = this.data.datas[index].good_index;
-    console.log(idx)
     wx.navigateTo({
       url: '../commodityDetails/commodityDetails?idx=' + idx,
     })
   },
 
-  del: function(e) { 
-    var that =this;
-    var index = e.target.dataset.index;
-    var idx = this.data.datas[index].good_index;  
-    app.request(
-      config.hostUrl + '/v1/good_module/good_delete/' + wx.getStorageSync('token'),{
-        'goodIndex':idx
-      },function(res){
-        app.point(res.data.retMsg, 'none', 2000);
-        that.onLoad();
-      },'DELETE',
-    )
-  
+  del: function(e) {
+    if (DEL_TYPE) {
+      DEL_TYPE=false;
+      var that = this;
+      var index = e.target.dataset.index;
+      var idx = this.data.datas[index].good_index;
+      app.request(
+        config.hostUrl + '/v1/good_module/good_delete/' + wx.getStorageSync('token'), {
+          'goodIndex': idx
+        },
+        function(res) {
+          if (res.data.errNum == 0) {
+            app.point(res.data.retMsg, 'success', 2000);
+            that.onLoad();
+          } else {
+            app.point(res.data.retMsg, 'none', 2000);
+          }
+          DEL_TYPE=true;
+        }, 'DELETE',
+      )
+    }
   },
   /**
    * 生命周期函数--监听页面加载
@@ -52,7 +60,7 @@ Page({
     var that = this;
     app.request(
       config.hostUrl + '/v1/good_module/good_get_goodlist/' + wx.getStorageSync('token'), {
-        goodLimit: 20
+        goodLimit: 0
       },
       function(res) {
         that.setData({

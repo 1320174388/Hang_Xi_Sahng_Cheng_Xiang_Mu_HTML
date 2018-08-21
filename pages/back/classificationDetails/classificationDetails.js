@@ -31,13 +31,10 @@ Page({
   },
 
   c_add: function(e) {
-    console.log(e)
     var d = this.data.datas[e.currentTarget.dataset.index];
     var i = e.currentTarget.dataset.index;
-    console.log(d)
     this.setData({
-      hid: false,
-     
+      hid: false, 
       names: d.class_name,
       images: config.hostUrl + '/' + d.class_img_url
     })
@@ -48,12 +45,10 @@ Page({
     var index = e.target.dataset.index;
     var d = this.data.datas[e.currentTarget.dataset.index];
     var i = e.currentTarget.dataset.index;
-    console.log(index)
     this.setData({
       del_hid: false,
       index: index
     })
-    console.log(d)
     wx.setStorageSync('classEdit', d);
     wx.setStorageSync('classIndex',i);
   },
@@ -64,22 +59,15 @@ Page({
     var ids = wx.getStorageSync('classIndex');
     wx.removeStorageSync('classEdit');
     wx.removeStorageSync('classIndex');
-    
-    console.log(data)
-    console.log(This.data)
     //  判断图片是否新上传
     if (config.hostUrl + '/' + data.class_img_url !== This.data.images) {
-      console.log(This.data)
-      console.log(data)
       // 如果上传新图片 请求图片添加接口，将返回的图片路径和新的分类名称数据一起请求分类修改接口完成修改
       app.file(
         config.hostUrl + '/v1/assortment_module/uploadImage',
         This.data.images[0],
         'images', {},
         function(res) {
-          console.log(res)
           if (res.errNum == 0) {
-            console.log(res);
             app.request(
               config.hostUrl + '/v1/assortment_module/modifyGoodsClass/' + wx.getStorageSync('token'), {
                 'class_index': data.class_index,
@@ -87,8 +75,6 @@ Page({
                 'class_img_url': res.retData
               },
               function(ret) {
-                console.log(ret.data)
-                console.log(ids)
                 This.data.datas[ids].class_img_url = res.retData;
                 This.data.datas[ids].class_name = e.detail.value.class_name;
                This.setData({
@@ -114,7 +100,6 @@ Page({
           'class_img_url': data.class_img_url
         },
         function (ret) {
-          console.log(ret.data)
           This.setData({
             del_hid: true,
             hid: true
@@ -142,8 +127,6 @@ Page({
         'class_index': data.class_index,
       },
       function(res) {
-
-        console.log(res.data);
         if (res.data.errNum == 0){
           that.setData({
             del_hid: true,
@@ -163,11 +146,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(e) {
-    console.log(e)
     this.setData({
       'datas': wx.getStorageSync('sonClassList')
     });
-    console.log(this.data.datas)
     wx.removeStorageSync('sonClassList');
     this.setData({
       del_hid: true,
