@@ -37,8 +37,9 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "123",
-					"pathName": "pages/back/Background/Background"
+					"name": "商品管理",
+					"pathName": "pages/back/commodity/commodity",
+					"query": ""
 				}
 			]
 		}

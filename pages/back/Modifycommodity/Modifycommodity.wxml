@@ -1,15 +1,15 @@
-<!--pages/Addcommodity/Addcommodity.wxml-->
+<!--pages/back/Modifycommodity/Modifycommodity.wxml-->
 <form class='wrap' bindsubmit="classAdd">
   <!-- <view wx:if="{{movies!==''?hidden:show}}" class='upimages_img' bindtap='upimages'>点击上传</view> -->
   <swiper class='upimages' indicator-dots="true" autoplay="true" interval="5000" duration="1000" bindtap="upImages" indicator-color="#e1e1e1" indicator-active-color="#fff">
-    <block wx:for="{{movies}}" wx:for-index="index" wx:key=''>
+    <block wx:if="{{good_img_master}}" wx:for="{{good_img_master}}" wx:for-index="index" wx:key='' wx:for-item="m">
       <swiper-item>
-        <image src="{{item}}" class="upimages_img" mode="aspectFill" />
+        <image src="{{m}}" class="upimages_img" mode="aspectFill" />
 
       </swiper-item>
     </block>
   </swiper>
-  <view class='selet row_around'>
+  <!-- <view class='selet row_around'>
     <view class='selet_item' bindtap='selet_hid'>{{s_parent[index].class_name}}</view>
     <view class='item_main' hidden='{{selet_show}}' style='height:{{selet_show==false?(s_parent.length>5?300:s_parent.length*60):0}}rpx;'>
       <view class='item_main_list' wx:for="{{s_parent}}" data-index='{{index}}' catchtap='item_list' wx:key=''>{{item.class_name}}</view>
@@ -18,35 +18,35 @@
     <view class='item_main' hidden='{{selet_show1}}' style='height:{{selet_show1==false?(s_parent[index].son_class.length>5?300:s_parent.length*60):0}}rpx;'>
       <view class='item_main_list' wx:for="{{son_class}}" data-index='{{index}}' catchtap='item_list1' wx:key=''>{{item.class_name}}</view>
     </view>
-  </view>
+  </view> -->
   <view class='upinput'>
     <view class='upinput_item row'>商品名称
-      <input name='names' placeholder='请输入商品名称' value='{{names}}'></input>
+      <input name='names' placeholder='请输入商品名称' value='{{good_name}}'></input>
     </view>
     <view class='upinput_item row'>商品价格
-      <input name='price' placeholder='请输入商品' value='{{price}}'></input>
+      <input name='price' placeholder='请输入商品' value='{{good_price}}'></input>
     </view>
     <view class='upinput_item row'>商品销量
-      <input name='num' placeholder='请输入商品' value='{{num}}'></input>
+      <input name='num' placeholder='请输入商品' value='{{good_sales}}'></input>
     </view>
   </view>
   <view class='th'>商品规格</view>
   <view class='specifications row'>
-    <view class='i row_around'  wx:for="{{int_name}}" wx:key='' wx:for-item="int">
+    <view class='i row_around' wx:if="{{style_data}}"  wx:for="{{style_data}}" wx:key='' wx:for-item="int">
       <view class='specifications_btn' data-index='{{index}}' bindtap='int_name_add'>+</view>
       <view class='i_c'>
-        <input name='styleName' data-index='{{index}}' value="{{int.styleName}}" bindinput='styleName' />:
-        <input name='stylePrice' data-index='{{index}}' value="{{int.stylePrice}}" bindinput='stylePrice' />
+        <input name='styleName' data-index='{{index}}' value="{{int.style_name}}" bindinput='styleName' />:
+        <input name='stylePrice' data-index='{{index}}' value="{{int.style_price}}" bindinput='stylePrice' />
       </view>
       <view class='specifications_btn' bindtap='int_name_del' data-index='{{index}}'>-</view>
     </view>
   </view>
   <view class='th'>商品详情</view>
   <view class='specifications row_around'>
-  <view class='imgs' wx:for="{{upimgs}}" wx:key=''>
+  <view wx:if="{{good_img_details}}" class='imgs' wx:for="{{good_img_details}}" wx:key=''>
     <image class='imgs' mode="widthFix" src='{{item}}'></image>
     </view>
   </view>
   <view class='details_btn' bindtap='Upimgs'>上传图片</view>
-  <button class='addbtn' formType="submit">确定添加</button>
+  <button class='addbtn' formType="submit">确定修改</button>
 </form>

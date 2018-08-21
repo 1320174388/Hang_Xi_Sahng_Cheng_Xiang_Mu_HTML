@@ -7,30 +7,57 @@ Page({
    * 页面的初始数据
    */
   data: {
+    host: config.hostUrl,
+    datas: '',
+  },
+  jump_Addcommodity: function() {
+    wx.navigateTo({
+      url: '../Addcommodity/Addcommodity',
+    })
+  },
+  jump_Modifycommodity: function(e) {
+    var index = e.target.dataset.index;
+    var idx = this.data.datas[index].good_index;
+    wx.navigateTo({
+      url: '../Modifycommodity/Modifycommodity?idx=' + idx,
+    })
+  },
+  jump_commodityDetails: function(e) {
+    var index = e.target.dataset.index;
+    var idx = this.data.datas[index].good_index;
+    console.log(idx)
+    wx.navigateTo({
+      url: '../commodityDetails/commodityDetails?idx=' + idx,
+    })
+  },
+
+  del: function(e) { 
+    var that =this;
+    var index = e.target.dataset.index;
+    var idx = this.data.datas[index].good_index;  
+    app.request(
+      config.hostUrl + '/v1/good_module/good_delete/' + wx.getStorageSync('token'),{
+        'goodIndex':idx
+      },function(res){
+        app.point(res.data.retMsg, 'none', 2000);
+        that.onLoad();
+      },'DELETE',
+    )
   
   },
-  jump_Addcommodity:function(){
-wx.navigateTo({
-  url: '../Addcommodity/Addcommodity',
-})
-  },
-  jump_commodityDetails:function(){
-    wx.navigateTo({
-      url: '../commodityDetails/commodityDetails',
-    })
-
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-  var that =this;
+  onLoad: function(options) {
+    var that = this;
     app.request(
-      config.hostUrl + '/v1/good_module/good_list/' + wx.getStorageSync('token'), {},
-      function (res) {
-        console.log(res)
-        
+      config.hostUrl + '/v1/good_module/good_get_goodlist/' + wx.getStorageSync('token'), {
+        goodLimit: 20
+      },
+      function(res) {
+        that.setData({
+          datas: res.data.retData
+        })
       },
     )
   },
@@ -38,49 +65,49 @@ wx.navigateTo({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-  
+  onReady: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-  
+  onShow: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-  
+  onHide: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-  
+  onUnload: function() {
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-  
+  onPullDownRefresh: function() {
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-  
+  onReachBottom: function() {
+
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-  
+  onShareAppMessage: function() {
+
   }
 })

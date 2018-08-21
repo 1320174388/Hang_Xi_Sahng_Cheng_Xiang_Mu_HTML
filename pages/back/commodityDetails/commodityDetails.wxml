@@ -1,40 +1,55 @@
 <!--pages/commodityDetails/commodityDetails.wxml-->
 <!-- <view class='banner'> -->
-  <swiper indicator-dots="false" autoplay="true" interval="2000" duration="500" circular="true"> 
+<swiper indicator-dots="false" autoplay="true" interval="2000" duration="500" circular="true">
   <!-- style='height: {{bannerHeight}}px'> -->
-    <block wx:for="{{myImgs}}" wx:key="" wx:for-item="m">
-      <swiper-item>
-        <image src="{{m.img_url}}" class="banner-img" mode='{{mode[1]}}' bindload='imageLoad'></image>
-      </swiper-item>
-    </block>
-  </swiper>
+  <block wx:for="{{good_img_master}}" wx:key="" wx:for-item="m">
+    <swiper-item>
+      <image src="{{host+m.picture_url}}" class="banner-img" mode='{{mode[1]}}' bindload='imageLoad'></image>
+    </swiper-item>
+  </block>
+</swiper>
 <!-- </view> -->
 <view class='name'>
-  <view class='tr'>商品名称</view>
-  <view class='tr'>￥45</view>
-  <view class='tr'>已售：123份</view>
+  <view class='tr'>{{good_name}}</view>
+  <view class='tr'>￥{{good_price}}</view>
+  <view class='tr'>已售：{{good_sales}}份</view>
   <view class='tr'>规格：
-    <view class='specifications'>规格款式名称</view>
-    <view class='specifications'>规格款式名称</view>
+    <view class='specifications' wx:for="{{style_data}}" wx:key="" wx:for-item="s">{{s.style_name}}:{{s.style_price}}</view>
+
   </view>
 </view>
 
 <view class="navbar">
   <text wx:for="{{navbar}}" data-idx='{{index}}' class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap='navbarTap'>{{item}}</text>
 </view>
-<view class='main'>
-  <view class='main_head'>
-    <view class='head_left'>
-      <view class='circle'></view> 全选
-    </view>
-    <view class='head_right'>删除</view>
+<view class='col_around' hidden='{{currentTab!==0}}'>
+  <view class='img_details' wx:for="{{good_img_details}}" wx:key="" wx:for-item="d">
+    <image class='img_details' mode="widthFix" src="{{host+d.picture_url}}" />
   </view>
-  <view class='main_cont'>
+</view>
+<view class='main' hidden='{{currentTab!==1}}'>
+  <!-- <view class='main_head'>
+    <view class='head_left row'>
+      <view class='circle'>
+        <icon wx:if="{{selectAllStatus}}" type="success_circle" color="red" bindtap="selectAll" />
+        <icon wx:else type="circle" color="#fff" bindtap="selectAll" />
+      </view>
+      <text>全选</text>
+    </view>
+    <view class='head_right' bindtap="deleteList" data-index="{{index}}">删除</view>
+  </view> -->
+  <view class='main_cont' wx:for="{{criticList}}" wx:key="" wx:for-item="c">
     <view class='main_cont_top'>
       <view class='top_name'>
-        <view class='circle'></view> 评论人</view>
-      <view class='top_time'>时间</view>
+        <!-- <view class='circle'>
+          <icon wx:if="{{c.selected}}" type="success" color="red" bindtap="selectList" data-index="{{index}}" />
+          <icon wx:else type="circle" bindtap="selectList" data-index="{{index}}" />
+        </view>-->
+         {{c.critic_name}} 
+      </view>
+      <view class='top_time'>{{c.critic_time}}</view>
     </view>
-    <view class='top_text'>评论内容</view>
+    <view class='top_text'>{{c.critic_content}}</view>
+    <view class='head_right' bindtap="deleteList" data-index="{{index}}">删除</view>
   </view>
 </view>

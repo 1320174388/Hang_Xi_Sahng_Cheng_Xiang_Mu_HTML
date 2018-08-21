@@ -18,6 +18,7 @@
     "pages/back/classificationDetails/classificationDetails",
     "pages/back/commodity/commodity",
     "pages/back/Addcommodity/Addcommodity",
+    "pages/back/Modifycommodity/Modifycommodity",
     "pages/back/commodityDetails/commodityDetails",
     "pages/back/order/order",
     "pages/back/orderDetails/orderDetails",

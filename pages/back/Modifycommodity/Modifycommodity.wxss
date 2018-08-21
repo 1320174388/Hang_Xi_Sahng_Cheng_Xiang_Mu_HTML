@@ -1,4 +1,4 @@
-/* pages/Addcommodity/Addcommodity.wxss */
+/* pages/back/Modifycommodity/Modifycommodity.wxss */
 
 page {
   background: #262d49;
@@ -208,6 +208,7 @@ input {
   width: 550rpx;
   height: 74rpx;
   line-height: 74rpx;
+  margin-bottom:50rpx; 
 }
 
 
