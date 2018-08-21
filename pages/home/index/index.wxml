@@ -7,10 +7,14 @@
      历史记录 :  ----------------------- 
 -->
 <view id='wrap'>
-    <swiper class='head-notice' autoplay interval='7000' circular duration='7000' bindtap='noticeShow'>
-        <swiper-item>{{noticeCont.notice_content}}</swiper-item>
-        <swiper-item>{{noticeCont.notice_content}}</swiper-item>
-    </swiper>
+    <view class='head-notice'>
+        <image src='../images/notice-icon.svg'></image>
+        <text>公告:</text>
+        <view id='notice-wrap'>
+            <view id='notice-cont' style='left:{{noticeDis}}rpx;'>{{noticeCont.notice_content}}</view>
+        </view>
+        <text>></text>
+    </view>
     <view class='notice-edit' style='display:{{noEditShow}}' >
         <view>
             <form bindsubmit='noticeEdit'>

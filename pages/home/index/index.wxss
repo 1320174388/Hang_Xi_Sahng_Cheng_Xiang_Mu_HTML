@@ -19,11 +19,28 @@
  }
  .head-notice{
      height: 50rpx;
-     text-align: center;
      line-height: 50rpx;
-     color: #000;
+     color: #fff;
      font-size: 28rpx;
-     background: #fff;
+     background: #f67e79;
+     display: flex;
+ }
+ .head-notice>image{
+     width: 36rpx;
+     height: 36rpx;
+     margin: 5rpx 20rpx;
+ }
+ .head-notice>view{
+     width: 70%;
+     height: 100%;
+     margin: 0 20rpx;
+     overflow: hidden;
+     position: relative;
+ }
+ .head-notice>view>view{
+     height: 100%;
+     position: absolute;
+     top: 0;
  }
  .notice-edit{
      position: absolute;

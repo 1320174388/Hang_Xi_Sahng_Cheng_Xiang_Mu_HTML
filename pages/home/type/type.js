@@ -21,21 +21,21 @@ Page({
   },
     // 分类选择
     typeActive:function(res){
-      console.log(res)
         var typeList = this.data.typeList;
         for (var i = 0; i < typeList.length;i++){
             typeList[i].active = false;
         }
         typeList[res.currentTarget.id].active = true;
-      console.log(typeList[res.currentTarget.id].son_class)
         this.setData({
             typeList: typeList,
           contentList: typeList[res.currentTarget.id].son_class
         })
     },
-  jump_shopDetail:function(){
+  jump_shopDetail:function(res){
+      var contentList = this.data.contentList;
+      var classIndex = contentList[res.currentTarget.id].class_index;
     wx.navigateTo({
-      url: '../shopDetail/shopDetail',
+        url: '../shopDetail/shopDetail?classIndex=' + classIndex,
     })
   },
   /**
@@ -46,13 +46,11 @@ Page({
     app.request(
       config.hostUrl + '/v1/assortment_module/getGoodsClass', {},
       function (res) {
-        console.log(res)
         that.setData({
           typeList: res.data.retData,
           'typeList[0].active':true,
           contentList: res.data.retData[0].son_class
         })
-        console.log(that.data.typeList)
       }
     );
   },
