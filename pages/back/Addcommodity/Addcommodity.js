@@ -156,7 +156,6 @@ Page({
     })
     console.log(this.data.int_name)
   },
-
   classAdd: function(e) {
     console.log(e)
     var that = this;

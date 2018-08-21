@@ -15,7 +15,6 @@ Page({
   //导航条点击事件
   navbarTap: function(e) {
     var x = e.currentTarget.dataset.idx+1;
-    console.log(x)
     var list = [];
     for (var i = 0; i < this.data.orider_list.length; i++) {  
       if (this.data.orider_list[i].order_status==x){

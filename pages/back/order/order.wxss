@@ -1,7 +1,9 @@
 /* pages/order/order.wxss */
-page{
-  background:  #262d49;
+
+page {
+  background: #262d49;
 }
+
 .page {
   display: flex;
   flex-direction: column;
@@ -10,7 +12,7 @@ page{
   font-size: 28rpx;
   color: #fff;
   letter-spacing: 0;
-   background:  #262d49;
+  background: #262d49;
 }
 
 .navbar {
@@ -58,7 +60,7 @@ page{
   padding: 24rpx 36rpx;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   font-family: PingFangSC-Regular;
   font-size: 24rpx;
@@ -76,7 +78,16 @@ page{
 
 .order_name_right {
   float: left;
-  align-self: right; 
+  align-self: right;
+}
+.left{
+  flex: 1;
+  padding-right:10rpx; 
+}
+
+.order_name_cont {
+  flex: 1;
+  flex-flow: row wrap;
   
 }
 
@@ -90,12 +101,13 @@ page{
 
 .cont_specifications_name {
   text-align: center;
-  background: #2d3958;
-  border: 1px solid #979797;
-  width: 175rpx;
-  height: 36rpx;
+  width: 100%;
+  background: green;
+ 
   line-height: 36rpx;
   margin-left: 16rpx;
+  /* overflow: hidden; */
+  flex-flow: row wrap;
 }
 
 .number {
@@ -135,7 +147,6 @@ page{
   padding: 43rpx 54rpx 20rpx 36rpx;
   font-size: 28rpx;
 }
-
 
 .state_item_btn {
   background-image: linear-gradient(-180deg, #5e6a96 0%, #4c557b 100%);

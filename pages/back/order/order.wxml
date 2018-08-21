@@ -1,31 +1,33 @@
 <!--pages/order/order.wxml-->
 <!--导航条-->
 <view class='page'>
-  <view class="navbar">   
+  <view class="navbar">
     <text wx:for="{{navbar}}" data-idx='{{index}}' class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap='navbarTap'>{{item}}</text>
   </view>
   <view wx:for="{{list}}" wx:key='' wx:for-item="l">
     <view class='num'>订单号：{{l.order_number}}</view>
     <view class='order_name'>
-      <view class='order_name_img'></view>
-      <view class='order_name_cont'>
-        <view class='cont_name'>商品名称{{good_name}}</view>
-        <view class='cont_specifications'>
-          <text>规格{{datas.good_name}}</text>
-          <view class='cont_specifications_name'>规格款式名称{{datas.style_name}}</view>
+      <view class='row left'>
+        <view class='order_name_img'></view>
+        <view class='order_name_cont'>
+          <view class='cont_name'>商品名称{{good_name}}</view>
+          <view class='cont_specifications'>
+            <text>规格{{datas.good_name}}</text>
+            <text class='cont_specifications_name'>12345646548745674984123456123456789{{datas.style_name}}</text>
+          </view>
         </view>
       </view>
       <view class='order_name_right'>
-      <view>单价：{{good_name}}</view>
-      <view>x{{l.order_gdnu}}件</view>
+        <view>单价：{{good_name}}</view>
+        <view>x{{l.order_gdnu}}件</view>
       </view>
     </view>
     <view class='number'>
-     <view class='price_item'>订单状态：{{navbar[currentTab]}}</view>
+      <view class='price_item'>订单状态：{{navbar[currentTab]}}</view>
       <view class='price_item'>总价：￥{{l.good_prices}}</view>
     </view>
     <view class='state'>
-        <view class='state_item_btn' bindtap='jump_oriderDetails' data-index='{{index}}'>详情</view>
+      <view class='state_item_btn' bindtap='jump_oriderDetails' data-index='{{index}}'>详情</view>
     </view>
   </view>
 </view>
