@@ -10,6 +10,10 @@ Page({
   data: {
     host: config.hostUrl,
     datas: '',
+    searchPageNum: 0, // 设置加载的第几次，默认是第一次  
+    callbackcount: 12, //返回数据的个数  
+    searchLoading: false, //"上拉加载"的变量，默认false，隐藏  
+    searchLoadingComplete: false //“没有数据”的变量，默认false，隐藏
   },
   jump_Addcommodity: function() {
     wx.navigateTo({
@@ -33,7 +37,7 @@ Page({
 
   del: function(e) {
     if (DEL_TYPE) {
-      DEL_TYPE=false;
+      DEL_TYPE = false;
       var that = this;
       var index = e.target.dataset.index;
       var idx = this.data.datas[index].good_index;
@@ -48,10 +52,52 @@ Page({
           } else {
             app.point(res.data.retMsg, 'none', 2000);
           }
-          DEL_TYPE=true;
+          DEL_TYPE = true;
         }, 'DELETE',
       )
     }
+  },
+ 
+  //滚动到底部触发事件  
+  lower: function() {
+
+    var that = this;
+    var searchPageNum = that.data.searchPageNum + 1, //每次触发上拉事件，把searchPageNum+1 
+      callbackcount = that.data.callbackcount; //返回数据的个数  
+    console.log(searchPageNum)
+    console.log(callbackcount)
+    var arr = [];
+    app.request(
+      config.hostUrl + '/v1/good_module/good_get_goodlist/' + wx.getStorageSync('token'), {
+        goodLimit: searchPageNum * callbackcount
+      },
+      function(res) {
+
+        arr = res.data.retData;
+        console.log(arr.length)
+        if (arr.length == 12) {
+          var newarr = that.data.datas.concat(arr) 
+          that.setData({
+            datas: newarr,
+            searchLoading: true,//把"上拉加载"的变量设为false，显示  
+            searchPageNum: searchPageNum,
+            searchLoadingComplete: false,
+          })
+        } else
+        if (arr.length < 12 || arr.length == 0) {
+          console.log(arr)
+          var newarr = that.data.datas.concat(arr)
+          console.log(newarr)
+          that.setData({
+            datas: newarr,
+            searchLoadingComplete: true, //把“没有数据”设为true，显示  
+            searchLoading: false ,//把"上拉加载"的变量设为false，隐藏  
+            searchPageNum: searchPageNum
+          });
+        }
+      }
+    )
+    // }
   },
   /**
    * 生命周期函数--监听页面加载
@@ -63,11 +109,13 @@ Page({
         goodLimit: 0
       },
       function(res) {
+        console.log(res)
         that.setData({
           datas: res.data.retData
         })
       },
     )
+
   },
 
   /**

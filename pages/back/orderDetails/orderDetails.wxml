@@ -6,7 +6,7 @@
   </view>
 <view wx:for='{{orider.details}}' wx:key="" wx:for-item="od">
   <view class='order_name'>
-    <image class='order_name_img' src='{{od.good_pic}}'></image>
+    <image class='order_name_img' src='{{host+od.good_pic}}'></image>
     <view class='order_name_cont'>
       <view class='cont_name'>{{od.good_name}}</view>
       <view class='cont_specifications'>
@@ -22,16 +22,15 @@
 </view>
 <view class='price'>
   <view class='price_item'>共{{orider.order_gdnu}}件商品</view>
-  <view class='price_item'>总价：￥{{good_prices}}</view>
+  <view class='price_item'>总价：￥{{orider.good_prices}}</view>
 </view>
 <view class='state'>
-  <view class='state_item'>收件人地址：{{orider.order_address}}</view>
   <view class='state_item'>
     <view class='state_item_name'>
-      <view class='name'>{{orider.order_people}}</view>
-      <view class='tel'>{{orider.order_phone}}</view>
+      <text class='name'>收货人 : {{orider.order_people}}</text>
     </view>
-    <view class='address'>收货人地址{{orider.order_address}}</view>
+    <view class='address' >联系电话 : {{orider.order_phone}}</view>
+  <view class='state_item'>收件人地址：{{orider.order_address}}</view>
   </view>
   <view class='state_item row_between'>
     <view class='state_item_btn' bindtap='btn_tap' hidden='{{idx!==4?false:true}}'>{{btn[idx]}}</view>

@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    host: config.hostUrl,
     status: ['买家未付款', '买家已付款', '正在发货中', '等待买家收货', '订单已完成'],
     idx: "",
     orider: "",
@@ -51,9 +52,7 @@ Page({
         },
       )
     }
-    wx.navigateTo({
-      url: '../order/order',
-    })
+    app.timeBack(2000)
   },
   btn_add_tap: function() {
     var that = this;
@@ -66,9 +65,7 @@ Page({
         console.log(res)
       },
     )
-    wx.navigateTo({
-      url: '../order/order',
-    })
+    app.timeBack(2000)
   },
   /**
    * 生命周期函数--监听页面加载

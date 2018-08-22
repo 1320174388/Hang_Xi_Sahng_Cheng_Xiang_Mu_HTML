@@ -40,7 +40,11 @@ line-height: 60rpx;
 .order_name_cont {
 }
 
-.cont_name {
+.name {
+  margin-right:10rpx; 
+}
+.tel{
+  flex: 1;
 }
 
 .cont_specifications {
@@ -106,8 +110,8 @@ line-height: 60rpx;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 237rpx;
-  height: 33rpx;
+  width: 500rpx;
+  /* height: 33rpx; */
   margin: 14rpx 0;
 }
 .state_item_btn {

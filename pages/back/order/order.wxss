@@ -80,30 +80,26 @@ page {
   float: left;
   align-self: right;
 }
-.left{
+
+.left {
   flex: 1;
-  padding-right:10rpx; 
+  padding-right: 10rpx;
 }
 
 .order_name_cont {
   flex: 1;
   flex-flow: row wrap;
-  
 }
 
 .cont_name {
 }
 
 .cont_specifications {
-  display: flex;
-  flex-direction: row;
 }
 
 .cont_specifications_name {
-  text-align: center;
   width: 100%;
-  background: green;
- 
+  float: left;
   line-height: 36rpx;
   margin-left: 16rpx;
   /* overflow: hidden; */
@@ -144,7 +140,8 @@ page {
 }
 
 .state {
-  padding: 43rpx 54rpx 20rpx 36rpx;
+  padding: 15rpx 54rpx 20rpx 36rpx;
+  height: 60rpx;
   font-size: 28rpx;
 }
 
@@ -157,4 +154,34 @@ page {
   line-height: 52rpx;
   margin-top: 15rpx;
   float: right;
+  align-items: center;
+  position: relative
+}
+
+.boxx {  
+  border-top: 1px solid #0e1222;
+  margin-bottom: 30rpx;
+}
+
+.loading {
+  padding: 10rpx;
+  text-align: center;
+  background: #fff;
+  position: relative;
+  color: #000;
+}
+
+.loading:before {
+  display: inline-block;
+  margin-right: 5rpx;
+  vertical-align: middle;
+  content: '';
+  width: 40rpx;
+  height: 40rpx;
+  background-size: contain;
+  animation: rotate 1s linear infinite;
+}
+
+.loading.complete:before {
+  display: none;
 }

@@ -5,20 +5,20 @@
       <view class='th'>分类管理</view>
       <view class='jump' bindtap='Jump_classification'>设置>></view>
     </view>
-    <view class='main'>及打击非法哈法if回复回复回复福符号if啊好分分合合时代峰峻课时费建省会计法111shffjkffk经济法发挥科技反馈哈咖啡机阿福卡卡拉涉及到了空间发链接发就发考虑是否就爱看的九分裤</view>
+    <view class='main'>分类管理： 可根据自身情况设置一级分类，一级分类中也可以添加与其相应的二级分类。例：一级分类为食品分类，则二级分类可添加熟食分类，休闲食品，凉菜等</view>
   </view>
   <view class='wrap'>
     <view class='header'>
       <view class='th'>商品管理</view>
       <view class='jump' bindtap='Jump_commodity'>设置>></view>
     </view>
-    <view class='main'>及打击非法哈法if回复回复回复福符号if啊好分分合合时代峰峻课时费建省会计法111</view>
+    <view class='main'>商品管理：可根据自身要求添加商品，以及对已经添加的商品进行查看，修改或删除等操作</view>
   </view>
   <view class='wrap'>
     <view class='header'>
       <view class='th'>订单管理</view>
       <view class='jump' bindtap='Jump_order'>设置>></view>
     </view>
-    <view class='main'>及打击非法哈法if回复回复回复福符号if啊好分分合合时代峰峻课时费建省会计法111</view>
+    <view class='main'>订单管理: 可以查看客户订单状态以及订单详情 ，并根据实际情况对订单状态进行修改</view>
   </view>
 </view>
