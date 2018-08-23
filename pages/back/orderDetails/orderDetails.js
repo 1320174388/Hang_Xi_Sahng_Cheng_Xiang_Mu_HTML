@@ -14,6 +14,11 @@ Page({
     btn: ["取消", "确认发货", "确认收货", "完成", "完成"],
     hid: true,
   },
+  tel:function(){
+    wx.makePhoneCall({
+      phoneNumber: this.data.orider.order_phone,
+    })
+  },
   btn_tap: function() {
     var that = this;
     if (that.data.idx == 0) {

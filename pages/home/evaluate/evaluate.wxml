@@ -47,7 +47,7 @@
 
 
   <view hidden='{{currentTab!==1}}'>
-    <view wx:for='{{images}}'></view>
+    <view wx:for='{{images}}' wx:key =''><image src='{{host+image.pic}}'></image></view>
   </view>
 
   <view hidden="{{currentTab!==0}}">
@@ -80,7 +80,7 @@
       <image class='foot_img' src='../images/index-icon.png' bindtap='jump_index'></image>
       <text>首页</text>
     </view>
-    <view class='foot_left_item col'>
+    <view class='foot_left_item col' bindtap='mycollect'>
       <image class='foot_img' src='../images/collection.png'></image>
       <text>收藏</text>
     </view>

@@ -1,4 +1,6 @@
 // pages/home/myOrider/myOrider.js
+var config = require('../../../config.js');
+var app = getApp();
 Page({
 
   /**
@@ -26,6 +28,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
+    var token = wx.getStorageSync('token')
+    var that = this ;
+    if(options.idx){
+      that.setData({
+        currentTab: options.idx
+      })
+    }
+    app.request(
+      config.hostUrl + '/v1/order_module/getUserOrderList', {
+        'user_token': token 
+      },
+      function (res) {
+        console.log(res)
+      }
+    )
   
   },
 

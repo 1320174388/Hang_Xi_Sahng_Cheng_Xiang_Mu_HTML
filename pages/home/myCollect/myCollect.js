@@ -43,6 +43,17 @@ Page({
     });
     // this.getTotalPrice();                               // 重新获取总价
   },
+  //删除收藏
+  del:function(){
+    var token = wx.getStorageSync('token')
+    app.request(
+      config.hostUrl + '/v1/collect_module/collect_get', {
+        'userToken': token
+      },
+      function (res) {
+console.log(res)
+      })
+  },
 
   /**
    * 生命周期函数--监听页面加载

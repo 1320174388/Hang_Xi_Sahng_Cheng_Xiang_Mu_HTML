@@ -23,7 +23,7 @@
     </view>
     <!-- 菜单栏 -->
     <view class='menu'>
-        <view wx:for="{{menuList}}" wx:key="index" bindtap='jump_myOrider'>
+        <view wx:for="{{menuList}}" wx:key="index" bindtap='jump_myOrider' data-index='{{index}}'>
             <image src='{{item.icon}}'></image>
             <text>\n{{item.text}}</text>
         </view>

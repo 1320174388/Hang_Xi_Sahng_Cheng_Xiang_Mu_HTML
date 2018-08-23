@@ -11,7 +11,7 @@
         <image src='../images/notice-icon.svg'></image>
         <text>公告:</text>
         <view id='notice-wrap'>
-            <view id='notice-cont' style='left:{{noticeDis}}rpx;'>{{noticeCont.notice_content}}1234654791324657985463215749465124894</view>
+            <view id='notice-cont' style='left:{{noticeDis}}rpx;'>{{noticeCont.notice_content}}123465479132465798546321574946512489445646545444444444444444444444446544444444444444444447777777777</view>
         </view>
         <text>></text>
     </view>

@@ -31,9 +31,11 @@ Page({
       ]
   },
 //
-  jump_myOrider: function () {
+  jump_myOrider: function (e) {
+    console.log(e)
+    var idx = e.currentTarget.dataset.index
     wx.navigateTo({
-      url: '../myOrider/myOrider',
+      url: '../myOrider/myOrider?idx='+idx,
     })
   },
   //

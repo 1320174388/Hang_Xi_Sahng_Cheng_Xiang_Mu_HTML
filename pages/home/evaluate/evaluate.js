@@ -1,4 +1,6 @@
 // pages/home/evaluate/evaluate.js
+var config = require('../../../config.js');
+var app = getApp();
 Page({
 
   /**
@@ -27,8 +29,45 @@ Page({
       url: '../index/index',
     })
   },
+  //点击收藏
+  mycollect:function(e){
+    app.request(
+      config.hostUrl + '/v1/collect_module/collect_post', {
+        'userToken': token,
+        goodIndex: goodIndex
+      },
+      function (res) {
+        console.log(res)
+      }
+    )
+  },
 //加载时获取的信息
   bindviewtap: function () {
+    var that =this;
+    var token = wx.getStorageSync('token')
+    //获取商品详情信息
+    app.request(
+      config.hostUrl + '/v1/good_module/good_details', {
+        goodIndex: ""
+      },
+      function (res) {
+        console.log(res)
+      }
+    )
+    //判断商品是否收藏接口
+    app.request(
+      config.hostUrl + '/v1/collect_module/collect_isget', {
+        userToken: token,
+        goodIndex: ""
+      },
+      function (res) {
+        if (res.data.retData==true){
+          that.setData({
+
+          })
+        }
+      }
+    )
 
   },
   /**

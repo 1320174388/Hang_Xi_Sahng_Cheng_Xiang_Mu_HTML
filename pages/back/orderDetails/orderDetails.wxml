@@ -29,7 +29,7 @@
     <view class='state_item_name'>
       <text class='name'>收货人 : {{orider.order_people}}</text>
     </view>
-    <view class='address' >联系电话 : {{orider.order_phone}}</view>
+    <view class='address' bindtap='tel'>联系电话 : {{orider.order_phone}}</view>
   <view class='state_item'>收件人地址：{{orider.order_address}}</view>
   </view>
   <view class='state_item row_between'>

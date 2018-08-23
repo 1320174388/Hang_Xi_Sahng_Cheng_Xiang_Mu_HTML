@@ -8,11 +8,11 @@
         <icon  class='list_left_left' wx:if="{{d.selected}}" type="success" color="red" bindtap="selectList" data-index="{{index}}" />
         <icon  class='list_left_left' wx:else type="circle" bindtap="selectList" data-index="{{index}}"/>
 
-      <image src='{{host+"/"+d.image_url}}' class='list_left_right'/>
+      <image src='{{host+"/"+d.good_img_details[0]}}'class='list_left_right'></image>
     </view>
     <view class='list_right col'>
       <view class='list_right_top'>{{d.good_name}}</view>
-      <view class='list_right_bot'>￥5.9{{d.good_price}}</view>
+      <view class='list_right_bot'>￥{{d.good_price}}</view>
     </view>
 
   </view>
