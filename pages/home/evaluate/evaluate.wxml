@@ -76,8 +76,8 @@
         </view>
       </view>
     </view>
-  </view>
-</view>
+ 
+
 <view class='foot row'>
   <view class='foot_left row'>
     <view class='foot_left_item col'>
@@ -107,3 +107,4 @@
     </view>
   </view> -->
 </view>
+ </view>
