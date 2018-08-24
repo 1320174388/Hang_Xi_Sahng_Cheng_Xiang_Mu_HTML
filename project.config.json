@@ -33,20 +33,8 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
-			"list": [
-				{
-					"id": -1,
-					"name": "商品管理",
-					"pathName": "pages/back/commodity/commodity",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "123",
-					"pathName": "pages/back/Background/Background"
-				}
-			]
+			"current": -1,
+			"list": []
 		}
 	}
 }

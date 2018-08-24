@@ -74,7 +74,6 @@ background: #5e6a96;
 }
 
 .item_main {
- 
   position: absolute;
   top: 50rpx;
   width: 100%;

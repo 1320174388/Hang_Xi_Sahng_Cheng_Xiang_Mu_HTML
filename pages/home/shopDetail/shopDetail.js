@@ -19,9 +19,10 @@ Page({
         //   img地址前缀
       imgHost: config.hostUrl,
   },
-  jump_evaluate: function () {
+  jump_evaluate: function (e) {
+    var x = this.data.shopList[e.currentTarget.dataset.index].good_index;
     wx.navigateTo({
-      url: '../evaluate/evaluate',
+      url: '../evaluate/evaluate?goodindex='+x,
     })
   },
 
@@ -35,6 +36,7 @@ Page({
           goodLimit: that.data.shopList.length,
           orderType: that.data.orderType
       },function(res){
+      
           if(res.data.retData){
               that.setData({
                   shopList: res.data.retData

@@ -86,6 +86,7 @@ Page({
     var that = this;
     getApp().request(config.hostUrl + '/v1/login_module/login_admin/' + wx.getStorageSync('token'), {},
       function(res) {
+        console.log(res)
         if (res.data.retData) {
           that.setData({
             noEditShow: 'block'
@@ -126,20 +127,7 @@ Page({
 
   },
   //加载时获取的信息
-  bindviewtap: function () {
-    //获取商品信息、
-    app.request(
-      config.hostUrl + '/v1/good_module/good_get_list', {
-        'goodLimit': token,
-        'goodIndex': goodIndex,
-        'classIndex':no
-      },
-      function (res) {
-        console.log(res)
-      }
-    )
-
-  },
+  bindviewtap: function () {},
   /**
    * 生命周期函数--监听页面加载
    */
@@ -159,35 +147,34 @@ Page({
       var wrapWidth = "";
       var contWidth = "";
       query.select('#notice-wrap').boundingClientRect(function(res) {
-        
+      
         wrapWidth = res.width;
       }).exec();
       query.select('#notice-cont').boundingClientRect(function(res) {
-      
+
         contWidth = res.width;
       }).exec();
       setTimeout(function() {
+        
         if (contWidth > wrapWidth) {
           var timer = setInterval(function() {
+
             var noticeDis = that.data.noticeDis;
             noticeDis++;
-
             that.setData({
               noticeDis: noticeDis
             });
-            if (noticeDis >= contWidth) {
-              clearInterval(timer);
+            if (noticeDis/2 >= contWidth) { 
+              that.setData({
+                noticeDis: -wrapWidth
+              });     
             }
-
-          }, 30)
-
+           this.timer;
+        }, 5)
         }
       }, 1000)
     }, 1000)
-
-
   },
-  
 
   /**
    * 生命周期函数--监听页面初次渲染完成

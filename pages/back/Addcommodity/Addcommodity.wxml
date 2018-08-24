@@ -32,7 +32,7 @@
   </view>
   <view class='th'>商品规格</view>
   <view class='specifications row'>
-    <view class='i row_around'  wx:for="{{int_name}}" wx:key='' wx:for-item="int">
+    <view class='i row_around' wx:for="{{int_name}}" wx:key='' wx:for-item="int">
       <view class='specifications_btn' data-index='{{index}}' bindtap='int_name_add'>+</view>
       <view class='i_c'>
         <input name='styleName' data-index='{{index}}' value="{{int.styleName}}" bindinput='styleName' />:
@@ -43,8 +43,8 @@
   </view>
   <view class='th'>商品详情</view>
   <view class='specifications row_around'>
-  <view class='imgs' wx:for="{{upimgs}}" wx:key=''>
-    <image class='imgs' mode="widthFix" src='{{item}}'></image>
+    <view class='imgs' wx:for="{{upimgs}}" wx:key=''>
+      <image class='imgs' mode="widthFix" src='{{item}}'></image>
     </view>
   </view>
   <view class='details_btn' bindtap='Upimgs'>上传图片</view>

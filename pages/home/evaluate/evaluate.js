@@ -7,64 +7,70 @@ Page({
    * 页面的初始数据
    */
   data: {
-    myImgs: [],//轮播图
-    navbar: ['详情', '评价'],//导航
+    myImgs: [], //轮播图
+    navbar: ['详情', '评论'], //导航
     currentTab: 0,
-  
+    goodData: '',
+    host: config.hostUrl,
   },
-//跳到商品详情页
-  jump_evaluate: function () {
+  //跳到商品详情页
+  jump_evaluate: function() {
     wx.navigateTo({
       url: '../evaluate/evaluate',
     })
   },
   //导航点击事件
-  navbarTap: function (e) {
+  navbarTap: function(e) {
     this.setData({
       currentTab: e.currentTarget.dataset.idx
     })
   },
-  jump_index: function(){
+  jump_index: function() {
     wx.switchTab({
       url: '../index/index',
     })
   },
+  //规格选择
+  selet_hid:function(e){
+
+  },
   //点击收藏
-  mycollect:function(e){
+  mycollect: function(e) {
     app.request(
       config.hostUrl + '/v1/collect_module/collect_post', {
         'userToken': token,
         goodIndex: goodIndex
       },
-      function (res) {
+      function(res) {
         console.log(res)
       }
     )
   },
-//加载时获取的信息
-  bindviewtap: function () {
-    var that =this;
-    var token = wx.getStorageSync('token')
-    //获取商品详情信息
-    app.request(
-      config.hostUrl + '/v1/good_module/good_details', {
-        goodIndex: ""
-      },
-      function (res) {
-        console.log(res)
-      }
-    )
+  //加载时获取的信息
+  bindviewtap: function() {
+
     //判断商品是否收藏接口
     app.request(
       config.hostUrl + '/v1/collect_module/collect_isget', {
         userToken: token,
         goodIndex: ""
       },
-      function (res) {
-        if (res.data.retData==true){
-          that.setData({
+      function(res) {
+        console.log(res)
+        if (res.data.retData == true) {
 
-          })
+        }
+      }
+    )
+    app.request(
+      config.hostUrl + '/v1/good_module/critic_get', {
+
+        goodIndex: ""
+      },
+      function(res) {
+        console.log(res)
+        if (res.data.retData == true) {
+
         }
       }
     )
@@ -73,56 +79,73 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
+
+    var goodindex = options.goodindex;
+    var that = this;
+    var token = wx.getStorageSync('token')
+    //获取商品详情信息
+    app.request(
+      config.hostUrl + '/v1/good_module/good_details', {
+        goodIndex: goodindex
+      },
+      function(res) {
+        console.log(res)
+        that.setData({
+          goodData: res.data.retData.goodData
+        })
+        console.log(that.data.goodData)
+      }
+    )
     this.bindviewtap;
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-  
+  onReady: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-  
+  onShow: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-  
+  onHide: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-  
+  onUnload: function() {
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-  
+  onPullDownRefresh: function() {
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-  
+  onReachBottom: function() {
+
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-  
+  onShareAppMessage: function() {
+
   }
 })

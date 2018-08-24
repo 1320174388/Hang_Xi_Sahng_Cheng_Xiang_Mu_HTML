@@ -3,22 +3,22 @@
   <view class='head'>
     <view class='banner'>
       <swiper indicator-dots="false" autoplay="true" interval="2000" duration="500" circular="true">
-        <block wx:for="{{myImgs}}" wx:key="" wx:for-item="m">
+        <block wx:for="{{goodData.good_img_master}}" wx:key="" wx:for-item="m">
           <swiper-item>
-            <image src="{{m.img_url}}" class="banner-img" mode='{{mode[1]}}'></image>
+            <image src="{{host+m.picture_url}}" class="banner-img" mode='{{mode[1]}}'></image>
           </swiper-item>
         </block>
       </swiper>
     </view>
     <view class='head_cont col'>
-      <view class='head_cont_name'>智利白菜</view>
-      <view class='head_cont_text'>怎么美好的白菜。咋不留着自己吃呢</view>
+      <view class='head_cont_name'>{{goodData.good_name}}</view>
+      <!-- <view class='head_cont_text'>怎么美好的白菜。咋不留着自己吃呢</view> -->
       <view class='row_between'>
         <view class='row'>
-          <text class='f_color'>￥5.9</text>
-         
+          <text class='f_color'>￥{{goodData.good_price}}</text>
+
         </view>
-        <view>已售23490份</view>
+        <view>已售{{goodData.good_sales}}份</view>
       </view>
       <view class='head_cont_foot row'>
         <text>智利</text>
@@ -28,7 +28,13 @@
     </view>
   </view>
   <view class='specifications col'>
-    <view class='head_cont_name'>规格</view>
+    <!-- <view class='row_between '> -->
+      <view class='head_cont_name'>规格</view>
+      <view class='selet_item' bindtap='selet_hid'>{{goodData.style_data[index].style_name}}</view>
+      <view class='item_main' hidden='{{selet_show}}' style='height:{{selet_show==false?(goodData.style_data.length>5?300:goodData.style_data.length*60):0}}rpx;'>
+        <view class='item_main_list' wx:for="{{goodData.style_data}}" data-index='{{index}}' catchtap='item_list' wx:key=''>{{item.style_name}} :{{item.style_price}}</view>
+      </view>
+    </view>
     <view class='specifications_main col'>
       <text>重量：125g*1盒</text>
       <text>包装：普装</text>
@@ -42,15 +48,13 @@
       <text wx:for="{{navbar}}" data-idx='{{index}}' class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap='navbarTap'>{{item}}</text>
     </view>
   </view>
-
-
-
-
-  <view hidden='{{currentTab!==1}}'>
-    <view wx:for='{{images}}' wx:key =''><image src='{{host+image.pic}}'></image></view>
+  <view class='box' hidden='{{currentTab!==0}}'>
+    <view wx:for='{{goodData.good_img_details}}' wx:key='' wx:for-item="g">
+      <image src='{{host+g.picture_url}}' class='box_img' mode="widthFix"></image>
+    </view>
   </view>
 
-  <view hidden="{{currentTab!==0}}">
+  <view class='box' hidden="{{currentTab!==1}}">
     <view class='row cont_head'>
       <view class='cont_head_item row'>
         <view class='click'></view>全部
@@ -91,10 +95,15 @@
   </view>
 </view>
 <view>
-  <scroll-view class='scroll' scroll-y="true">
-    <text>商品名称</text>
-    <view class='scroll_item' wx:for='{{style}}'></view>
-    <view>数量</view>
-    <text>总价</text>
-  </scroll-view>
+  <!-- 商品规格选择弹窗 -->
+  <!-- <view class='wrap'  data-classification='true' catchtap='delification'>
+    <view data-classification='' catchtap='delification'>
+      <scroll-view class='scroll' scroll-y="true">
+        <text>商品名称</text>
+        <view class='scroll_item' wx:for='{{style}}' wx:key=""></view>
+        <view>数量</view>
+        <text>总价</text>
+      </scroll-view>
+    </view>
+  </view> -->
 </view>

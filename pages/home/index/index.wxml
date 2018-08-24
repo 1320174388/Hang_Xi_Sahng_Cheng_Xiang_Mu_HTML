@@ -7,18 +7,18 @@
      历史记录 :  ----------------------- 
 -->
 <view id='wrap'>
-    <view class='head-notice'>
+    <view class='head-notice' bindtap='noticeShow'>
         <image src='../images/notice-icon.svg'></image>
         <text>公告:</text>
         <view id='notice-wrap'>
-            <view id='notice-cont' style='left:{{noticeDis}}rpx;'>{{noticeCont.notice_content}}123465479132465798546321574946512489445646545444444444444444444444446544444444444444444447777777777</view>
+            <view id='notice-cont' style='white-space: nowrap; left:{{-noticeDis}}rpx;'>{{noticeCont.notice_content}}</view>
         </view>
         <text>></text>
     </view>
     <view class='notice-edit' style='display:{{noEditShow}}' >
         <view>
             <form bindsubmit='noticeEdit'>
-                <textarea maxlength='22' name="content" placeholder='最多输入22个字符'></textarea>
+                <textarea maxlength='200' name="content" placeholder='最多输入200个字符'></textarea>
                 <button form-type='submit'>保存</button>
             </form>
         </view>
