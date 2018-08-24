@@ -28,75 +28,87 @@
     </view>
   </view>
   <view class='specifications col'>
-    <!-- <view class='row_between '> -->
-      <view class='head_cont_name'>规格</view>
-      <view class='selet_item' bindtap='selet_hid'>{{goodData.style_data[index].style_name}}</view>
-      <view class='item_main' hidden='{{selet_show}}' style='height:{{selet_show==false?(goodData.style_data.length>5?300:goodData.style_data.length*60):0}}rpx;'>
-        <view class='item_main_list' wx:for="{{goodData.style_data}}" data-index='{{index}}' catchtap='item_list' wx:key=''>{{item.style_name}} :{{item.style_price}}</view>
+    <view class='head_cont_name'>规格 :
+      <text class='coler_1' bindtap='selet_hid'>请选择</text>
+    </view>
+    <view class='col' hidden='{{selet_show}}'>
+      <view class='row s_sp'>
+        <view wx:for="{{goodData.style_data}}" wx:key="x" wx:for-item="s" data-index='{{index}}' bindtap='select' class='{{s.active==true?"ative":"specification "}}'> {{s.style_name}}:{{s.style_price}}</view>
+      </view>
+      <view class='row_between'>
+        <view></view>
+        <view class='num row_around'>数量：
+          <text class='right_flex' bindtap="minusCount" data-index="{{index}}">-</text>
+          <text>{{num}}</text>
+          <text class='right_flex' bindtap="addCount" data-index="{{index}}">+</text>
+        </view>
       </view>
     </view>
-    <view class='specifications_main col'>
-      <text>重量：125g*1盒</text>
-      <text>包装：普装</text>
-      <text>保质期：到货可立即使用</text>
-    </view>
   </view>
+  <view class='specifications_main col'>
+    <text>重量：125g*1盒</text>
+    <text>包装：普装</text>
+    <text>保质期：到货可立即使用</text>
+  </view>
+
 
   <view class='main col'>
     <!--导航条-->
     <view class="navbar">
       <text wx:for="{{navbar}}" data-idx='{{index}}' class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap='navbarTap'>{{item}}</text>
     </view>
-  </view>
-  <view class='box' hidden='{{currentTab!==0}}'>
-    <view wx:for='{{goodData.good_img_details}}' wx:key='' wx:for-item="g">
-      <image src='{{host+g.picture_url}}' class='box_img' mode="widthFix"></image>
-    </view>
-  </view>
 
-  <view class='box' hidden="{{currentTab!==1}}">
-    <view class='row cont_head'>
-      <view class='cont_head_item row'>
-        <view class='click'></view>全部
-      </view>
-      <view class='cont_head_item row'>
-        <view class='click'></view>有图片
+    <view class='box' hidden='{{currentTab!==0}}'>
+      <view wx:for='{{goodData.good_img_details}}' wx:key='' wx:for-item="g">
+        <image src='{{host+g.picture_url}}' class='box_img' mode="widthFix"></image>
       </view>
     </view>
-    <view class='col list_wrap'>
-      <view class='list'>
-        <image class='list_img' src='../images/my-head-icon.png'></image>
-        <view class='col list_right'>
-          <view class='list_right_head row_between'>
-            <view class='name'>123456</view>
-            <view class='time'>7月7日</view>
-          </view>
-          <view class='text'>很新鲜，味道不错</view>
-          <image class='imgs' src='../images/content.png'></image>
+
+    <view class='box' hidden="{{currentTab!==1}}">
+      <!-- <view class='row cont_head'>
+        <view class='cont_head_item row' bindtap='all_criticList'> 
+          <view class='click'></view>全部
         </view>
+        <view class='cont_head_item row' bindtap='img_criticList'>
+          <view class='click'></view>有图片
+        </view>
+      </view> -->
+      <scroll-view scroll-y style="height: 100vh;" bindscrolltolower="lower" scroll-top="{{scrollTop}}">
+        <view class='col list_wrap' wx:if="{{c}}" wx:for="{{criticList}}" wx:key='' wx:for-item="c">
+          <view class='list'>
+            <image class='list_img' src='../images/my-head-icon.png'></image>
+            <view class='col list_right'>
+              <view class='list_right_head row_between'>
+                <view class='name'>123456{{c.critic_name}}</view>
+                <view class='time'>7月7日{{c.critic_time}}</view>
+              </view>
+              <view class='text'>很新鲜，味道不错{{c.critic_content}}</view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <view class='foot row'>
+    <view class='foot_left row'>
+      <view class='foot_left_item col'>
+        <image class='foot_img' src='../images/index-icon.png' bindtap='jump_index'></image>
+        <text>首页</text>
+      </view>
+      <view class='foot_left_item col' bindtap='mycollect'>
+        <image class='foot_img' src="{{mycollect == false?'../images/collection.png':'../images/mycollect.png'}}"></image>
+        <text>收藏</text>
       </view>
     </view>
- 
+    <view class='foot_right row'>
+      <view class='foot_right_left' bindtap='addcarts'>加入购物车</view>
+      <view class='foot_right_right' bindtap='jump_fillOrider'>立即购买</view>
+    </view>
+  </view>
 
-<view class='foot row'>
-  <view class='foot_left row'>
-    <view class='foot_left_item col'>
-      <image class='foot_img' src='../images/index-icon.png' bindtap='jump_index'></image>
-      <text>首页</text>
-    </view>
-    <view class='foot_left_item col' bindtap='mycollect'>
-      <image class='foot_img' src='../images/collection.png'></image>
-      <text>收藏</text>
-    </view>
-  </view>
-  <view class='foot_right row'>
-    <view class='foot_right_left'>加入购物车</view>
-    <view class='foot_right_right'>立即购买</view>
-  </view>
 </view>
-<view>
-  <!-- 商品规格选择弹窗 -->
-  <!-- <view class='wrap'  data-classification='true' catchtap='delification'>
+<!-- 商品规格选择弹窗 -->
+<!-- <view class='wrap'  data-classification='true' catchtap='delification'>
     <view data-classification='' catchtap='delification'>
       <scroll-view class='scroll' scroll-y="true">
         <text>商品名称</text>
@@ -106,5 +118,31 @@
       </scroll-view>
     </view>
   </view> -->
-</view>
- </view>
+  <!-- <view class=" pay_wrap col hide{{showView? 'show': ''}} ">
+  <view class='pay_head col_around'>
+    <view class='pay_head_top row'>订单号：
+      <text class='pay_head_top_right'>1129843984893</text>
+    </view>
+    <view class='pay_head_bot row'>
+      <text class='pay_head_bot_right'>商品价格</text>￥65.9
+    </view>
+  </view>
+  <view class='pay_main col_around'>
+    <text>联系店主</text>
+    <view class='row pay_main_num'>微信号： 21876384
+      <text>复制</text>
+    </view>
+    <image class='twocode'></image>
+    <view class='pay_main_th'>支付二维码</view>
+    <view class='row_between'>
+      <view class='col'>
+        <image class='twocode'></image>
+        <view class='pay_foot'>微信二维码</view>
+      </view>
+      <view class='col'>
+        <image class='twocode'></image>
+        <view class='pay_foot'>支付宝二维码</view>
+      </view>
+    </view>
+  </view>
+</view> -->

@@ -7,84 +7,86 @@
      历史记录 :  ----------------------- 
 -->
 <view id='wrap'>
-    <view class='head-notice' bindtap='noticeShow'>
-        <image src='../images/notice-icon.svg'></image>
-        <text>公告:</text>
-        <view id='notice-wrap'>
-            <view id='notice-cont' style='white-space: nowrap; left:{{-noticeDis}}rpx;'>{{noticeCont.notice_content}}</view>
-        </view>
-        <text>></text>
+  <view class='head-notice' bindtap='noticeShow'>
+    <image src='../images/notice-icon.svg'></image>
+    <text>公告:</text>
+    <view id='notice-wrap'>
+      <view id='notice-cont' style='white-space: nowrap; left:{{-noticeDis}}rpx;'>{{noticeCont.notice_content}}</view>
     </view>
-    <view class='notice-edit' style='display:{{noEditShow}}' >
-        <view>
-            <form bindsubmit='noticeEdit'>
-                <textarea maxlength='200' name="content" placeholder='最多输入200个字符'></textarea>
-                <button form-type='submit'>保存</button>
-            </form>
-        </view>
+    <text>></text>
+  </view>
+  <view class='notice-edit' style='display:{{noEditShow}}'>
+    <view>
+      <form bindsubmit='noticeEdit'>
+        <textarea maxlength='200' name="content" placeholder='最多输入200个字符'></textarea>
+        <button form-type='submit'>保存</button>
+      </form>
     </view>
-    <view class='xc' catchtap='noticeHide' style='display:{{noEditShow}}'>x</view>
-    <!-- 轮播图 -->
-    <swiper class='head-swiper' indicator-dots='true' autoplay='true' interval='2000' indicator-color='#fff' indicator-active-color='#ff4000' circular='true'>
-        <swiper-item wx:for='{{swiperArr}}' wx:key=''>
-            <image src='../images/swipeImage.png'></image>
-        </swiper-item>
-    </swiper>
-    <view class='tel' bindtap='tel'>联系我们</view>
-    <!-- 中部导航 -->
-    <view class='content-nav'>
-        <view wx:for="{{navArr}}" wx:key="" bindtap='shopJump'>
-            <image src='{{item.img}}' mode='widthFix'></image>
-            <text>{{item.txt}}</text>
-        </view>
+  </view>
+  <view class='xc' catchtap='noticeHide' style='display:{{noEditShow}}'>x</view>
+  <!-- 轮播图 -->
+  <swiper class='head-swiper' indicator-dots='true' autoplay='true' interval='2000' indicator-color='#fff' indicator-active-color='#ff4000' circular='true'>
+    <swiper-item wx:for='{{swiperArr}}' wx:key=''>
+      <image src='../images/swipeImage.png'></image>
+    </swiper-item>
+  </swiper>
+  <view class='tel' bindtap='tel'>联系我们</view>
+  <!-- 中部导航 -->
+  <view class='content-nav'>
+    <view wx:for="{{navArr}}"  wx:for-item="na" wx:key="" bindtap='shopJump' class='nav_box col'>
+      <image src='{{host+"/"+na.class_img_url}}'></image>
+      <text>{{na.class_name}}</text>
     </view>
-    <!-- 内容 今日特卖 -->
+  </view>
+  <!-- 内容 今日特卖 -->
+  <view wx:if="{{nA.son_class.length==3}}" wx:for="{{shopArr}}" wx:key="" wx:for-item="nA">
     <view class='content'>
-        <view class='title-wrap'>
-            <!-- 标题周边圆点 -->
-            <view></view>
-            <view></view>
-            <view></view>
-            <view></view>
-            <!-- 文字 -->
-            <text>今日特卖</text>
-            <text>更多<image src='../images/next.png'></image></text>
+      <view class='title-wrap'>
+        <!-- 标题周边圆点 -->
+        <view></view>
+        <view></view>
+        <view></view>
+        <view></view>
+        <!-- 文字 -->
+        <text>{{nA.class_name}}</text>
+        <text>更多<image src='../images/next.png'></image></text>
+      </view>
+      <view class='content-shop'>
+        <view wx:for="{{nA.son_class}}" wx:key="index" wx:for-item="sc" bindtap='jump_evaluate'>
+          <image src='{{sc.class_img_url}}' mode='widthFix'></image>
+          <text>{{sc.text}}</text>
+          <text>￥{{sc.good_price}}</text>
         </view>
-        <view class='content-shop'>
-            <view wx:for="{{shopArr}}" wx:key="index" bindtap='jump_evaluate'>
-                <image src='{{item.img}}' mode='widthFix'></image>
-                <text>{{item.text}}</text>
-                <text>￥{{item.price}}</text>
-            </view>
-        </view>
+      </view>
     </view>
-    <!-- 内容 今日特卖 -->
-    <view class='content'>
-        <view class='title-wrap'>
-            <!-- 标题周边圆点 -->
-            <view></view>
-            <view></view>
-            <view></view>
-            <view></view>
-            <!-- 文字 -->
-            <text>精品特卖</text>
-            <text>更多》</text>
-        </view>
-        <view class='content-shop'>
-            <view wx:for="{{shopArr}}" wx:key="index" bindtap='jump_evaluate'>
-                <image src='{{item.img}}' mode='widthFix'></image>
-                <text>{{item.text}}</text>
-                <text>￥{{item.price}}</text>
-            </view>
-        </view>
+  </view>
+  <!-- 内容 今日特卖 -->
+  <!-- <view class='content'>
+    <view class='title-wrap'>
+      <!-- 标题周边圆点 -->
+      <!-- <view></view>
+      <view></view>
+      <view></view>
+      <view></view> -->
+      <!-- 文字 -->
+      <!-- <text>精品特卖</text>
+      <text>更多》</text>
     </view>
+    <view class='content-shop'>
+      <view wx:for="{{shopArr}}" wx:key="index" bindtap='jump_evaluate'>
+        <image src='{{item.img}}' mode='widthFix'></image>
+        <text>{{item.text}}</text>
+        <text>￥{{item.price}}</text>
+      </view>
+    </view>
+  </view> --> 
 
-    <!-- 客服图标 -->
-    <view class='kefu_rexian_dizhi'>
-        <form bindsubmit='costom' report-submit>
-            <button class='btn' form-type='submit' open-type="getUserInfo">
-                <image src='../images/kefu_icon.png' class='btn_img'></image>
-            </button>
-        </form>
-    </view>
+  <!-- 客服图标 -->
+  <view class='kefu_rexian_dizhi'>
+    <form bindsubmit='costom' report-submit>
+      <button class='btn' form-type='submit' open-type="getUserInfo">
+        <image src='../images/kefu_icon.png' class='btn_img'></image>
+      </button>
+    </form>
+  </view>
 </view>

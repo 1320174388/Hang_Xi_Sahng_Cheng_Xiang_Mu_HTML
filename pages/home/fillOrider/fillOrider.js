@@ -30,6 +30,16 @@ wx.navigateTo({
    */
   onLoad: function(options) {
 
+    //获取订单详情
+    app.request(
+      config.hostUrl + '/v1/order_module/getOrderDetails', {
+        order_number: ''
+      },
+      function (res) {
+        console.log(res)
+      }, 
+    )
+
   },
 
   /**

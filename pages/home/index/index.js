@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    host: config.hostUrl,
 
     //   公告修改的显示和隐藏
     noEditShow: 'none',
@@ -24,26 +25,27 @@ Page({
       "../images/swipeImage.png"
     ],
     //   中部导航栏
-    navArr: [{
-        img: "../images/yifu.png",
-        txt: "休闲服装"
-      },
-      {
-        img: "../images/shengxian.png",
-        txt: "水果生鲜"
-      },
-      {
-        img: "../images/shipin.png",
-        txt: "休闲食品"
-      },
-      {
-        img: "../images/chongzhi.png",
-        txt: "充值充值"
-      },
-      {
-        img: "../images/chaoshi.png",
-        txt: "超市超市"
-      },
+    navArr: [
+      //{
+      //   img: "../images/yifu.png",
+      //   txt: "休闲服装"
+      // },
+      // {
+      //   img: "../images/shengxian.png",
+      //   txt: "水果生鲜"
+      // },
+      // {
+      //   img: "../images/shipin.png",
+      //   txt: "休闲食品"
+      // },
+      // {
+      //   img: "../images/chongzhi.png",
+      //   txt: "充值充值"
+      // },
+      // {
+      //   img: "../images/chaoshi.png",
+      //   txt: "超市超市"
+      // },
     ],
     //   今日特卖
     shopArr: [{
@@ -127,7 +129,7 @@ Page({
 
   },
   //加载时获取的信息
-  bindviewtap: function () {},
+  bindviewtap: function() {},
   /**
    * 生命周期函数--监听页面加载
    */
@@ -140,6 +142,26 @@ Page({
         noticeCont: res.data.retData,
       })
     });
+    //导航获取
+    getApp().request(
+      config.hostUrl + '/v1/assortment_module/getGoodsClass', {},
+      function (res) {
+        console.log(res)
+        that.setData({
+          navArr: res.data.retData
+        })
+      }
+    );
+    //特卖获取
+    getApp().request(
+      config.hostUrl + '/v1/assortment_module/assortment_route', {},
+      function(res) {
+        console.log(res)
+        that.setData({
+          shopArr: res.data.retData
+        })
+      }
+    );
 
     //  判断公告是否需要滚动
     setTimeout(function() {
@@ -147,7 +169,7 @@ Page({
       var wrapWidth = "";
       var contWidth = "";
       query.select('#notice-wrap').boundingClientRect(function(res) {
-      
+
         wrapWidth = res.width;
       }).exec();
       query.select('#notice-cont').boundingClientRect(function(res) {
@@ -155,7 +177,7 @@ Page({
         contWidth = res.width;
       }).exec();
       setTimeout(function() {
-        
+
         if (contWidth > wrapWidth) {
           var timer = setInterval(function() {
 
@@ -164,13 +186,13 @@ Page({
             that.setData({
               noticeDis: noticeDis
             });
-            if (noticeDis/2 >= contWidth) { 
+            if (noticeDis / 2 >= contWidth) {
               that.setData({
                 noticeDis: -wrapWidth
-              });     
+              });
             }
-           this.timer;
-        }, 5)
+            this.timer;
+          }, 5)
         }
       }, 1000)
     }, 1000)

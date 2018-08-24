@@ -9,16 +9,7 @@
       </swiper-item>
     </block>
   </swiper>
-  <!-- <view class='selet row_around'>
-    <view class='selet_item' bindtap='selet_hid'>{{s_parent[index].class_name}}</view>
-    <view class='item_main' hidden='{{selet_show}}' style='height:{{selet_show==false?(s_parent.length>5?300:s_parent.length*60):0}}rpx;'>
-      <view class='item_main_list' wx:for="{{s_parent}}" data-index='{{index}}' catchtap='item_list' wx:key=''>{{item.class_name}}</view>
-    </view>
-    <view class='selet_item' bindtap='selet_hid1'>{{son_class[index1].class_name}}</view>
-    <view class='item_main' hidden='{{selet_show1}}' style='height:{{selet_show1==false?(s_parent[index].son_class.length>5?300:s_parent.length*60):0}}rpx;'>
-      <view class='item_main_list' wx:for="{{son_class}}" data-index='{{index}}' catchtap='item_list1' wx:key=''>{{item.class_name}}</view>
-    </view>
-  </view> -->
+
   <view class='upinput'>
     <view class='upinput_item row'>商品名称
       <input name='names' placeholder='请输入商品名称' value='{{good_name}}'></input>

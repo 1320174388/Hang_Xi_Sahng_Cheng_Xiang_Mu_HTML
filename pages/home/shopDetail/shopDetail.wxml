@@ -7,29 +7,33 @@
      历史记录 :  ----------------------- 
 -->
 <view id='wrap'>
-    <view class='header'>
-        <view>全部</view>
-        <view>
-            <text>价格</text>
-            <image src='../images/sort.svg' mode='widthFix'></image>
-        </view>
-        <view>销量</view>
+  <view class='header'>
+    <view bindtap='nolist'>全部</view>
+    <view bindtap='asclist'>
+      <text>价格</text>
+      <image src='../images/sort.svg' mode='widthFix'></image>
     </view>
+    <view bindtap='salelist'>销量</view>
+  </view>
+  <scroll-view scroll-y style="height: 100vh;" bindscrolltolower="lower">
     <view class='content-wrap'>
-        <view class='content' wx:for="{{shopList}}" wx:key="index" bindtap='jump_evaluate' data-index='{{index}}'>
-            <image src='{{imgHost+item.image_url[0]}}'></image>
-            <view>
-                <text>{{item.good_name}}</text>
-                <view></view>
-                <view>
-                    100% 品控检测
-                </view>
-                <view>￥{{item.good_price}}</view>
-                <text>已售:{{item.good_sales}}件</text>
-                <view>
-                    <image src='../images/shopping.svg' mode='widthFix'></image>
-                </view>
-            </view>
+      <view class='content' wx:for="{{shopList}}" wx:key="index" bindtap='jump_evaluate' data-index='{{index}}'>
+        <image src='{{imgHost+item.image_url[0]}}'></image>
+        <view>
+          <text>{{item.good_name}}</text>
+          <view></view>
+          <view>
+            100% 品控检测
+          </view>
+          <view>￥{{item.good_price}}</view>
+          <text>已售:{{item.good_sales}}件</text>
+          <view>
+            <image src='../images/shopping.svg' mode='widthFix'></image>
+          </view>
         </view>
+      </view>
     </view>
+    
+    <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>
+    </scroll-view>
 </view>

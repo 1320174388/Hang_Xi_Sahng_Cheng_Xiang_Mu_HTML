@@ -7,27 +7,9 @@
  *  文件描述 :  商城购物车页面
  *  历史记录 :  -----------------------
  */-->
-<view class='header'>
-  <view class='header_th'>
-    <image class='icon'></image>
-    <text>北京</text>
-    <image class='icon'></image>
-  </view>
-</view>
-<view class='list col'>
-  <view class='list_head row_between'>
-    <view class='list_left row'>
-      <!-- wx:if 是否选择显示不同图标 -->
-      <icon wx:if="{{item.selected}}" type="success" color="red" bindtap="selectList" data-index="{{index}}" />
-      <icon wx:else type="circle" bindtap="selectList" data-index="{{index}}" />
 
-      <view>次日达</view>
-    </view>
-    <view class='list_right row'>
-      <view class='f_color4'>实付满88元包邮，还差18元，去凑单</view>
-      >
-    </view>
-  </view>
+<view class='list col'>
+
   <scroll-view scroll-y="true">
 
     <view class='list_main row_between' wx:for="{{carts}}" wx:key="" wx:for-item="c">

@@ -90,18 +90,21 @@
      width: 100%;
  }
  .content-nav{
-     display: flex;
-     justify-content: space-around;
-     height: 200rpx;
-     padding: 20rpx 0;
-     background: #fff;
+    display:flex;
+padding:20rpx 25rpx;
+background:#fff;
+flex-flow:row wrap;
+
  }
  .content-nav>view{
      text-align: center;
      width: 100rpx;
+     align-items: center;
+     
  }
  .content-nav image{
      width: 93rpx;
+     height: 100rpx;
  }
  .content-nav text{
      font-size: 24rpx;
@@ -207,3 +210,15 @@ background: #fff;
   left: 27%;
   top: 25%;
 }
+.nav_box{
+  width: 20%;
+  height: 150rpx;
+  margin: 10rpx 20rpx;
+ 
+align-items:center;
+
+}
+/* .nav_box image{
+  width: 100rpx;
+  height: 100rpx;
+} */
