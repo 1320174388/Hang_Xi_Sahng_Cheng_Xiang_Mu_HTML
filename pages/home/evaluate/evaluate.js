@@ -15,24 +15,84 @@ Page({
     selet_show: true,
     num: 1,
     mycollect: false,
-    searchPageNum:0,
-
+    searchPageNum: 0,
+    idx: '',
   },
 
+
   //跳转到填写订单
-  jump_fillOrider: function () {
-//先提交页面信息生成订单， 将订单生成信息传值
+  orider: function(e) {
+    var that = this;
+    console.log('提交页面信息生成订单')
+    console.log(that.data.idx)
+    console.log(that.data.goodData.style_data)
+    var token = wx.getStorageSync('token');
+    if (that.data.idx == '') {
+      console.log("没选择规格")
+      return false;
+    } else if (that.data.idx !== '') {
+      var order_group = that.data.goodData.style_data[that.data.idx];
+      order_group.good_name = that.data.goodData.good_name,
+        order_group.good_index = that.data.goodData.good_index,
+        order_group.good_num = that.data.num,
+        order_group.good_pic = that.data.goodData.good_img_master[0].picture_url,
+        order_group.good_price = that.data.goodData.style_data[that.data.idx].style_price,
+        delete order_group.active,
+        delete order_group.style_index,
+        delete order_group.style_price,
+        console.log(that.data.goodData)
+      console.log(order_group);
+      var outTradeNo = ""; //订单号
+      for (var i = 0; i < 9; i++) //6位随机数，用以加在时间戳后面。
+      {
+        outTradeNo += Math.floor(Math.random() * 10);
+      }
+      var t = new Date();
+      outTradeNo = t.getFullYear() + "" + (t.getMonth() + 1) + "" + t.getDate() + "" + t.getHours() + "" + t.getMinutes() + "" + t.getSeconds() + "" + outTradeNo; //时间戳，用来生成订单号。
+      console.log(outTradeNo)
+      wx.chooseAddress({
+        success: function(res) {
+          var order_people = res.userName;
+          var order_phone = res.telNumber;
+          var order_address = res.provinceName + res.cityName + res.countyName + res.detailInfo;
+          var order_people = res.userName;
 
 
+          app.request(
+            config.hostUrl + '/v1/order_module/paymentOrder', {
+              userToken: token,
+              order_number: outTradeNo,
+              order_people: order_people,
+              order_phone: order_phone,
+              order_address: order_address,
+              order_formd: e.detail.formId,
+              good_prices: good_num * good_price,
+              order_gdnu: that.data.num,
 
-    wx.navigateTo({
-      url: '../fillOrider/fillOrider',
-    })
+              order_group: order_group,
+            },
+            function(res) {
+              console.log(res)
+              return false
+              wx.navigateTo({
+                url: '../fillOrider/fillOrider',
+              })
+
+            }, 'POST',
+          )
+
+          //先提交页面信息生成订单， 将订单生成信息传值
+          // var arr=  this.data.goodData.push (this.data.num)
+          // console.log(arr)
+
+        }
+      })
+    }
   },
   //导航点击事件
   navbarTap: function(e) {
     var idx = e.currentTarget.dataset.idx;
-    
+
     this.setData({
       currentTab: idx
     })
@@ -51,6 +111,7 @@ Page({
   },
   //规格样式选择
   select: function(e) {
+    console.log(e)
     var idx = e.currentTarget.dataset.index
     var style_data = this.data.goodData.style_data;
     for (var i = 0; i < style_data.length; i++) {
@@ -59,6 +120,7 @@ Page({
     style_data[idx].active = true;
     this.setData({
       'goodData.style_data': style_data,
+      idx: idx
     })
   },
   // 增加数量
@@ -80,8 +142,8 @@ Page({
       });
     }
   },
-//触底事件
-  lower:function(){
+  //触底事件
+  lower: function() {
     console.log("触底事件")
     // var that = this;
     // var searchPageNum = that.data.searchPageNum + 1; //每次触发上拉事件，把searchPageNum+1 
@@ -89,44 +151,44 @@ Page({
 
     // app.request(
     //   config.hostUrl + '/v1/good_module/critic_get', {
-      
+
     //     goodIndex: that.data.goodData.class_index
     //   },
     //   function (res) {
     //     console.log(res)
-      //   console.log(that.data.currentTab)
-      //   var list = [];
-      //   var x = 0;
-      //   console.log(that.data.list)
+    //   console.log(that.data.currentTab)
+    //   var list = [];
+    //   var x = 0;
+    //   console.log(that.data.list)
 
-      //   for (var i = 0; i < res.data.retData.length; i++) {
-      //     if (res.data.retData[i].order_status == that.data.currentTab) {
-      //       list[x] = res.data.retData[i];
-      //       x++;
-      //     }
-      //   }
+    //   for (var i = 0; i < res.data.retData.length; i++) {
+    //     if (res.data.retData[i].order_status == that.data.currentTab) {
+    //       list[x] = res.data.retData[i];
+    //       x++;
+    //     }
+    //   }
 
-      //   console.log(list)
-      //   if (list.length == 12) {
-      //     var newarr = that.data.list.concat(list)
-      //     var arr = that.data.orider_list.concat(res.data.retData)
-      //     console.log(newarr)
-      //     console.log(arr)
-      //     that.setData({
-      //       'orider_list': arr,
-      //       'list': newarr,
-      //       searchPageNum: searchPageNum,
-      //       searchLoadingComplete: false,
-      //     })
-      //   } else if (list.length < 12) {
-      //     var newarr = that.data.list.concat(list)
-      //     var arr = that.data.orider_list.concat(res.data.retData)
-      //     that.setData({
-      //       'orider_list': arr,
-      //       'list': newarr,
-      //       searchPageNum: searchPageNum,
-      //       searchLoadingComplete: true,
-      //     })
+    //   console.log(list)
+    //   if (list.length == 12) {
+    //     var newarr = that.data.list.concat(list)
+    //     var arr = that.data.orider_list.concat(res.data.retData)
+    //     console.log(newarr)
+    //     console.log(arr)
+    //     that.setData({
+    //       'orider_list': arr,
+    //       'list': newarr,
+    //       searchPageNum: searchPageNum,
+    //       searchLoadingComplete: false,
+    //     })
+    //   } else if (list.length < 12) {
+    //     var newarr = that.data.list.concat(list)
+    //     var arr = that.data.orider_list.concat(res.data.retData)
+    //     that.setData({
+    //       'orider_list': arr,
+    //       'list': newarr,
+    //       searchPageNum: searchPageNum,
+    //       searchLoadingComplete: true,
+    //     })
     //   //   }
     //    }
     // )
@@ -136,7 +198,7 @@ Page({
   mycollect: function(e) {
     var that = this;
     var token = wx.getStorageSync('token')
-    if (that.data.mycollect  == false) {
+    if (that.data.mycollect == false) {
       app.request(
         config.hostUrl + '/v1/collect_module/collect_post', {
           'userToken': token,
@@ -162,9 +224,9 @@ Page({
       )
     }
   },
-  addcarts:function(){
-console.log("加入购物车")
-    wx.setStorageSync('carts', that.data.goodData)
+  addcarts: function() {
+    console.log("加入购物车")
+    wx.setStorageSync('carts', this.data.goodData)
   },
   //加载时获取的信息
   bindviewtap: function() {
@@ -218,7 +280,7 @@ console.log("加入购物车")
         goodIndex: goodindex
       },
       function(res) {
- 
+        console.log(res.data.retData.goodData)
         that.setData({
           goodData: res.data.retData.goodData
         })
@@ -228,7 +290,7 @@ console.log("加入购物车")
             goodIndex: that.data.goodData.class_index
           },
           function(res) {
-           
+
             if (res.data.retData == true) {
               that.setData({
                 mycollect: true

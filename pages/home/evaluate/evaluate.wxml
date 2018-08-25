@@ -33,7 +33,9 @@
     </view>
     <view class='col' hidden='{{selet_show}}'>
       <view class='row s_sp'>
-        <view wx:for="{{goodData.style_data}}" wx:key="x" wx:for-item="s" data-index='{{index}}' bindtap='select' class='{{s.active==true?"ative":"specification "}}'> {{s.style_name}}:{{s.style_price}}</view>
+        <view wx:for="{{goodData.style_data}}" wx:key="x" wx:for-item="s">
+          <view data-index='{{index}}' bindtap='select' class='{{s.active==true?"ative":"specification "}}'> {{s.style_name}}:{{s.style_price}}</view>
+        </view>
       </view>
       <view class='row_between'>
         <view></view>
@@ -100,10 +102,12 @@
         <text>收藏</text>
       </view>
     </view>
-    <view class='foot_right row'>
-      <view class='foot_right_left' bindtap='addcarts'>加入购物车</view>
-      <view class='foot_right_right' bindtap='jump_fillOrider'>立即购买</view>
-    </view>
+    <form report-submit="true" bindsubmit="orider">
+      <view class='foot_right row'>
+        <view class='foot_right_left' bindtap='addcarts'>加入购物车</view>
+        <button class='foot_right_right' formType='submit'>立即购买</button>
+      </view>
+    </form>
   </view>
 
 </view>
@@ -118,7 +122,7 @@
       </scroll-view>
     </view>
   </view> -->
-  <!-- <view class=" pay_wrap col hide{{showView? 'show': ''}} ">
+<!-- <view class=" pay_wrap col hide{{showView? 'show': ''}} ">
   <view class='pay_head col_around'>
     <view class='pay_head_top row'>订单号：
       <text class='pay_head_top_right'>1129843984893</text>

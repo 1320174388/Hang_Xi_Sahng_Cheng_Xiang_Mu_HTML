@@ -89,6 +89,7 @@ swiper {
   text-align: center;
   color: #fff;
   font-size: 24rpx;
+  padding: 4rpx 15rpx;
 }
 
 /* .specification::after{
@@ -98,12 +99,13 @@ swiper {
 .ative {
   background: #ff1656;
   border: 1px solid #979797;
-  height: 52rpx;
+  height: 60rpx;
   margin: 10rpx;
   line-height: 52rpx;
   text-align: center;
   color: #fff;
   font-size: 24rpx;
+   padding: 4rpx 15rpx;
 }
 
 .s_sp .specification.active:after {
@@ -264,6 +266,11 @@ box {
 .foot_right_right {
   width: 180rpx;
   height: 108rpx;
+  font-size: 28rpx;
+  border-radius: 0;
+  color: #fff;
+  line-height: 108rpx;
+  text-align: center;
   background-image: linear-gradient(-206deg, #ff5e42 0%, #ff1058 95%);
 }
 
@@ -312,20 +319,19 @@ box {
   z-index: 10;
 }
 
-.num{
+.num {
   width: 200rpx;
   height: 100%;
-
   color: #000;
   text-align: center;
   align-items: center;
   float: right;
 }
-.num .right_flex{
+
+.num .right_flex {
   flex: 1;
   height: 100%;
   line-height: 1.8;
-   padding: auto;
-
+  padding: auto;
   font-size: 40rpx;
 }
