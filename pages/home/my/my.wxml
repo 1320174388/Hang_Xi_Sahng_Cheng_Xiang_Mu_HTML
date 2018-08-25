@@ -19,7 +19,7 @@
     <!-- 我的订单 -->
     <view class='my-order'>
         <text>我的订单</text>
-        <text bindtap='jump_myOrider'>查看全部订单></text>
+        <text bindtap='jump_All_Order'>查看全部订单></text>
     </view>
     <!-- 菜单栏 -->
     <view class='menu'>

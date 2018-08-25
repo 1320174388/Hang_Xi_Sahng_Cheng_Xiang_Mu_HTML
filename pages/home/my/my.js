@@ -30,13 +30,19 @@ Page({
           },
       ]
   },
-//
+//点击分类的订单
   jump_myOrider: function (e) {
     console.log(e)
     var idx = e.currentTarget.dataset.index
     wx.navigateTo({
       url: '../myOrider/myOrider?idx='+idx,
     })
+  },
+//   点击全部订单
+  jump_All_Order:function(){
+      wx.navigateTo({
+          url: '../myOrider/myOrider?idx=0',
+      })
   },
   //
   jump_installAddress:function(){

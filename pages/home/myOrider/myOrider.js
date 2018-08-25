@@ -7,8 +7,15 @@ Page({
    * 页面的初始数据
    */
   data: {
+    //   导航条数组
     navbar: ['待付款', '待发货', '待收货', '待评价', '已完成'],
     currentTab: 0,
+    // 订单列表数组
+    orderList:[],
+    // 合计价格
+    zPrice:'',
+    // img域名
+    hosturl:config.hostUrl,
   },
 
   //导航条点击事件
@@ -33,7 +40,7 @@ Page({
     var that = this ;
     if(options.idx){
       that.setData({
-        currentTab: options.idx
+        currentTab: parseInt(options.idx)
       })
     }
     app.request(
@@ -41,7 +48,24 @@ Page({
         'user_token': token 
       },
       function (res) {
-        console.log(res)
+          if(res.data.retData){
+              var list = res.data.retData;
+              for (var i = 0; i < list.length;i++){
+                  var zj;
+                  for (var j = 0; j < list[i].details.length; j++){
+                      zj = zj + parseInt(list[i].details[j].good_num * list[i].details[j].good_price);
+                  }
+                  list[i].zPrice = zj;
+
+              }
+
+
+              that.setData({
+                  orderList: res.data.retData,
+              })
+          }
+          console.log(res.data.retData);
+          
       }
     )
   
@@ -58,7 +82,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+      
   },
 
   /**
