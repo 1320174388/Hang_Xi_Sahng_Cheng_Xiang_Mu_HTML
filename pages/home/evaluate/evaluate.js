@@ -16,21 +16,44 @@ Page({
     num: 1,
     mycollect: false,
     searchPageNum: 0,
-    idx: '',
+    idx: null,
   },
 
 
   //跳转到填写订单
   orider: function(e) {
+    console.log("生成订单")
     var that = this;
-    console.log('提交页面信息生成订单')
-    console.log(that.data.idx)
-    console.log(that.data.goodData.style_data)
     var token = wx.getStorageSync('token');
-    if (that.data.idx == '') {
-      console.log("没选择规格")
-      return false;
-    } else if (that.data.idx !== '') {
+    var order_formd = e.detail.formId
+    console.log(token)
+    var outTradeNo = ""; //订单号
+    for (var i = 0; i < 18; i++) //18位随机数，用以加在时间戳后面。
+    {
+      outTradeNo += Math.floor(Math.random() * 10);
+    }
+    var t = new Date();
+    var month = t.getMonth() + 1;
+    var getDate = t.getDate();
+    var getHours = t.getHours();
+    var getMinutes = t.getMinutes();
+    var getSeconds = t.getSeconds();
+    if (month < 10) {
+      month = "0" + month;
+    }else if (getDate < 10) {
+      getDate = "0" + getDate
+    } else if (getHours < 10) {
+      getHours = "0" + getHours
+    } else if (getMinutes < 10) {
+      getMinutes = "0" + getMinutes
+    } else if (getSeconds < 10) {
+      getSeconds = "0" + getSeconds
+    }
+    outTradeNo = t.getFullYear() + "" + month + "" + getDate + "" + getHours + "" + getMinutes + "" + getSeconds + "" + outTradeNo; //时间戳，用来生成订单号。
+    if (that.data.idx == null) {
+      app.point('请先选择规格', 'none', 2000)
+    } else if (that.data.idx !== null || that.data.idx == 0) {
+      var order_groups = [];
       var order_group = that.data.goodData.style_data[that.data.idx];
       order_group.good_name = that.data.goodData.good_name,
         order_group.good_index = that.data.goodData.good_index,
@@ -40,59 +63,55 @@ Page({
         delete order_group.active,
         delete order_group.style_index,
         delete order_group.style_price,
-        console.log(that.data.goodData)
-      console.log(order_group);
-      var outTradeNo = ""; //订单号
-      for (var i = 0; i < 9; i++) //6位随机数，用以加在时间戳后面。
-      {
-        outTradeNo += Math.floor(Math.random() * 10);
-      }
-      var t = new Date();
-      outTradeNo = t.getFullYear() + "" + (t.getMonth() + 1) + "" + t.getDate() + "" + t.getHours() + "" + t.getMinutes() + "" + t.getSeconds() + "" + outTradeNo; //时间戳，用来生成订单号。
-      console.log(outTradeNo)
+        order_groups[0] = order_group;
       wx.chooseAddress({
         success: function(res) {
           var order_people = res.userName;
           var order_phone = res.telNumber;
           var order_address = res.provinceName + res.cityName + res.countyName + res.detailInfo;
-          var order_people = res.userName;
-
-
-          app.request(
-            config.hostUrl + '/v1/order_module/paymentOrder', {
-              userToken: token,
-              order_number: outTradeNo,
-              order_people: order_people,
-              order_phone: order_phone,
-              order_address: order_address,
-              order_formd: e.detail.formId,
-              good_prices: good_num * good_price,
-              order_gdnu: that.data.num,
-
-              order_group: order_group,
-            },
-            function(res) {
-              console.log(res)
-              return false
-              wx.navigateTo({
-                url: '../fillOrider/fillOrider',
-              })
-
-            }, 'POST',
-          )
-
-          //先提交页面信息生成订单， 将订单生成信息传值
-          // var arr=  this.data.goodData.push (this.data.num)
-          // console.log(arr)
-
+          app.point('正在创建订单', 'success', 2000)
+          var orider = {
+            //user_token: token, //用户标识`
+            order_number: outTradeNo, //`订单号`
+            order_people: order_people, //`收件人名称`
+            order_phone: order_phone, //`收件人电话`
+            order_address: order_address, //`收件人地址`
+            order_formd: order_formd, //`表单提交ID`
+            good_prices: order_group.good_num * order_group.good_price, //`商品总价格`
+            order_gdnu: '1', //商品规格数量；
+            order_group: order_groups,
+          }
+          wx.setStorageSync('orider', orider);
+          wx.navigateTo({
+            url: '../fillOrider/fillOrider?status=' + 1,
+          })
         }
       })
+
+      //     app.request(
+      //       config.hostUrl + '/v1/order_module/paymentOrder', {
+      //         user_token: token, //用户标识`
+      //         order_number: outTradeNo, //`订单号`
+      //         order_people: order_people, //`收件人名称`
+      //         order_phone: order_phone, //`收件人电话`
+      //         order_address: order_address, //`收件人地址`
+      //         order_formd: order_formd, //`表单提交ID`
+      //         good_prices: order_group.good_num * order_group.good_price, //`商品总价格`
+      //         order_gdnu: '1', //商品规格数量；
+      //         order_group: JSON.stringify(order_groups), //`商品信息json数据good_index 商品主键 good_name 商品名称 style_name 规格名称 good_num 商品数量 good_price 商品单价 good_pic 商品缩略图
+      //       },
+      //     function(res) {
+      // wx.navigateTo({
+      //   url: '../fillOrider/fillOrider?order_number=' + outTradeNo,
+      //  })
+
+      // }
+      //'POST', ) }
     }
   },
   //导航点击事件
   navbarTap: function(e) {
     var idx = e.currentTarget.dataset.idx;
-
     this.setData({
       currentTab: idx
     })
@@ -104,14 +123,12 @@ Page({
   },
   //规格选择显示
   selet_hid: function(e) {
-
     this.setData({
       selet_show: false
     })
   },
   //规格样式选择
   select: function(e) {
-    console.log(e)
     var idx = e.currentTarget.dataset.index
     var style_data = this.data.goodData.style_data;
     for (var i = 0; i < style_data.length; i++) {
@@ -202,7 +219,7 @@ Page({
       app.request(
         config.hostUrl + '/v1/collect_module/collect_post', {
           'userToken': token,
-          goodIndex: that.data.goodData.class_index
+          goodIndex: that.data.goodData.good_index
         },
         function(res) {
           that.setData({
@@ -214,7 +231,7 @@ Page({
       app.request(
         config.hostUrl + '/v1/collect_module/collect_delete', {
           'userToken': token,
-          goodIndex: that.data.goodData.class_index
+          goodIndex: that.data.goodData.good_index
         },
         function(res) {
           that.setData({
@@ -224,9 +241,41 @@ Page({
       )
     }
   },
+  //加入购物车
   addcarts: function() {
-    console.log("加入购物车")
-    wx.setStorageSync('carts', this.data.goodData)
+
+    if (this.data.idx == null) {
+      app.point('请先选择规格', 'none', 2000)
+      return false;
+    } else if (this.data.idx !== null || this.data.idx == 0) {
+      /**
+       * 处理购物车逻辑 
+       */
+      var project_cart = {
+        'good_index': this.data.goodData.good_index,
+        'good_name': this.data.goodData.good_name,
+        'good_num': this.data.num,
+        'style_name': this.data.goodData.style_data[this.data.idx].style_name,
+        'style_price': this.data.goodData.style_data[this.data.idx].style_price,
+        'good_image': this.data.goodData.good_img_master[0].picture_url,
+      };
+      if (wx.getStorageSync('project_carts')) {
+        var project_carts = wx.getStorageSync('project_carts');
+        for (var i in project_carts) {
+          if (project_carts[i].good_index == this.data.goodData.good_index) {
+            app.point('商品已加入购物车', 'none', 2000)
+            return false;
+          }
+        }
+        project_carts[project_carts.length] = project_cart;
+        wx.setStorageSync('project_carts', project_carts);
+      } else {
+        var project_carts = [];
+        project_carts[0] = project_cart;
+        wx.setStorageSync('project_carts', project_carts);
+      }
+      console.log(project_carts);
+    }
   },
   //加载时获取的信息
   bindviewtap: function() {
@@ -270,7 +319,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
     var goodindex = options.goodindex;
     var that = this;
     var token = wx.getStorageSync('token')
@@ -280,17 +328,15 @@ Page({
         goodIndex: goodindex
       },
       function(res) {
-        console.log(res.data.retData.goodData)
         that.setData({
           goodData: res.data.retData.goodData
         })
         app.request(
           config.hostUrl + '/v1/collect_module/collect_isget', {
             'userToken': token,
-            goodIndex: that.data.goodData.class_index
+            goodIndex: that.data.goodData.good_index
           },
           function(res) {
-
             if (res.data.retData == true) {
               that.setData({
                 mycollect: true
@@ -300,12 +346,10 @@ Page({
                 mycollect: false
               })
             }
-
           }
         )
       }
     )
-
   },
 
   /**

@@ -6,108 +6,78 @@
  * 文件描述 : 填写订单页面 
  * 历史记录 : ----------------------- *
  */-->
-<view class='orider'>订单号: 1111111111111</view>
+
+<view class='orider'>订单号: {{orider.order_number}}</view>
 <view class='name row_between' bindtap='jump_installAddress'>
   <view class='name_left col_between'>
     <view class='name_left_top row'>
-      <view class='name_left_top_left'>姓名</view>
-      <view class='name_left_top_right'>1301523456</view>
+      <view class='name_left_top_left'>{{orider.order_people}}</view>
+      <view class='name_left_top_right'>{{orider.order_phone}}</view>
     </view>
     <view class='name_left_bot row'>
       <text class='name_left_bot_left'>默认</text>
-      <text class='name_left_bot_right'>这一行显示收货人的地址</text>
+      <text class='name_left_bot_right'>{{orider.order_address}}</text>
     </view>
   </view>
   <image class='name_right' src='../images/next.png' />
 </view>
 <scroll-view scroll-y="true">
   <view class='list col'>
-    <view class='list_main row' wx:for="{{carts}}">
-      <view class='click' bindtap='switchSelect' data-index='{{index}}' data-id='{{index}}'></view>
-      <image class='list_main_left' src='../images/content.png'></image>
+    <view class='list_main row' wx:for="{{orider.order_group}}" wx:key="" wx:for-item="g">
+      <image class='list_main_left' src='{{host+g.good_pic}}'></image>
       <view class='list_main_right col_between'>
-        <view class='list_main_right_top'>四川梅干菜</view>
+        <view class='list_main_right_top'>{{g.good_name+g.style_name}}</view>
         <view class='list_main_right_bot row_between'>
           <view class='list_main_right_bot_left'>
-            <text class='color_font'>￥5.9</text>
-            <text>7.9</text>
+            <text class='color_font'>￥{{g.good_price}}</text>
           </view>
-          <view class='list_main_right_bot_right'>
-            <!-- 主容器 -->
-            <view class="stepper row">
-              <!-- 减号 -->
-              <view class="{{minusStatus}}" bindtap="bindMinus">-</view>
-              <!-- 数值 -->
-              <input type="number" disabled='true' value="{{input.num}}"></input>
-              <!-- 加号 -->
-              <view class="normal" bindtap="bindPlus">+</view>
-            </view>
+          <view class='num row_around'>
+            <text>x{{g.good_num}}</text>
           </view>
         </view>
       </view>
     </view>
-
-
   </view>
 </scroll-view>
-<view class='price col'>
-  <view class='price_top row_between'>
-    <view class='price_top_left'>商品总价</view>
-    <view class='price_top_right'>￥65.9</view>
-  </view>
-  <view class='price_bot col'>
-    <view class='price_bot_top row_between'>
-      <view class='price_bot_top_left'>商品实付</view>
-      <view class='price_bot_top_right'>￥65.9</view>
-    </view>
-    <view class='price_bot_bot row_between'>
-      <view class='price_bot_bot_left'>运费
-        <text class='price_bot_bot_left_right'>實付滿88元包郵</text>
-      </view>
-      <view class='price_bot_bot_right'>￥10</view>
-    </view>
-  </view>
-</view>
-
 <view class='foot row'>
   <view class='foot_left row_around'>
     <view class='foot_left_left row'>
-      <view class='click' bindtap='allselect'></view>
-      全选
     </view>
     <view class='foot_left_right row'>合计：
-      <text class='color_font'>$75.9</text>
+      <text class='color_font'>￥{{orider.good_prices}}</text>
     </view>
   </view>
   <view class='foot_right' bindtap="onChangeShowState">付款</view>
 </view>
 
-
-
-<view class=" pay_wrap col hide{{showView? 'show': ''}} ">
-  <view class='pay_head col_around'>
-    <view class='pay_head_top row'>订单号：
-      <text class='pay_head_top_right'>1129843984893</text>
-    </view>
-    <view class='pay_head_bot row'>
-      <text class='pay_head_bot_right'>商品价格</text>￥65.9
-    </view>
-  </view>
-  <view class='pay_main col_around'>
-    <text>联系店主</text>
-    <view class='row pay_main_num'>微信号： 21876384
-      <text>复制</text>
-    </view>
-    <image class='twocode'></image>
-    <view class='pay_main_th'>支付二维码</view>
-    <view class='row_between'>
-      <view class='col'>
-        <image class='twocode'></image>
-        <view class='pay_foot'>微信二维码</view>
+<view class='wrap' hidden='{{hid}}' data-classification='true' catchtap='delification'>
+  <view data-classification='' catchtap='delification'>
+    <view class="pay_wrap col">
+      <view class='pay_head col_around'>
+        <view class='pay_head_top row'>订单号：
+          <text class='pay_head_top_right'>{{orider.order_number}}</text>
+        </view>
+        <view class='pay_head_bot row'>
+          <text class='pay_head_bot_right'>应付价格</text>￥{{orider.good_prices}}
+        </view>
       </view>
-      <view class='col'>
+      <view class='pay_main col_around'>
+        <text>联系店主</text>
+        <view class='row pay_main_num'>微信号： 21876384
+          <text>复制</text>
+        </view>
         <image class='twocode'></image>
-        <view class='pay_foot'>支付宝二维码</view>
+        <view class='pay_main_th'>支付二维码</view>
+        <view class='row_between'>
+          <view class='col'>
+            <image class='twocode'></image>
+            <view class='pay_foot'>微信二维码</view>
+          </view>
+          <view class='col'>
+            <image class='twocode'></image>
+            <view class='pay_foot'>支付宝二维码</view>
+          </view>
+        </view>
       </view>
     </view>
   </view>

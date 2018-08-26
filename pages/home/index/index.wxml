@@ -33,7 +33,7 @@
   <view class='tel' bindtap='tel'>联系我们</view>
   <!-- 中部导航 -->
   <view class='content-nav'>
-    <view wx:for="{{navArr}}"  wx:for-item="na" wx:key="" bindtap='shopJump' class='nav_box col'>
+    <view wx:for="{{navArr}}"  wx:for-item="na" wx:key="" bindtap='shopJump' class='nav_box col' data-classIndex='{{na.class_index}}'>
       <image src='{{host+"/"+na.class_img_url}}'></image>
       <text>{{na.class_name}}</text>
     </view>
@@ -52,9 +52,9 @@
         <text>更多<image src='../images/next.png'></image></text>
       </view>
       <view class='content-shop'>
-        <view wx:for="{{nA.son_class}}" wx:key="index" wx:for-item="sc" bindtap='jump_evaluate'>
-          <image src='{{sc.class_img_url}}' mode='widthFix'></image>
-          <text>{{sc.text}}</text>
+        <view wx:for="{{nA.son_class}}" wx:key="index" wx:for-item="sc" bindtap='jump_evaluate' data-goodindex='{{sc.good_index}}'>
+          <image src='{{host+sc.picture_url}}'></image>
+          <text>{{sc.good_name}}</text>
           <text>￥{{sc.good_price}}</text>
         </view>
       </view>

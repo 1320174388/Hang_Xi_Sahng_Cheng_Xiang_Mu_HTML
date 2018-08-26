@@ -1,4 +1,5 @@
 // pages/home/fillOrider/fillOrider.js
+var config = require('../../../config.js');
 var app = getApp();
 Page({
 
@@ -6,39 +7,61 @@ Page({
    * 页面的初始数据
    */
   data: {
-    showView: false,
+    orider: '',
+    hid: true,
+    totalPrice: 0, // 总价，初始为0
+    selectAllStatus: false, // 全选状态时为true
+    host: config.hostUrl,
   },
+  /**
+   * 点击弹框外部，弹框消失
+   */
+
+  delification: function(e) {
+    console.log(e)
+    if (e.currentTarget.dataset.classification) {
+      this.setData({
+        hid: true
+      })
+    }
+  },
+
   jump_oriderDetail: function() {
     wx.navigateTo({
       url: '../oriderDetail/oriderDetail',
     })
   },
-  jump_installAddress: function(){
-wx.navigateTo({
-  url: '../installAddress/installAddress',
-})
+  jump_installAddress: function() {
+    wx.navigateTo({
+      url: '../installAddress/installAddress',
+    })
   },
-  onChangeShowState: function () {
+  onChangeShowState: function() {
     var that = this;
     that.setData({
-      showView: (!that.data.showView)
+      hid: (!that.data.hid)
     })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-
-    //获取订单详情
-    app.request(
-      config.hostUrl + '/v1/order_module/getOrderDetails', {
-        order_number: ''
-      },
-      function (res) {
-        console.log(res)
-      }, 
-    )
+  onLoad: function(options) { 
+     var orider = wx.getStorageSync('orider')
+      console.log(orider)
+      this.setData({
+        orider: orider
+      }) 
+    // var order_number = options.order_number
+    //  //获取订单详情
+    //   app.request(
+    //     config.hostUrl + '/v1/order_module/getOrderDetails', {
+    //       order_number: order_number
+    //     },
+    //     function (res) {
+    //       console.log(res)
+    //     }, 
+    //   )
 
   },
 
