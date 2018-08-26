@@ -25,62 +25,29 @@ Page({
       "../images/swipeImage.png"
     ],
     //   中部导航栏
-    navArr: [
-      //{
-      //   img: "../images/yifu.png",
-      //   txt: "休闲服装"
-      // },
-      // {
-      //   img: "../images/shengxian.png",
-      //   txt: "水果生鲜"
-      // },
-      // {
-      //   img: "../images/shipin.png",
-      //   txt: "休闲食品"
-      // },
-      // {
-      //   img: "../images/chongzhi.png",
-      //   txt: "充值充值"
-      // },
-      // {
-      //   img: "../images/chaoshi.png",
-      //   txt: "超市超市"
-      // },
-    ],
+    navArr: [],
     //   今日特卖
-    shopArr: [{
-        img: "../images/content.png",
-        text: "四川梅干菜",
-        price: "5.9"
-      },
-      {
-        img: "../images/content.png",
-        text: "四川梅干菜",
-        price: "6.1"
-      },
-      {
-        img: "../images/content.png",
-        text: "四川梅干菜",
-        price: "6.3"
-      }
-    ]
+    shopArr: [],
   },
+  //拨打电话
   tel: function() {
     wx.makePhoneCall({
       phoneNumber: '123456',
     })
   },
   //   商品页面跳转
-  shopJump: function() {
+  shopJump: function(e) {
+    var classindex = e.currentTarget.dataset.classindex;
     wx.navigateTo({
-      url: '../shopDetail/shopDetail',
+        url: '../shopDetail/shopDetail?classIndex=' + classindex,
     })
   },
 
   //跳到商品详情页
-  jump_evaluate: function() {
+  jump_evaluate: function(e) {
+    var goodindex = e.currentTarget.dataset.goodindex;
     wx.navigateTo({
-      url: '../evaluate/evaluate',
+      url: '../evaluate/evaluate?goodindex='+goodindex,
     })
   },
   //点击公告弹出修改框
@@ -88,7 +55,6 @@ Page({
     var that = this;
     getApp().request(config.hostUrl + '/v1/login_module/login_admin/' + wx.getStorageSync('token'), {},
       function(res) {
-        console.log(res)
         if (res.data.retData) {
           that.setData({
             noEditShow: 'block'
@@ -110,7 +76,6 @@ Page({
     getApp().request(config.hostUrl + '/v1/noctice_module/noctice_put/' + wx.getStorageSync('token'), {
       nocticeIndex: this.data.noticeCont.notice_index,
       nocticeContent: res.detail.value.content
-
     }, function(res) {
       if (res.data.retData) {
         that.setData({
@@ -123,10 +88,7 @@ Page({
       } else {
         getApp().point(res.data.retMsg, 'none', 1000);
       }
-
-
     }, 'put');
-
   },
   //加载时获取的信息
   bindviewtap: function() {},
@@ -134,7 +96,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
     var that = this;
     //   公告的获取
     getApp().request(config.hostUrl + '/v1/noctice_module/noctice_get', {}, function(res) {
@@ -146,7 +107,6 @@ Page({
     getApp().request(
       config.hostUrl + '/v1/assortment_module/getGoodsClass', {},
       function (res) {
-        console.log(res)
         that.setData({
           navArr: res.data.retData
         })
@@ -156,7 +116,6 @@ Page({
     getApp().request(
       config.hostUrl + '/v1/assortment_module/assortment_route', {},
       function(res) {
-        console.log(res)
         that.setData({
           shopArr: res.data.retData
         })
@@ -169,18 +128,14 @@ Page({
       var wrapWidth = "";
       var contWidth = "";
       query.select('#notice-wrap').boundingClientRect(function(res) {
-
         wrapWidth = res.width;
       }).exec();
       query.select('#notice-cont').boundingClientRect(function(res) {
-
         contWidth = res.width;
       }).exec();
       setTimeout(function() {
-
         if (contWidth > wrapWidth) {
           var timer = setInterval(function() {
-
             var noticeDis = that.data.noticeDis;
             noticeDis++;
             that.setData({
@@ -209,9 +164,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
-
-
   },
 
   /**
@@ -263,7 +215,6 @@ Page({
                 getApp().request(config.hostUrl + '/v1/talk_module/admin_route/' + wx.getStorageSync('token'), {
                   adminFormid: response.detail.formId
                 }, function(res) {
-                  console.log(res);
                 }, 'post');
                 wx.navigateTo({
                   url: '../kefu/adminManage/adminManage',

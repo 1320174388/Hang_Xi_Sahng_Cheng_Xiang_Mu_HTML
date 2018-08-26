@@ -169,6 +169,7 @@ background: #fff;
      padding: 20rpx 40rpx;
      display: flex;
      justify-content: space-around;
+    
      
  }
  .content-shop>view{
@@ -177,7 +178,9 @@ background: #fff;
      text-align: center;
  }
  .content-shop image{
-     width: 194rpx;
+     width: 200rpx;
+     height: 200rpx;
+    
  }
  .content-shop text:first-of-type{
      font-size: 22rpx;

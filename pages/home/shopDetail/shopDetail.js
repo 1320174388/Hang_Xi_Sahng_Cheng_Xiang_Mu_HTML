@@ -39,13 +39,13 @@ Page({
             orderType: 'no'
           })
         }
-      })
+      }
+    )
   },
   //点击价格
   asclist: function() {
     var that = this;
     if (that.data.orderType == 'asc') {
-      console.log('dowen')
       getApp().request(
         config.hostUrl + '/v1/good_module/good_get_list', {
           classIndex: that.data.classIndex,
@@ -69,7 +69,6 @@ Page({
           orderType: 'asc',
         },
         function(res) {
-          console.log(res)
           if (res.data.retData) {
             that.setData({
               shopList: res.data.retData,
@@ -113,7 +112,6 @@ Page({
       },
       function(res) {
         arr = res.data.retData;
-        console.log(arr.length)
         if (arr.length == 12) {
           var newarr = that.data.shopList.concat(arr)
           that.setData({
@@ -134,15 +132,11 @@ Page({
         }
       }
     )
-    // }
   },
-
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options.classIndex)
     var that = this;
     getApp().request(
       config.hostUrl + '/v1/good_module/good_get_list', {
@@ -151,15 +145,14 @@ Page({
         orderType: that.data.orderType
       },
       function(res) {
-        console.log(res)
         if (res.data.retData) {
           that.setData({
             shopList: res.data.retData,
             classIndex: options.classIndex
           })
         }
-
-      })
+      }
+    )
   },
 
   /**

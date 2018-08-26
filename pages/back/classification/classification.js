@@ -21,7 +21,6 @@ Page({
   jump_classificationDetails: function(e) {
     var index = e.currentTarget.dataset.index;
     wx.setStorageSync('sonClassList', this.data.datas[index].son_class)
-
     wx.navigateTo({
       url: '../classificationDetails/classificationDetails',
     })

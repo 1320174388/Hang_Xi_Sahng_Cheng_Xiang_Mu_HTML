@@ -206,10 +206,14 @@
 }
 
 .foot_right_r {
-  width: 26rpx;
-  height: 26rpx;
-  transform: rotate(90deg);
-background: #FFFFFF;
+  width: 50%;
+  height: 100rpx;
+  line-height: 100rpx;
+  /* transform: rotate(90deg);*/
+  background-color:transparent;
+  border:none;
+
+
 color: #fff;
 }
 

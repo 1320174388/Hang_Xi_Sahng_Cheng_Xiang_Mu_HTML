@@ -81,10 +81,10 @@
             <image class='list_img' src='../images/my-head-icon.png'></image>
             <view class='col list_right'>
               <view class='list_right_head row_between'>
-                <view class='name'>123456{{c.critic_name}}</view>
-                <view class='time'>7月7日{{c.critic_time}}</view>
+                <view class='name'>{{c.critic_name}}</view>
+                <view class='time'>{{c.critic_time}}</view>
               </view>
-              <view class='text'>很新鲜，味道不错{{c.critic_content}}</view>
+              <view class='text'>{{c.critic_content}}</view>
             </view>
           </view>
         </view>
