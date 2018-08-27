@@ -25,17 +25,20 @@ Page({
     })
   },
 
-  jump_evaluate: function(){
-    wx.navigateTo({
-      url: '../evaluate/evaluate',
-    })
+  jump_detail: function(res){
+      var id = res.currentTarget.id;
+      console.log(this.data.orderList);
+      var orderNum = this.data.orderList[id].order_number;
+      console.log(orderNum);
+    // wx.navigateTo({
+    //     url: '../oriderDetail/oriderDetail',
+    // })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
     var token = wx.getStorageSync('token')
     var that = this ;
     if(options.idx){
@@ -50,6 +53,8 @@ Page({
       function (res) {
           if(res.data.retData){
               var list = res.data.retData;
+              
+            //   计算总价
               for (var i = 0; i < list.length;i++){
                   var zj;
                   for (var j = 0; j < list[i].details.length; j++){
@@ -64,7 +69,6 @@ Page({
                   orderList: res.data.retData,
               })
           }
-          console.log(res.data.retData);
           
       }
     )
