@@ -16,8 +16,29 @@ Page({
     zPrice:'',
     // img域名
     hosturl:config.hostUrl,
+    // 控制付款页面的显示隐藏
+      hid: true,
   },
+    // 控制付款页面的显示隐藏
+    delification:function(e){
+        if (e.currentTarget.dataset.classification){
 
+            this.setData({
+                hid: true,
+            })
+        }
+    },
+    // 点击立即付款
+    fukuan:function(){
+        this.setData({
+            hid: false,
+        })
+    },
+    // 点击取消订单
+    quxiao:function(){
+        var that = this;
+        
+    },
   //导航条点击事件
   navbarTap: function (e) {
     this.setData({
@@ -27,12 +48,10 @@ Page({
 
   jump_detail: function(res){
       var id = res.currentTarget.id;
-      console.log(this.data.orderList);
       var orderNum = this.data.orderList[id].order_number;
-      console.log(orderNum);
-    // wx.navigateTo({
-    //     url: '../oriderDetail/oriderDetail',
-    // })
+        wx.navigateTo({
+            url: '../oriderDetail/oriderDetail?orderNum=' + orderNum,
+        })
   },
 
   /**
@@ -56,9 +75,10 @@ Page({
               
             //   计算总价
               for (var i = 0; i < list.length;i++){
-                  var zj;
+                  var zj = 0;
                   for (var j = 0; j < list[i].details.length; j++){
-                      zj = zj + parseInt(list[i].details[j].good_num * list[i].details[j].good_price);
+                      zj = zj + (list[i].details[j].good_num * list[i].details[j].good_price);
+                      
                   }
                   list[i].zPrice = zj;
 

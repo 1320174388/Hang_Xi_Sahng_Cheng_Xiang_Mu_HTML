@@ -11,6 +11,8 @@ view{
     padding: 0 40rpx;
     line-height: 100rpx;
     background: #fff;
+    white-space: nowrap;
+    
 }
 .orderStatus{
     background: #e9e8e5;
