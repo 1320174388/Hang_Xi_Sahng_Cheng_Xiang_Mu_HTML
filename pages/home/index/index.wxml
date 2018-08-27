@@ -49,7 +49,7 @@
         <view></view>
         <!-- 文字 -->
         <text>{{nA.class_name}}</text>
-        <text>更多<image src='../images/next.png'></image></text>
+        <text bindtap='shopJump' data-classIndex='{{na.class_index}}'>更多<image src='../images/next.png'></image></text>
       </view>
       <view class='content-shop'>
         <view wx:for="{{nA.son_class}}" wx:key="index" wx:for-item="sc" bindtap='jump_evaluate' data-goodindex='{{sc.good_index}}'>

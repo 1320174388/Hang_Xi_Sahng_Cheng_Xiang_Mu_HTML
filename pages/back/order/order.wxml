@@ -20,7 +20,7 @@
         </view>
         <view class='order_name_right'>
           <view>单价：{{l.details[0].good_price}}</view>
-          <view>x{{l.order_gdnu}}件</view>
+          <view>x{{l.details[0].good_num}}件</view>
         </view>
       </view>
       <view class='number'>

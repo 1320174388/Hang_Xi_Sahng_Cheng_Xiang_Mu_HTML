@@ -135,27 +135,34 @@ Page({
       style_data[i].active = false;
     }
     style_data[idx].active = true;
+    var total = this.data.num * style_data[idx].style_price
     this.setData({
       'goodData.style_data': style_data,
-      idx: idx
+      idx: idx,
+      total: total.toFixed(2)
     })
   },
   // 增加数量
   addCount(e) {
     var num = this.data.num + 1;
+    var total = num * this.data.goodData.style_data[this.data.idx].style_price
     this.setData({
-      num: num
+      num: num,
+      total: total.toFixed(2)
     });
   },
   // 减少数量
   minusCount(e) {
     var num = this.data.num;
+    
     if (num <= 1) {
       return false;
     } else if (num > 1) {
       var num = num - 1;
+      var total = num * this.data.goodData.style_data[this.data.idx].style_price
       this.setData({
-        num: num
+        num: num,
+        total: total.toFixed(2)
       });
     }
   },
@@ -262,9 +269,12 @@ Page({
       if (wx.getStorageSync('project_carts')) {
         var project_carts = wx.getStorageSync('project_carts');
         for (var i in project_carts) {
-          if (project_carts[i].good_index == this.data.goodData.good_index) {
-            app.point('商品已加入购物车', 'none', 2000)
-            return false;
+          if (project_carts[i]){
+
+            if (project_carts[i].good_index == this.data.goodData.good_index) {
+              app.point('商品已加入购物车', 'none', 2000)
+              return false;
+            }
           }
         }
         project_carts[project_carts.length] = project_cart;
@@ -328,9 +338,12 @@ Page({
         goodIndex: goodindex
       },
       function(res) {
+        console.log(res)
         that.setData({
-          goodData: res.data.retData.goodData
+          goodData: res.data.retData.goodData,
+         
         })
+            //判断商品是否收藏接口
         app.request(
           config.hostUrl + '/v1/collect_module/collect_isget', {
             'userToken': token,
