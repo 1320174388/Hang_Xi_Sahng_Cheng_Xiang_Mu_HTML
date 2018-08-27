@@ -25,7 +25,6 @@ Page({
       })
     }
   },
-
   jump_oriderDetail: function() {
     wx.navigateTo({
       url: '../oriderDetail/oriderDetail',
@@ -57,17 +56,11 @@ Page({
       },
       function(res) {
         console.log(res)
-        //       // wx.navigateTo({
-        //       //   url: '../fillOrider/fillOrider?order_number=' + outTradeNo,
-        //       //  })
         that.setData({
           hid: (!that.data.hid)
         })
-      },
-       'POST',
-
+      }, 'POST',
     )
-
   },
 
   /**
@@ -79,17 +72,6 @@ Page({
     this.setData({
       orider: orider
     })
-    // var order_number = options.order_number
-    //  //获取订单详情
-    //   app.request(
-    //     config.hostUrl + '/v1/order_module/getOrderDetails', {
-    //       order_number: order_number
-    //     },
-    //     function (res) {
-    //       console.log(res)
-    //     }, 
-    //   )
-
   },
 
   /**

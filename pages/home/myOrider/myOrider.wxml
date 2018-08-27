@@ -32,7 +32,7 @@
        
         <view class='btn3' bindtap='jump_evaluate'>确认收货</view>
         <view class='btn1'>延长收货</view>
-        <view class='btn2'>查看物流</view>
+        <!-- <view class='btn2'>查看物流</view> -->
       </view>
     </view>
   </view>

@@ -29,7 +29,6 @@ Page({
       var id = res.currentTarget.id;
       console.log(this.data.orderList);
       var orderNum = this.data.orderList[id].order_number;
-      console.log(orderNum);
     // wx.navigateTo({
     //     url: '../oriderDetail/oriderDetail',
     // })
@@ -52,27 +51,21 @@ Page({
       },
       function (res) {
           if(res.data.retData){
-              var list = res.data.retData;
-              
+              var list = res.data.retData;   
             //   计算总价
               for (var i = 0; i < list.length;i++){
                   var zj;
                   for (var j = 0; j < list[i].details.length; j++){
                       zj = zj + parseInt(list[i].details[j].good_num * list[i].details[j].good_price);
                   }
-                  list[i].zPrice = zj;
-
+                 list[i].zPrice = zj;
               }
-
-
               that.setData({
                   orderList: res.data.retData,
               })
           }
-          
       }
     )
-  
   },
 
   /**

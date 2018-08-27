@@ -1,28 +1,30 @@
 <!--pages/home/myCollect//myCollect.wxml-->
 
 <view>
-  <view class='list row' wx:for="{{carts}}" wx:key="" wx:for-item="d" bindtap='jump_evaluate'>
-    <view class='list_left row_between'>
-      <!-- <view class='list_left_left click'></view> -->
-      <!-- wx:if 是否选择显示不同图标 -->
-        <icon  class='list_left_left' wx:if="{{d.selected}}" type="success" color="red" bindtap="selectList" data-index="{{index}}" />
-        <icon  class='list_left_left' wx:else type="circle" bindtap="selectList" data-index="{{index}}"/>
+  <view class='wrap'>
+    <text hidden="{{carts==null?true:false}}" >当前没有收藏</text>
+    <view class='list row' wx:for="{{carts}}" wx:key="" wx:for-item="d">
+      <view class='list_left row_between'>
+        <!-- <view class='list_left_left click'></view> -->
+        <!-- wx:if 是否选择显示不同图标 -->
+        <icon class='list_left_left' wx:if="{{d.selected}}" type="success" color="red" bindtap="selectList" data-index="{{index}}" />
+        <icon class='list_left_left' wx:else type="circle" bindtap="selectList" data-index="{{index}}" />
 
-      <image src='{{host+"/"+d.good_img_details[0]}}'class='list_left_right'></image>
+        <image src='{{host+d.image_url[0]}}' class='list_left_right'></image>
+      </view>
+      <view class='list_right col' bindtap='jump_evaluate' data-goodindex='{{d.good_index}}'>
+        <view class='list_right_top'>{{d.good_name}}</view>
+        <view class='list_right_bot'>￥{{d.good_price}}</view>
+      </view>
     </view>
-    <view class='list_right col'>
-      <view class='list_right_top'>{{d.good_name}}</view>
-      <view class='list_right_bot'>￥{{d.good_price}}</view>
-    </view>
-
   </view>
   <view class='foot row_between'>
     <view class='foot_left row'>
       <!-- wx:if 是否全选显示不同图标 -->
-    <icon wx:if="{{selectAllStatus}}" type="success_circle" color="red" bindtap="selectAll"/>
-    <icon wx:else type="circle" color="#fff" bindtap="selectAll"/>
-    <text>全选</text>
+      <icon wx:if="{{selectAllStatus}}" type="success_circle" color="red" bindtap="selectAll" />
+      <icon wx:else type="circle" color="#fff" bindtap="selectAll" />
+      <text>全选</text>
     </view>
-    <view class='foot_right'>删除</view>
+    <view class='foot_right' bindtap='del'>删除</view>
   </view>
 </view>

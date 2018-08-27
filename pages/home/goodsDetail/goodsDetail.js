@@ -69,8 +69,7 @@ Page({
           this.setData({
               specAlertShow: true
           })
-      }
-      
+      }  
   },
 //   收藏
   collection:function(){

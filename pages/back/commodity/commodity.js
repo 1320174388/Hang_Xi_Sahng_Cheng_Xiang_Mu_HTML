@@ -34,7 +34,6 @@ Page({
       url: '../commodityDetails/commodityDetails?idx=' + idx,
     })
   },
-
   del: function(e) {
     if (DEL_TYPE) {
       DEL_TYPE = false;
@@ -57,47 +56,39 @@ Page({
       )
     }
   },
- 
   //滚动到底部触发事件  
   lower: function() {
 
     var that = this;
     var searchPageNum = that.data.searchPageNum + 1, //每次触发上拉事件，把searchPageNum+1 
       callbackcount = that.data.callbackcount; //返回数据的个数  
-    console.log(searchPageNum)
-    console.log(callbackcount)
     var arr = [];
     app.request(
       config.hostUrl + '/v1/good_module/good_get_goodlist/' + wx.getStorageSync('token'), {
         goodLimit: searchPageNum * callbackcount
       },
       function(res) {
-
         arr = res.data.retData;
-        console.log(arr.length)
         if (arr.length == 12) {
-          var newarr = that.data.datas.concat(arr) 
+          var newarr = that.data.datas.concat(arr)
           that.setData({
             datas: newarr,
-            searchLoading: true,//把"上拉加载"的变量设为false，显示  
+            searchLoading: true, //把"上拉加载"的变量设为false，显示  
             searchPageNum: searchPageNum,
             searchLoadingComplete: false,
           })
         } else
         if (arr.length < 12 || arr.length == 0) {
-          console.log(arr)
           var newarr = that.data.datas.concat(arr)
-          console.log(newarr)
           that.setData({
             datas: newarr,
             searchLoadingComplete: true, //把“没有数据”设为true，显示  
-            searchLoading: false ,//把"上拉加载"的变量设为false，隐藏  
+            searchLoading: false, //把"上拉加载"的变量设为false，隐藏  
             searchPageNum: searchPageNum
           });
         }
       }
     )
-    // }
   },
   /**
    * 生命周期函数--监听页面加载
@@ -109,15 +100,12 @@ Page({
         goodLimit: 0
       },
       function(res) {
-        console.log(res)
         that.setData({
           datas: res.data.retData
         })
       },
     )
-
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

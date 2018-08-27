@@ -32,7 +32,6 @@ Page({
   },
 //点击分类的订单
   jump_myOrider: function (e) {
-    console.log(e)
     var idx = e.currentTarget.dataset.index
     wx.navigateTo({
       url: '../myOrider/myOrider?idx='+idx,

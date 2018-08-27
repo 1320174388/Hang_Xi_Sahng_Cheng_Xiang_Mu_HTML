@@ -35,7 +35,7 @@ Page({
           'order_number': that.data.orider.order_number,
           'order_status': 3
         },
-        function (res) { console.log(res)},
+        function (res) {},
       )
     }
     if (that.data.idx == 2) {
@@ -44,7 +44,7 @@ Page({
           'order_number': that.data.orider.order_number,
           'order_status': 4
         },
-        function (res) {console.log(res)},
+        function (res) {},
       )
     } else if (that.data.idx == 3 || that.data.idx == 4) {
       app.request(
@@ -53,7 +53,6 @@ Page({
           'order_status': 5
         },
         function (res) {
-          console.log(res)
         },
       )
     }
@@ -67,7 +66,6 @@ Page({
         'order_status': 2
       },
       function(res) {
-        console.log(res)
       },
     )
     app.timeBack(2000)
@@ -76,7 +74,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options)
     var num = options.num;
     var that = this;
     app.request(
@@ -84,14 +81,12 @@ Page({
         'order_number': num
       },
       function(res) {
-        console.log(res)
         var idx = res.data.retData.order_status - 1;
         that.setData({
           'orider': res.data.retData,
           'idx': idx,
         })
       },
-
     );
   },
 

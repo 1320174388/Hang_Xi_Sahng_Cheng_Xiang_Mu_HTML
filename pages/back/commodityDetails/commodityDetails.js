@@ -7,7 +7,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-
     navbar: ['商品详情', '商品评论'],
     currentTab: 0,
     host: config.hostUrl,
@@ -21,7 +20,6 @@ Page({
     class_index: '',
     criticList: [],
     selectAllStatus: true // 全选状态，默认全选
-
   },
   toDate: function(number) {
     var n = number * 1000;
@@ -29,15 +27,11 @@ Page({
     var Y = date.getFullYear() + '/';
     var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '/';
     var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
-
     var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
     var m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
     var s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
-
     return (Y + M + D + " " + h + m + s)
   },
-
-
   //导航条点击事件
   navbarTap: function(e) {
     var that = this;
@@ -55,7 +49,6 @@ Page({
             res.data.retData.criticList[i].critic_time = that.toDate(res.data.retData.criticList[i].critic_time);
             res.data.retData.criticList[i].selected = true;
           }
-
           that.setData({
             criticList: res.data.retData.criticList
           })
@@ -72,12 +65,10 @@ Page({
       criticList: carts
     });
   },
-
   selectAll(e) {
     let selectAllStatus = this.data.selectAllStatus; // 是否全选状态
     selectAllStatus = !selectAllStatus;
     let carts = this.data.criticList;
-
     for (let i = 0; i < carts.length; i++) {
       carts[i].selected = selectAllStatus; // 改变所有商品状态
     }

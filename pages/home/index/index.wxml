@@ -41,7 +41,7 @@
   <!-- 内容 今日特卖 -->
   <view wx:if="{{nA.son_class.length==3}}" wx:for="{{shopArr}}" wx:key="" wx:for-item="nA">
     <view class='content'>
-      <view class='title-wrap'>
+      <view bindtap='shopJump' data-classIndex='{{nA.class_index}}' class='title-wrap'>
         <!-- 标题周边圆点 -->
         <view></view>
         <view></view>
@@ -49,7 +49,7 @@
         <view></view>
         <!-- 文字 -->
         <text>{{nA.class_name}}</text>
-        <text bindtap='shopJump' data-classIndex='{{na.class_index}}'>更多<image src='../images/next.png'></image></text>
+        <text >更多<image src='../images/next.png'></image></text>
       </view>
       <view class='content-shop'>
         <view wx:for="{{nA.son_class}}" wx:key="index" wx:for-item="sc" bindtap='jump_evaluate' data-goodindex='{{sc.good_index}}'>
@@ -60,27 +60,6 @@
       </view>
     </view>
   </view>
-  <!-- 内容 今日特卖 -->
-  <!-- <view class='content'>
-    <view class='title-wrap'>
-      <!-- 标题周边圆点 -->
-      <!-- <view></view>
-      <view></view>
-      <view></view>
-      <view></view> -->
-      <!-- 文字 -->
-      <!-- <text>精品特卖</text>
-      <text>更多》</text>
-    </view>
-    <view class='content-shop'>
-      <view wx:for="{{shopArr}}" wx:key="index" bindtap='jump_evaluate'>
-        <image src='{{item.img}}' mode='widthFix'></image>
-        <text>{{item.text}}</text>
-        <text>￥{{item.price}}</text>
-      </view>
-    </view>
-  </view> --> 
-
   <!-- 客服图标 -->
   <view class='kefu_rexian_dizhi'>
     <form bindsubmit='costom' report-submit>

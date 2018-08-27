@@ -25,7 +25,6 @@ Page({
     hid: true,
     s_hid: true,
   },
-
   selet_hid: function(e) {
     if (this.data.selet_show == true) {
       this.setData({
@@ -57,16 +56,11 @@ Page({
     }
   },
   item_list1: function(e) {
-    console.log(e)
     var idx = e.currentTarget.dataset.index;
-    console.log(idx)
-    console.log(this.data.son_class)
     this.setData({
       index1: idx,
       selet_show1: true,
-
     })
-    console.log(this.data.index1)
   },
   //上传图片
   upImages: function() {
@@ -76,7 +70,6 @@ Page({
       sizeType: ['original'],
       sourceType: ['album', 'camera'],
       success: function(res) {
-        console.log(res)
         that.setData({
           movies: res.tempFilePaths
         })
@@ -85,43 +78,31 @@ Page({
   },
   //上传图片
   Upimgs: function(e) {
-    console.log(e)
     var that = this;
     wx.chooseImage({
       count: 9,
       sizeType: ['original'],
       sourceType: ['album', 'camera'],
       success: function(res) {
-        console.log(res)
         that.setData({
           upimgs: res.tempFilePaths
         })
       },
     })
   },
-
   bindChange: function(e) {
-    console.log(e)
     var index = e.detail.value[0]
     this.setData({
       index: index
     })
-    console.log(this.data.s_parent)
-    console.log(this.data.s_parent[index].son_class)
   },
-
-
   int_name_add: function(e) {
-    console.log(e)
     var arr = {}
     this.setData({
       int_name: this.data.int_name.concat(arr)
     })
-    console.log(this.data.int_name)
-    console.log(e.currentTarget.dataset.index)
   },
   int_name_del: function(e) {
-    console.log(e)
     var list = this.data.int_name;
     var index = e.currentTarget.dataset.index;
     list.splice(index, 1);
@@ -134,30 +115,22 @@ Page({
         int_name: this.data.int_name.concat(arr)
       })
     }
-
-    console.log(this.data.int_name)
   },
   styleName: function(e) {
-    console.log(e)
     var i = e.currentTarget.dataset.index;
-    console.log(i)
     this.data.int_name[i].styleName = e.detail.value;
     this.setData({
       int_name: this.data.int_name,
     })
-    console.log(this.data.int_name)
   },
   stylePrice: function(e) {
-
     var i = e.currentTarget.dataset.index
     this.data.int_name[i].stylePrice = e.detail.value;
     this.setData({
       int_name: this.data.int_name,
     })
-    console.log(this.data.int_name)
   },
   classAdd: function(e) {
-    console.log(e)
     var that = this;
     if (that.data.son_class == "") {
       var classindex = that.data.s_parent[that.data.index].class_index;
@@ -166,13 +139,10 @@ Page({
     }
     var inpt = that.data.int_name;
     var class_index = JSON.stringify(inpt);
-    console.log(that.data.movies)
     if (!that.data.movies) {
-      console.log(that.data.movies)
       app.point('请上传主图片', 'none', 2000);
       return false;
     } else {
-
       //添加商品
       app.request(
         config.hostUrl + '/v1/good_module/good_post/' +
@@ -184,7 +154,6 @@ Page({
           'goodStyle': class_index,
         },
         function(res) {
-          console.log(res.data)
           if (res.data.errNum == 0) {
             if (!that.data.upimgs) {
               that.uploadfiles(that.data.movies, 'master', 1, res.data.retData, function() {
@@ -202,7 +171,6 @@ Page({
           } else {
             app.point(res.data.retMsg, 'none', 2000);
           }
-
         }, 'POST')
     }
   },
@@ -225,7 +193,6 @@ Page({
         'imageSort': imageSort
       },
       function(ort) {
-        console.log(ort)
         if (ort.errNum == 0) {
           app.point('上传成功', 'success', 2000);
           if (filePathArr[imageSort]) {
@@ -236,7 +203,6 @@ Page({
         }
       }
     );
-
   },
 
   /**

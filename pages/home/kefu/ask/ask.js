@@ -47,7 +47,6 @@ Page({
                   'peopleIndex':wx.getStorageSync('token')
               },
               success:function(e){
-                
                 console.log(e.data.retMsg);
                   if (e.data.retMsg==[]){
                       wx.showToast({
@@ -61,9 +60,6 @@ Page({
                           myAsk: myAsk
                       });
                   }
-                
-                  
-               
               }
           })
       } else if (res.target.id==0){
@@ -168,7 +164,6 @@ Page({
                   duration: 1000
               })
           }
-
       },'post')
   },
   /**

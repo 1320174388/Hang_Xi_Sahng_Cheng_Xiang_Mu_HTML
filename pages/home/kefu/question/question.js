@@ -32,7 +32,6 @@ Page({
       app.request(config.hostUrl + '/v1/talk_module/admin_route/' + wx.getStorageSync('token'), {
           adminFormid: res.detail.formId
       }, function (res) {
-
       },'post');
     //   进入问题详情页
       var questionList = this.data.questionList;

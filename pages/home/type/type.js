@@ -9,10 +9,6 @@ Page({
   data: {
     //   类型列表
       typeList:[
-          // {
-          //     title: "休闲食品",
-          //     active:true
-          // }
            ],
            
     //   内容列表

@@ -18,7 +18,6 @@ Page({
     good_sales: '',
     style_data: [],
     class_index: '',
-
   },
 
   //上传轮播图片
@@ -59,17 +58,14 @@ Page({
       },
     })
   },
-
   int_name_add: function(e) {
     console.log(e)
     var arr = {}
     this.setData({
       style_data: this.data.style_data.concat(arr)
     })
-
     console.log(e.currentTarget.dataset.index)
   },
-
   int_name_del: function(e) {
     console.log(e)
     var list = this.data.style_data;
@@ -85,8 +81,6 @@ Page({
       })
     }
   },
-
-
   styleName: function(e) {
     console.log(e)
     var i = e.currentTarget.dataset.index;
@@ -94,7 +88,6 @@ Page({
     this.setData({
       style_data: this.data.style_data,
     })
-
   },
   stylePrice: function(e) {
     console.log(e)
@@ -103,9 +96,7 @@ Page({
     this.setData({
       style_data: this.data.style_data,
     })
-
   },
-
   classAdd: function(e) {
     console.log(e)
     console.log(e.detail.value.names)
@@ -116,10 +107,6 @@ Page({
       delete that.data.style_data[i].good_index;
       delete that.data.style_data[i].style_index;
     }
-    // var inpt = that.data.style_data;
-    // console.log(inpt)
-    // var class_index = JSON.stringify(inpt);
-    console.log(that.data.style_data)
     var styleArr = [];
     for (var i  in that.data.style_data )
     {
@@ -167,7 +154,6 @@ Page({
         } else {
           app.point(res.data.retMsg, 'none', 2000);
         }
-
       }, 'PUT'
     )
   },
@@ -255,10 +241,8 @@ Page({
       function(res) {
         console.log(res.data.retData)
         var good_img_details = [];
-
         for (var i = 0; i < res.data.retData.goodData.good_img_details.length; i++) {
-          good_img_details[i] = config.hostUrl + res.data.retData.goodData.good_img_details[i].picture_url
-          
+          good_img_details[i] = config.hostUrl + res.data.retData.goodData.good_img_details[i].picture_url     
         }
         var masterImg = [];
         for (var i = 0; i < res.data.retData.goodData.good_img_master.length; i++) {
@@ -270,8 +254,7 @@ Page({
         } else if (!res.data.retData.goodData.style_data){
           var style_data=[{}]
           console.log(style_data)
-        }
-      
+        }   
         that.setData({
           good_img_details: good_img_details,
           good_img_master: masterImg,

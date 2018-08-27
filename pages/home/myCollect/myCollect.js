@@ -8,13 +8,17 @@ Page({
    */
   data: {
 
-    carts: [], // 购物车列表
+    carts: null, // 购物车列表
     hasList: false, // 列表是否有数据
-    totalPrice: 0, // 总价，初始为0
+   
     selectAllStatus: false, // 全选状态，默认全选
     host: config.hostUrl,
   },
-  jump_evaluate: function() {
+  jump_evaluate: function(e) {
+    var goodindex = e.currentTarget.dataset.goodindex;
+    wx.navigateTo({
+      url: '../evaluate/evaluate?goodindex=' + goodindex,
+    })
 
   },
 
@@ -33,7 +37,6 @@ Page({
     let selectAllStatus = this.data.selectAllStatus; // 是否全选状态
     selectAllStatus = !selectAllStatus;
     let carts = this.data.carts;
-
     for (let i = 0; i < carts.length; i++) {
       carts[i].selected = selectAllStatus; // 改变所有商品状态
     }
@@ -44,15 +47,32 @@ Page({
     // this.getTotalPrice();                               // 重新获取总价
   },
   //删除收藏
-  del:function(){
+  del:function(e){
+    var that = this;
     var token = wx.getStorageSync('token')
-    app.request(
-      config.hostUrl + '/v1/collect_module/collect_get', {
-        'userToken': token
-      },
-      function (res) {
-console.log(res)
-      })
+    for (var i = 0; i < that.data.carts.length; i++) { // 循环列表得到每个数据
+      if (that.data.carts[i]) {
+        if (that.data.carts[i].selected) {
+          var index = that.data.carts[i].good_index
+          app.request(
+            config.hostUrl + '/v1/collect_module/collect_delete', {
+              'userToken': token,
+              goodIndex: index
+            },
+            function (res) {
+              delete that.data.carts[i]
+              app.point('正在删除购物车商品', 'success', 2000)
+              // that.setData({
+              //   carts: that.data.carts,
+              // })
+            }, "DELETE",
+            )
+        }
+      }
+    }
+    this.setData({
+      carts: that.data.carts,
+    })
   },
 
   /**

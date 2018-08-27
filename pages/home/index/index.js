@@ -107,7 +107,6 @@ Page({
     getApp().request(
       config.hostUrl + '/v1/assortment_module/getGoodsClass', {},
       function (res) {
-        console.log(res)
         that.setData({
           navArr: res.data.retData
         })
@@ -117,7 +116,6 @@ Page({
     getApp().request(
       config.hostUrl + '/v1/assortment_module/assortment_route', {},
       function(res) {
-        console.log(res)
         that.setData({
           shopArr: res.data.retData
         })

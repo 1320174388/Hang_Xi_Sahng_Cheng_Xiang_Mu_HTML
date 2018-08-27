@@ -22,13 +22,11 @@ Page({
 
   //跳转到填写订单
   orider: function(e) {
-    console.log("生成订单")
     var that = this;
     var token = wx.getStorageSync('token');
     var order_formd = e.detail.formId
-    console.log(token)
     var outTradeNo = ""; //订单号
-    for (var i = 0; i < 18; i++) //18位随机数，用以加在时间戳后面。
+    for (var i = 0; i < 10; i++) //18位随机数，用以加在时间戳后面。
     {
       outTradeNo += Math.floor(Math.random() * 10);
     }
@@ -40,7 +38,7 @@ Page({
     var getSeconds = t.getSeconds();
     if (month < 10) {
       month = "0" + month;
-    }else if (getDate < 10) {
+    } else if (getDate < 10) {
       getDate = "0" + getDate
     } else if (getHours < 10) {
       getHours = "0" + getHours
@@ -87,26 +85,6 @@ Page({
           })
         }
       })
-
-      //     app.request(
-      //       config.hostUrl + '/v1/order_module/paymentOrder', {
-      //         user_token: token, //用户标识`
-      //         order_number: outTradeNo, //`订单号`
-      //         order_people: order_people, //`收件人名称`
-      //         order_phone: order_phone, //`收件人电话`
-      //         order_address: order_address, //`收件人地址`
-      //         order_formd: order_formd, //`表单提交ID`
-      //         good_prices: order_group.good_num * order_group.good_price, //`商品总价格`
-      //         order_gdnu: '1', //商品规格数量；
-      //         order_group: JSON.stringify(order_groups), //`商品信息json数据good_index 商品主键 good_name 商品名称 style_name 规格名称 good_num 商品数量 good_price 商品单价 good_pic 商品缩略图
-      //       },
-      //     function(res) {
-      // wx.navigateTo({
-      //   url: '../fillOrider/fillOrider?order_number=' + outTradeNo,
-      //  })
-
-      // }
-      //'POST', ) }
     }
   },
   //导航点击事件
@@ -144,26 +122,37 @@ Page({
   },
   // 增加数量
   addCount(e) {
-    var num = this.data.num + 1;
-    var total = num * this.data.goodData.style_data[this.data.idx].style_price
-    this.setData({
-      num: num,
-      total: total.toFixed(2)
-    });
-  },
-  // 减少数量
-  minusCount(e) {
-    var num = this.data.num;
-    
-    if (num <= 1) {
+    console.log(this.data.idx)
+    if (this.data.idx==null) {
+      app.point('请先选择规格', 'none', 2000)
       return false;
-    } else if (num > 1) {
-      var num = num - 1;
+    } else if (this.data.idx !==null|| this.data.idx==0) {
+      var num = this.data.num + 1;
       var total = num * this.data.goodData.style_data[this.data.idx].style_price
       this.setData({
         num: num,
         total: total.toFixed(2)
       });
+    }
+  },
+  // 减少数量
+  minusCount(e) {
+    if (this.data.idx == null) {
+      app.point('请先选择规格', 'none', 2000)
+      return false;
+    } else if (this.data.idx !== null || this.data.idx == 0) {
+      var num = this.data.num;
+
+      if (num <= 1) {
+        return false;
+      } else if (num > 1) {
+        var num = num - 1;
+        var total = num * this.data.goodData.style_data[this.data.idx].style_price
+        this.setData({
+          num: num,
+          total: total.toFixed(2)
+        });
+      }
     }
   },
   //触底事件
@@ -269,7 +258,7 @@ Page({
       if (wx.getStorageSync('project_carts')) {
         var project_carts = wx.getStorageSync('project_carts');
         for (var i in project_carts) {
-          if (project_carts[i]){
+          if (project_carts[i]) {
 
             if (project_carts[i].good_index == this.data.goodData.good_index) {
               app.point('商品已加入购物车', 'none', 2000)
@@ -284,32 +273,10 @@ Page({
         project_carts[0] = project_cart;
         wx.setStorageSync('project_carts', project_carts);
       }
-      console.log(project_carts);
     }
   },
   //加载时获取的信息
   bindviewtap: function() {
-
-    //判断商品是否收藏接口
-    // app.request(
-    //   config.hostUrl + '/v1/collect_module/collect_isget', {
-    //     'userToken': token,
-    //     goodIndex: that.data.goodData.class_index
-    //   },
-    //   function(res) {
-    //     console.log(res)
-    //     if (res.data.retData == true) {
-    //       that.setData({
-    //         mycollect: true
-    //       })
-    //     } else if (res.data.retData == false) {
-    //       that.setData({
-    //         mycollect: false
-    //       })
-    //     }
-
-    //   }
-    // )
     //加载评论
     // app.request(
     //   config.hostUrl + '/v1/good_module/critic_get', {
@@ -341,9 +308,9 @@ Page({
         console.log(res)
         that.setData({
           goodData: res.data.retData.goodData,
-         
+
         })
-            //判断商品是否收藏接口
+        //判断商品是否收藏接口
         app.request(
           config.hostUrl + '/v1/collect_module/collect_isget', {
             'userToken': token,

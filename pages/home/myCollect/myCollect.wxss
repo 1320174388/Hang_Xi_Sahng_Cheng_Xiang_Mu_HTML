@@ -8,6 +8,10 @@ page {
   margin: 0;
 }
 
+.wrap{
+  margin-bottom:100rpx;
+  text-align: center;
+}
 .list {
   height: 228rpx;
   padding: 35rpx 47rpx 43rpx 47rpx;

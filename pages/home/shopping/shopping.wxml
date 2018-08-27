@@ -9,6 +9,7 @@
  */-->
 
 <view class='list col'>
+ <!-- <text wx:if="{{carts !== null?'hidden=true':'hidden=false'}}" style='text-align:center'> 购物车还是空的哦！</text> -->
   <scroll-view scroll-y="true">
     <view class='list_main row_between' wx:if="{{c}}" wx:for="{{carts}}" wx:key="" wx:for-item="c">
       <view class='main_left row'>

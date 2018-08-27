@@ -16,11 +16,10 @@ Page({
   },
   //跳转到填写订单或删除全部
   jump_fillOrider: function(e) {
-    console.log(e)
     var that = this;
     var carts = that.data.carts;
     var outTradeNo = ""; //订单号
-    for (var i = 0; i < 18; i++) //18位随机数，用以加在时间戳后面。
+    for (var i = 0; i < 10; i++) //18位随机数，用以加在时间戳后面。
     {
       outTradeNo += Math.floor(Math.random() * 10);
     }
@@ -42,18 +41,27 @@ Page({
       getSeconds = "0" + getSeconds
     }
     outTradeNo = t.getFullYear() + "" + month + "" + getDate + "" + getHours + "" + getMinutes + "" + getSeconds + "" + outTradeNo; //时间戳，用来生成订单号。
-    console.log(outTradeNo)
     if (that.data.editor == true) {
-      console.log("去结算")
-      console.log(that.data.carts)
       var order_groups = [];
       var total = 0;
+      console.log(that.data.carts)
+      //遍历出需要的数据放入order_groups
       for (var i = 0; i < that.data.carts.length; i++) { // 循环列表得到每个数据
-        if (that.data.carts[i].selected) {
-          //  total += carts[i].good_num * carts[i].style_price; // 所有价格加起来
-          order_groups.push(that.data.carts[i])
+        if (that.data.carts[i]) {
+          if (that.data.carts[i].selected) {
+            order_groups.push(that.data.carts[i])
+            // that.data.carts.splice(i, 1)
+          }
         }
       }
+       console.log(that.data.carts)
+      // that.setData({
+      //   carts: that.data.carts,
+      // })
+      //this.getTotalPrice(); // 重新获取总价
+      //wx.setStorageSync('project_carts', that.data.carts);
+      console.log(that.data.carts)
+      //筛选数组中具体信息
       for (var i = 0; i < order_groups.length; i++) {
         order_groups[i].good_pic = order_groups[i].good_image
         order_groups[i].good_price = order_groups[i].style_price
@@ -61,13 +69,14 @@ Page({
         delete order_groups[i].good_image
         delete order_groups[i].style_price
       }
+      //获取微信地址电话
       wx.chooseAddress({
         success: function(res) {
-          console.log(res)
           var order_people = res.userName;
           var order_phone = res.telNumber;
           var order_address = res.provinceName + res.cityName + res.countyName + res.detailInfo;
-          console.log(order_groups)
+          //将要缓存的信息放入orider
+          console.log(that.data.totalPrice)
           var orider = {
             //user_token: token, //用户标识`
             order_number: outTradeNo, //`订单号`
@@ -76,24 +85,40 @@ Page({
             order_address: order_address, //`收件人地址`
             order_formd: e.detail.formId, //`表单提交ID`       
             good_prices: that.data.totalPrice, //`商品总价格`
-            order_gdnu: order_groups.length, //商品规格数量；
+            order_gdnu: order_groups.length, //商品规格数量
             order_group: order_groups,
           }
+          app.point('正在创建订单', 'success', 2000)
           wx.setStorageSync('orider', orider);
+          for (var i = 0; i < that.data.carts.length; i++) { // 循环列表得到每个数据
+            if (that.data.carts[i]) {
+              if (that.data.carts[i].selected) {
+                console.log(that.data.carts[i])
+                that.data.carts.splice(i, 1)
+              }
+            }
+          }
+          that.setData({
+            carts: that.data.carts,
+            totalPrice: 0
+          })
+          wx.setStorageSync('project_carts', that.data.carts);
           wx.navigateTo({
             url: '../fillOrider/fillOrider',
           })
-          console.log(orider)
         }
       })
     } else if (that.data.editor !== true) {
       for (var i = 0; i < that.data.carts.length; i++) { // 循环列表得到每个数据
         if (that.data.carts[i]) {
           if (that.data.carts[i].selected) {
-            delete that.data.carts[i]
+            console.log(that.data.carts[i])
+            that.data.carts.splice(i, 1)
           }
         }
       }
+      console.log(that.data.carts)
+      app.point('正在删除购物车商品', 'success', 2000)
       that.setData({
         carts: that.data.carts,
         totalPrice: 0
@@ -146,9 +171,10 @@ Page({
     let selectAllStatus = this.data.selectAllStatus; // 是否全选状态
     selectAllStatus = !selectAllStatus;
     let carts = wx.getStorageSync('project_carts');
-
     for (let i = 0; i < carts.length; i++) {
-      carts[i].selected = selectAllStatus; // 改变所有商品状态
+      if (carts[i]) {
+        carts[i].selected = selectAllStatus; // 改变所有商品状态
+      }
     }
     this.setData({
       selectAllStatus: selectAllStatus,
@@ -159,8 +185,10 @@ Page({
 
   // 增加数量
   addCount(e) {
+
     const index = e.currentTarget.dataset.index;
     let carts = wx.getStorageSync('project_carts');
+
     let num = carts[index].good_num;
     num = num + 1;
     carts[index].good_num = num;
@@ -176,6 +204,7 @@ Page({
     let carts = wx.getStorageSync('project_carts');
     let num = carts[index].good_num;
     if (num <= 1) {
+      app.point('受不了了，宝贝不能再减少了！', 'none', 2000)
       return false;
     }
     num = num - 1;
@@ -186,7 +215,6 @@ Page({
     this.getTotalPrice();
     wx.setStorageSync('project_carts', carts);
   },
-
 
   /**
    * 生命周期函数--监听页面加载
@@ -212,30 +240,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
-    // this.setData({
-    //   hasList: true, // 既然有数据了，那设为true吧
-    //   carts: [{
-    //       id: 1,
-    //       title: '新鲜芹菜 半斤',
-    //       image: '/image/s5.png',
-    //       num: 4,
-    //       price: 0.01,
-    //       selected: true
-    //     },
-    //     {
-    //       id: 2,
-    //       title: '素米 500g',
-    //       image: '/image/s6.png',
-    //       num: 1,
-    //       price: 0.03,
-    //       selected: true
-    //     }
-    //   ]
-    // });
-    // console.log(this.data.carts)
-
-  },
+  onShow: function() {},
 
   /**
    * 生命周期函数--监听页面隐藏

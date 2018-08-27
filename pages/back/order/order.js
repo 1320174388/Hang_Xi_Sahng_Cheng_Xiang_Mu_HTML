@@ -13,8 +13,6 @@ Page({
     orider_list: [], //
     list: [],
     searchPageNum: 0, // 设置加载的第几次，默认是第一次  
-    // callbackcount: 12, //返回数据的个数  
-    // searchLoading: false, //"上拉加载"的变量，默认false，隐藏  
     searchLoadingComplete: false //“没有数据”的变量，默认false，隐藏
   },
   //导航条点击事件
@@ -24,17 +22,13 @@ Page({
     for (var i = 0; i < this.data.orider_list.length; i++) {
       if (this.data.orider_list[i].order_status == x) {
         list[i] = this.data.orider_list[i];
-        console.log(list)
-        console.log(i)
       }
     }
     this.setData({
       currentTab: e.currentTarget.dataset.idx,
       list: list
     })
-
   },
-
   jump_oriderDetails: function(e) {
     var num = this.data.list[e.currentTarget.dataset.index].order_number;
     wx.navigateTo({
@@ -45,39 +39,29 @@ Page({
   lower: function() {
     var that = this;
     var searchPageNum = that.data.searchPageNum + 1; //每次触发上拉事件，把searchPageNum+1 
-    // callbackcount = that.data.callbackcount; //返回数据的个数  
-
     app.request(
       config.hostUrl + '/v1/order_module/getAllOrderList', {
         num: searchPageNum
       },
       function(res) {
-        console.log(res)
-        console.log(that.data.currentTab)
         var list = [];
         var x = 0;
-        console.log(that.data.list)
-
         for (var i = 0; i < res.data.retData.length; i++) {
           if (res.data.retData[i].order_status == that.data.currentTab) {
             list[x] = res.data.retData[i];
             x++;
           }
         }
-
-        console.log(list)
         if (list.length == 12) {
           var newarr = that.data.list.concat(list)
           var arr = that.data.orider_list.concat(res.data.retData)
-          console.log(newarr)
-          console.log(arr)
           that.setData({
             'orider_list': arr,
             'list': newarr,
             searchPageNum: searchPageNum,
             searchLoadingComplete: false,
           })
-        }else if(list.length<12){
+        } else if (list.length < 12) {
           var newarr = that.data.list.concat(list)
           var arr = that.data.orider_list.concat(res.data.retData)
           that.setData({
@@ -98,10 +82,6 @@ Page({
     app.request(
       config.hostUrl + '/v1/order_module/getAllOrderList', {},
       function(res) {
-
-        console.log(res.data.retData)
-
-        // if (res.data.retData.order_status)
         var list = [];
         var x = 0;
         for (var i = 0; i < res.data.retData.length; i++) {
@@ -110,13 +90,10 @@ Page({
             x++;
           }
         }
-        console.log(list)
         that.setData({
           'orider_list': res.data.retData,
           'list': list
         })
-        console.log(that.data.list)
-
       }
     );
   },

@@ -29,7 +29,6 @@ Page({
       },
     })
   },
-
   c_add: function(e) {
     var d = this.data.datas[e.currentTarget.dataset.index];
     var i = e.currentTarget.dataset.index;
@@ -117,6 +116,7 @@ Page({
   },
 
   classDel: function() {
+    console.log("删除子分类")
     var that = this;
     var data = wx.getStorageSync('classEdit');
     var ids = wx.getStorageSync('classIndex');
@@ -127,6 +127,7 @@ Page({
         'class_index': data.class_index,
       },
       function(res) {
+        console.log(res)
         if (res.data.errNum == 0){
           that.setData({
             del_hid: true,
@@ -137,6 +138,12 @@ Page({
             datas: that.data.datas
           })
           app.point(res.data.retMsg, 'success', 3000)
+        } else if (res.data.errNum !== 0){
+          that.setData({
+            del_hid: true,
+            hid: true
+          })
+          app.point(res.data.retMsg, 'none', 3000)
         }
         
       },
@@ -155,10 +162,6 @@ Page({
       hid: true
     })
   },
-
-
-
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
