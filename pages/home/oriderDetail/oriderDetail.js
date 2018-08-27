@@ -5,7 +5,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+      expressNum:'1235467899876',
+  },
+  copy:function(){
+      wx.setClipboardData({
+          data: this.data.expressNum
+      })
   },
 
   /**

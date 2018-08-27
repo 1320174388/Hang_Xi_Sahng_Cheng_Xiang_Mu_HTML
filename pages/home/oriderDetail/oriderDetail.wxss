@@ -1,1 +1,113 @@
 /* pages/home/oriderDetail/oriderDetail.wxss */
+page{
+    background: #f6f5f4;
+}
+view{
+    box-sizing: border-box;
+}
+.orderNum{
+    height: 100rpx;
+    font-size: 34rpx;
+    padding: 0 40rpx;
+    line-height: 100rpx;
+    background: #fff;
+}
+.orderStatus{
+    background: #e9e8e5;
+    padding: 20rpx 60rpx;
+    font-size: 34rpx;
+    line-height: 50rpx;
+}
+.orderStatus>view>text{
+    font-size: 28rpx;
+    color: #4a4a4a;
+}
+.orderStatus>view>view{
+    display: inline-block;
+    width: 66rpx;
+    height: 30rpx;
+    background: #fff;
+    font-size: 22rpx;
+    text-align: center;
+    line-height: 30rpx;
+    color: #4a4a4a;
+    margin-left: 10rpx;
+}
+.people{
+    padding: 20rpx 40rpx;
+    font-size: 34rpx;
+    line-height: 50rpx;
+    margin: 10rpx 0;
+    background: #fff;
+}
+.people>view{
+    font-size: 24rpx;
+}
+.shopFood{
+    margin-bottom: 3rpx;
+    padding: 20rpx 30rpx 50rpx;
+    background: #fff;
+    display: flex;
+}
+.shopFood>image{
+    width: 150rpx;
+    height: 150rpx;
+    margin-right: 40rpx;
+}
+.shopFood>view>text{
+    font-size: 30rpx;
+    color: #656565;
+}
+.shopFood>view>view>text:first-of-type{
+    font-size: 28rpx;
+    color: #bbb;
+}
+.shopFood>view>view>text:last-of-type{
+    font-size: 30rpx;
+    color: #000;
+    float: right;
+}
+.shopFood>view>view{
+    width: 490rpx;
+}
+.shopFood>view>view:last-of-type{
+    text-align: right;
+    color: #bebebe;
+    font-size: 36rpx;
+}
+.zPrice{
+    background: #fff;
+    height: 100rpx;
+    margin-bottom: 3rpx;
+    font-size: 30rpx;
+    color: #656565;
+    line-height: 100rpx;
+    padding: 0 40rpx 0 0;
+    text-align: right;
+}
+.btn-wrap{
+    height: 120rpx;
+    padding-top: 30rpx;
+    text-align: right;
+    background: #fff;
+    margin-bottom: 3rpx;
+}
+.btn-wrap>button{
+    display: inline-block;
+    width: 154rpx;
+    height: 58rpx;
+    background: #FF1058;
+    color: #fff;
+    line-height: 58rpx;
+    font-size: 30rpx;
+    white-space: nowrap;
+    padding: 0;
+    margin-right: 30rpx;
+}
+.btn-wrap>button::after{
+    border: none;
+}
+.btn-wrap>.qX{
+    background: #dadada;
+    color: #000;
+}

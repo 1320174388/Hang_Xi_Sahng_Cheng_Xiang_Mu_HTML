@@ -6,8 +6,8 @@
   </view>
 
   <view class='main col' wx:for='{{orderList}}' wx:key='index' wx:if='{{item.order_status == currentTab+1}}'>
-    <view class='orider'>订单号：{{item.order_number}}</view>
-    <view class='list row'>
+    <view class='orider' catchtap='jump_detail' id='{{index}}'>订单号：{{item.order_number}}</view>
+    <view class='list row'  catchtap='jump_detail'  id='{{index}}'>
       <image class='list_left' src='{{hosturl+item.details[0].good_pic}}'></image>
       <view class='list_right'>
         <view class='list_right_item row_between'>{{item.details[0].good_name}}</view>
