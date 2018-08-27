@@ -84,6 +84,7 @@ Page({
         'order_number': num
       },
       function(res) {
+        console.log(res)
         var idx = res.data.retData.order_status - 1;
         that.setData({
           'orider': res.data.retData,

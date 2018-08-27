@@ -62,7 +62,7 @@ Page({
         delete order_groups[i].style_price
       }
       wx.chooseAddress({
-        success: function(res) {    
+        success: function(res) {
           console.log(res)
           var order_people = res.userName;
           var order_phone = res.telNumber;
@@ -88,8 +88,10 @@ Page({
       })
     } else if (that.data.editor !== true) {
       for (var i = 0; i < that.data.carts.length; i++) { // 循环列表得到每个数据
-        if (that.data.carts[i].selected) {
-          delete that.data.carts[i]
+        if (that.data.carts[i]) {
+          if (that.data.carts[i].selected) {
+            delete that.data.carts[i]
+          }
         }
       }
       that.setData({
@@ -118,8 +120,10 @@ Page({
     let carts = wx.getStorageSync('project_carts'); // 获取购物车列表
     let total = 0;
     for (let i = 0; i < carts.length; i++) { // 循环列表得到每个数据
-      if (carts[i].selected) { // 判断选中才会计算价格
-        total += carts[i].good_num * carts[i].style_price; // 所有价格加起来
+      if (carts[i]) {
+        if (carts[i].selected) { // 判断选中才会计算价格
+          total += carts[i].good_num * carts[i].style_price; // 所有价格加起来
+        }
       }
     }
     this.setData({ // 最后赋值到data中渲染到页面

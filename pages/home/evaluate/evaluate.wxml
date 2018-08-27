@@ -20,11 +20,11 @@
         </view>
         <view>已售{{goodData.good_sales}}份</view>
       </view>
-      <view class='head_cont_foot row'>
+      <!-- <view class='head_cont_foot row'>
         <text>智利</text>
         <text>次日达</text>
         <text>实付满88包邮</text>
-      </view>
+      </view> -->
     </view>
   </view>
   <view class='specifications col'>
@@ -38,7 +38,7 @@
         </view>
       </view>
       <view class='row_between'>
-        <view></view>
+        <view>总价：{{total}}</view>
         <view class='num row_around'>数量：
           <text class='right_flex' bindtap="minusCount" data-index="{{index}}">-</text>
           <text>{{num}}</text>
@@ -47,11 +47,11 @@
       </view>
     </view>
   </view>
-  <view class='specifications_main col'>
+  <!-- <view class='specifications_main col'>
     <text>重量：125g*1盒</text>
     <text>包装：普装</text>
     <text>保质期：到货可立即使用</text>
-  </view>
+  </view> -->
 
 
   <view class='main col'>

@@ -35,6 +35,7 @@
 .list {
   margin: 18rpx 0 12rpx 0;
   background: #fff;
+  margin-bottom: 100rpx; 
 }
 
 .list_head {

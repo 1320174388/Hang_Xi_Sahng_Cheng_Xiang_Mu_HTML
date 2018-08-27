@@ -75,6 +75,7 @@
 .list {
   padding: 0 78rpx 0 72rpx;
   background: #fff;
+  margin-bottom: 100rpx; 
 }
 
 .list_main {

@@ -11,7 +11,7 @@
       <view class='cont_name'>{{od.good_name}}</view>
       <view class='cont_specifications'>
         <text>规格</text>
-        <view class='cont_specifications_name' wx:for='{{od.style_name}}' wx:key="" wx:for-item="sn">{{sn.item}}</view>
+        <view class='cont_specifications_name'>{{od.good_name}}:{{good_price}}</view>
       </view>
     </view>
   </view>
