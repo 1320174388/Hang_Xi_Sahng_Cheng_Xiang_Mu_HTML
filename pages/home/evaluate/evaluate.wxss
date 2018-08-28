@@ -172,7 +172,7 @@ swiper {
 }
 
 .list_wrap {
-  margin-bottom: 120rpx;
+  margin-bottom: 10rpx;
 }
 
 .list {
@@ -229,7 +229,8 @@ swiper {
 }
 
 box {
-  margin-bottom: 300rpx;
+  /* margin-bottom: 100rpx; */
+  padding-bottom: 30rpx;
 }
 
 .foot_left {

@@ -15,15 +15,7 @@ Page({
     // 公告轮播
     noticeDis: 0,
     //   轮播图
-    swiperArr: [
-      "../images/swipeImage.png",
-      "../images/swipeImage.png",
-      "../images/swipeImage.png",
-      "../images/swipeImage.png",
-      "../images/swipeImage.png",
-      "../images/swipeImage.png",
-      "../images/swipeImage.png"
-    ],
+    swiperArr: [],
     //   中部导航栏
     navArr: [],
     //   今日特卖
@@ -151,6 +143,18 @@ Page({
         }
       }, 1000)
     }, 1000)
+
+    //加载轮播图片
+    var that = this;
+    getApp().request(
+      config.hostUrl + '/v1/sowing_module/sowing_route', {},
+      function (res) {
+        console.log(res.data.retData)
+        that.setData({
+          swiperArr: res.data.retData
+        })
+
+      }, 'GET')
   },
 
   /**

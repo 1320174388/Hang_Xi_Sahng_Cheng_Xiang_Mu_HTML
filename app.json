@@ -22,11 +22,13 @@
     "pages/back/commodityDetails/commodityDetails",
     "pages/back/order/order",
     "pages/back/orderDetails/orderDetails",
+    "pages/back/banner/banner",
     "pages/home/kefu/ask/ask",
     "pages/home/kefu/adminManage/adminManage",
     "pages/home/kefu/question/question",
     "pages/home/kefu/questionDetail/questionDetail",
     "pages/home/contactUs/contactUs"
+    
   ],
   "window":{
     "backgroundTextStyle":"light",

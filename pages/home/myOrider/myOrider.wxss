@@ -181,7 +181,7 @@ page{
     font-size: 28rpx;
 }
 .pay_head_top_right{
-    font-size: 24rpx;
+    font-size: 28rpx;
 }
 
 .pay_head_bot_right {
@@ -202,9 +202,9 @@ page{
     color: #4d4d4d;
 }
 
-.pay_main_num text {
-    margin-left: 14rpx;
-    color: #ff1656;
+.pay_main_num_text {
+  margin-left: 4rpx;
+  color: #ff1656;
 }
 
 .twocode {

@@ -13,6 +13,31 @@ Page({
     selectAllStatus: false, // 全选状态时为true
     host: config.hostUrl,
   },
+
+  // 一键复制事件
+  copyBtn: function (e) {
+    console.log('复制成功')
+    var that = this;
+    wx.setClipboardData({
+      //准备复制的数据
+      data: 'wxid_032t2570rv1m22',
+      success: function (res) {
+        wx.showToast({
+          title: '复制成功',
+        });
+      }
+    });
+  },
+  /**
+     * 图片预览
+     */
+  big: function (e) {
+    wx.previewImage({
+      urls: [config.hostUrl + '/uploads/static/' + e.currentTarget.dataset.types + '.jpg'] // 需要预览的图片http链接列表
+    })
+
+  },
+
   /**
    * 点击弹框外部，弹框消失
    */

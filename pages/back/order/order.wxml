@@ -14,7 +14,6 @@
             <view class='cont_name'>{{l.details[0].good_name}}</view>
             <view class='cont_specifications'>
               <text>{{l.details[0].style_name}}</text>
-              <!-- <text class='cont_specifications_name'>12345646548745674984123456123456789{{datas.style_name}}</text> -->
             </view>
           </view>
         </view>

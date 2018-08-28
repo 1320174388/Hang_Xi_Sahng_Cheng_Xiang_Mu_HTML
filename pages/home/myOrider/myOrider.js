@@ -19,6 +19,25 @@ Page({
     // 控制付款页面的显示隐藏
     hid: true,
     evaluate:true,
+    idx:0,
+    // 付款订单号
+    fkNum:'',
+    // 付款金额
+    fkPrice:'',
+  },
+  // 一键复制事件
+  copyBtn: function (e) {
+    console.log('复制成功')
+    var that = this;
+    wx.setClipboardData({
+      //准备复制的数据
+      data: 'wxid_032t2570rv1m22',
+      success: function (res) {
+        wx.showToast({
+          title: '复制成功',
+        });
+      }
+    });
   },
   // 控制付款页面的显示隐藏
   delification: function(e) {
@@ -52,8 +71,11 @@ Page({
 
   // 点击立即付款
   fukuan: function(e) {
+     
     this.setData({
       hid: false,
+      fkNum: this.data.orderList[e.currentTarget.id].order_number,
+      fkPrice: this.data.orderList[e.currentTarget.id].zPrice,
     })
   },
   evaluate:function(e){
@@ -100,11 +122,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var token = wx.getStorageSync('token')
+    var token = wx.getStorageSync('token');
     var that = this;
     if (options.idx) {
       that.setData({
-        currentTab: parseInt(options.idx)
+        currentTab: parseInt(options.idx),
+        idx: parseInt(options.idx),
       })
     }
     app.request(
@@ -118,25 +141,38 @@ Page({
           //   计算总价
           for (var i = 0; i < list.length; i++) {
             var zj = 0;
-            var critic_status = 5;
+            if (list[i].order_status==4){
+              var critic_status = 5;
+              for (var j = 0; j < list[i].details.length; j++) {
+                if (list[i].details[j].critic_status == 0) {
+                  critic_status = 4;
+                }
+
+              }
+              list[i].order_status = critic_status;
+            }
             for (var j = 0; j < list[i].details.length; j++) {
               zj = zj + (list[i].details[j].good_num * list[i].details[j].good_price);
-              if (list[i].details[j].critic_status == 0){
-                  critic_status = 4;
-              }
-
             }
             list[i].zPrice = zj;
-            list[i].order_status = critic_status;
           }
           that.setData({
-            orderList: res.data.retData,
+            orderList: list,
           })
         }
       }
     )
   },
 
+  /**
+   * 图片预览
+   */
+  big: function(e){
+    wx.previewImage({
+      urls: [config.hostUrl + '/uploads/static/' + e.currentTarget.dataset.types+'.jpg'] // 需要预览的图片http链接列表
+    })
+
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -148,7 +184,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.onLoad({idx:this.data.idx});
   },
 
   /**

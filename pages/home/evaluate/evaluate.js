@@ -11,12 +11,15 @@ Page({
     navbar: ['详情', '评论'], //导航
     currentTab: 0,
     goodData: '',
+    criticList:'',
+    
     host: config.hostUrl,
     selet_show: true,
     num: 1,
-    mycollect: false,
-    searchPageNum: 0,
+   
     idx: null,
+    searchPageNum: 0, // 设置加载的第几次，默认是第一次  
+    searchLoadingComplete: false //“没有数据”的变量，默认false，隐藏
   },
 
 
@@ -158,53 +161,36 @@ Page({
   //触底事件
   lower: function() {
     console.log("触底事件")
-    // var that = this;
-    // var searchPageNum = that.data.searchPageNum + 1; //每次触发上拉事件，把searchPageNum+1 
-    // // callbackcount = that.data.callbackcount; //返回数据的个数  
+    var that = this;
+    var searchPageNum = that.data.searchPageNum + 1; //每次触发上拉事件，把searchPageNum+1 
+    // callbackcount = that.data.callbackcount; //返回数据的个数  
 
-    // app.request(
-    //   config.hostUrl + '/v1/good_module/critic_get', {
+    app.request(
+      config.hostUrl + '/v1/good_module/critic_get', {
 
-    //     goodIndex: that.data.goodData.class_index
-    //   },
-    //   function (res) {
-    //     console.log(res)
-    //   console.log(that.data.currentTab)
-    //   var list = [];
-    //   var x = 0;
-    //   console.log(that.data.list)
-
-    //   for (var i = 0; i < res.data.retData.length; i++) {
-    //     if (res.data.retData[i].order_status == that.data.currentTab) {
-    //       list[x] = res.data.retData[i];
-    //       x++;
-    //     }
-    //   }
-
-    //   console.log(list)
-    //   if (list.length == 12) {
-    //     var newarr = that.data.list.concat(list)
-    //     var arr = that.data.orider_list.concat(res.data.retData)
-    //     console.log(newarr)
-    //     console.log(arr)
-    //     that.setData({
-    //       'orider_list': arr,
-    //       'list': newarr,
-    //       searchPageNum: searchPageNum,
-    //       searchLoadingComplete: false,
-    //     })
-    //   } else if (list.length < 12) {
-    //     var newarr = that.data.list.concat(list)
-    //     var arr = that.data.orider_list.concat(res.data.retData)
-    //     that.setData({
-    //       'orider_list': arr,
-    //       'list': newarr,
-    //       searchPageNum: searchPageNum,
-    //       searchLoadingComplete: true,
-    //     })
-    //   //   }
-    //    }
-    // )
+        goodIndex: that.data.goodData.good_index
+      },
+      function (res) {
+        console.log(res)
+        if (res.data.retData.criticList.length== 12) {
+          var newarr = that.data.criticList.concat(res.data.retData.criticList)
+        console.log(newarr)
+        that.setData({
+          'criticList': newarr,
+          searchPageNum: searchPageNum,
+          searchLoadingComplete: false,
+        })
+        } else if (res.data.retData.criticList.length < 12) {
+          var newarr = that.data.criticList.concat(res.data.retData.criticList)
+        console.log(newarr)
+        that.setData({
+          'criticList': newarr,
+          searchPageNum: searchPageNum,
+          searchLoadingComplete: true,
+        })
+        }
+       }
+    )
   },
 
   //点击收藏
@@ -297,6 +283,7 @@ Page({
    */
   onLoad: function(options) {
     var goodindex = options.goodindex;
+    if (goodindex){
     var that = this;
     var token = wx.getStorageSync('token')
     //获取商品详情信息
@@ -308,7 +295,7 @@ Page({
         console.log(res)
         that.setData({
           goodData: res.data.retData.goodData,
-
+          criticList: res.data.retData.criticList
         })
         //判断商品是否收藏接口
         app.request(
@@ -317,6 +304,7 @@ Page({
             goodIndex: that.data.goodData.good_index
           },
           function(res) {
+            console.log(res)
             if (res.data.retData == true) {
               that.setData({
                 mycollect: true
@@ -329,7 +317,8 @@ Page({
           }
         )
       }
-    )
+      )
+    } 
   },
 
   /**
@@ -343,7 +332,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.onLoad({ goodindex: this.data.goodData.good_index});
   },
 
   /**

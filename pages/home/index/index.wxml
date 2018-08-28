@@ -26,8 +26,8 @@
   <view class='xc' catchtap='noticeHide' style='display:{{noEditShow}}'>x</view>
   <!-- 轮播图 -->
   <swiper class='head-swiper' indicator-dots='true' autoplay='true' interval='2000' indicator-color='#fff' indicator-active-color='#ff4000' circular='true'>
-    <swiper-item wx:for='{{swiperArr}}' wx:key=''>
-      <image src='../images/swipeImage.png'></image>
+    <swiper-item wx:for='{{swiperArr}}' wx:key='' wx:for-item="w">
+      <image src='{{host+w.sowing_url}}'></image>
     </swiper-item>
   </swiper>
   <view class='tel' bindtap='tel'>联系我们</view>
