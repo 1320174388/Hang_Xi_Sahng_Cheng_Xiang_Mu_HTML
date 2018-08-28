@@ -20,11 +20,7 @@
         </view>
         <view>已售{{goodData.good_sales}}份</view>
       </view>
-      <!-- <view class='head_cont_foot row'>
-        <text>智利</text>
-        <text>次日达</text>
-        <text>实付满88包邮</text>
-      </view> -->
+
     </view>
   </view>
   <view class='specifications col'>
@@ -47,12 +43,6 @@
       </view>
     </view>
   </view>
-  <!-- <view class='specifications_main col'>
-    <text>重量：125g*1盒</text>
-    <text>包装：普装</text>
-    <text>保质期：到货可立即使用</text>
-  </view> -->
-
 
   <view class='main col'>
     <!--导航条-->
@@ -67,15 +57,7 @@
     </view>
 
     <view class='box' hidden="{{currentTab!==1}}">
-      <!-- <view class='row cont_head'>
-        <view class='cont_head_item row' bindtap='all_criticList'> 
-          <view class='click'></view>全部
-        </view>
-        <view class='cont_head_item row' bindtap='img_criticList'>
-          <view class='click'></view>有图片
-        </view>
-      </view> -->
-      <scroll-view scroll-y style="height: 100vh;" bindscrolltolower="lower" scroll-top="{{scrollTop}}">
+      <scroll-view scroll-y style="height: 100vh;" bindscrolltolower="lower">
         <view class='col list_wrap' wx:if="{{c}}" wx:for="{{criticList}}" wx:key='' wx:for-item="c">
           <view class='list'>
             <image class='list_img' src='../images/my-head-icon.png'></image>
@@ -88,6 +70,7 @@
             </view>
           </view>
         </view>
+         <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>
       </scroll-view>
     </view>
   </view>

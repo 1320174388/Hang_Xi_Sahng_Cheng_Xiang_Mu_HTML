@@ -81,6 +81,7 @@ App({
       },
       formData: formData,
       success: function(res) {
+        console.log(res.data)
         var data = JSON.parse(res.data);
         func(data);
       }
@@ -130,7 +131,8 @@ App({
       count: count,
       success: func,
     })
-  }
+  },
+
 });
 var config = require('./config.js');
 

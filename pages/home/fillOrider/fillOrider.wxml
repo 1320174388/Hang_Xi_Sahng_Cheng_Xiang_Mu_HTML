@@ -63,18 +63,18 @@
       </view>
       <view class='pay_main col_around'>
         <text>联系店主</text>
-        <view class='row pay_main_num'>微信号： 21876384
-          <text>复制</text>
+        <view class='row pay_main_num'>微信号： wxid_032t2570rv1m22
+          <view bindtap='copyBtn' class='pay_main_num_text'>复制</view>
         </view>
-        <image class='twocode'></image>
+        <image class='twocode' src='../images/add.jpg' data-types='user' bindtap='big'></image>
         <view class='pay_main_th'>支付二维码</view>
         <view class='row_between'>
           <view class='col'>
-            <image class='twocode'></image>
+            <image class='twocode' src='../images/wx_pay.png' data-types='weixin' bindtap='big'></image>
             <view class='pay_foot'>微信二维码</view>
           </view>
           <view class='col'>
-            <image class='twocode'></image>
+            <image class='twocode' src='../images/zfb_pay.jpg' data-types='zhifu' bindtap='big'></image>
             <view class='pay_foot'>支付宝二维码</view>
           </view>
         </view>

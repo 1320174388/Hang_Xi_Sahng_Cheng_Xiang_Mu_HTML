@@ -1,0 +1,13 @@
+<!--pages/back/banner/banner.wxml-->
+
+ 
+<view class='index_btn' bindtap='chooseimages'>设置轮播图</view>
+<swiper class='head-swiper' indicator-dots='true' autoplay='true' interval='2000' indicator-color='#fff' indicator-active-color='#ff4000' circular='true'>
+  <swiper-item wx:for='{{Wheel}}' wx:key='' wx:for-item="w">
+    <image src='{{host+w.sowing_url}}'></image>
+  </swiper-item>
+</swiper>
+
+<view class="index_cont_btn">
+  <view class='index_cont_b' bindtap='uploadfiles'>上传</view>
+</view>

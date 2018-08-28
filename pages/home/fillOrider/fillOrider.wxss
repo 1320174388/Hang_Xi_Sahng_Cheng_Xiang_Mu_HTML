@@ -355,8 +355,8 @@
   color: #4d4d4d;
 }
 
-.pay_main_num text {
-  margin-left: 14rpx;
+.pay_main_num_text {
+  margin-left: 4rpx;
   color: #ff1656;
 }
 

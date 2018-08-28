@@ -42,6 +42,7 @@ Page({
     }
     outTradeNo = t.getFullYear() + "" + month + "" + getDate + "" + getHours + "" + getMinutes + "" + getSeconds + "" + outTradeNo; //时间戳，用来生成订单号。
     if (that.data.editor == true) {
+
       var order_groups = [];
       var total = 0;
       console.log(that.data.carts)
@@ -50,64 +51,65 @@ Page({
         if (that.data.carts[i]) {
           if (that.data.carts[i].selected) {
             order_groups.push(that.data.carts[i])
-            // that.data.carts.splice(i, 1)
           }
         }
       }
-       console.log(that.data.carts)
-      // that.setData({
-      //   carts: that.data.carts,
-      // })
-      //this.getTotalPrice(); // 重新获取总价
-      //wx.setStorageSync('project_carts', that.data.carts);
-      console.log(that.data.carts)
-      //筛选数组中具体信息
-      for (var i = 0; i < order_groups.length; i++) {
-        order_groups[i].good_pic = order_groups[i].good_image
-        order_groups[i].good_price = order_groups[i].style_price
-        delete order_groups[i].selected
-        delete order_groups[i].good_image
-        delete order_groups[i].style_price
-      }
-      //获取微信地址电话
-      wx.chooseAddress({
-        success: function(res) {
-          var order_people = res.userName;
-          var order_phone = res.telNumber;
-          var order_address = res.provinceName + res.cityName + res.countyName + res.detailInfo;
-          //将要缓存的信息放入orider
-          console.log(that.data.totalPrice)
-          var orider = {
-            //user_token: token, //用户标识`
-            order_number: outTradeNo, //`订单号`
-            order_people: order_people, //`收件人名称`
-            order_phone: order_phone, //`收件人电话`
-            order_address: order_address, //`收件人地址`
-            order_formd: e.detail.formId, //`表单提交ID`       
-            good_prices: that.data.totalPrice, //`商品总价格`
-            order_gdnu: order_groups.length, //商品规格数量
-            order_group: order_groups,
-          }
-          app.point('正在创建订单', 'success', 2000)
-          wx.setStorageSync('orider', orider);
-          for (var i = 0; i < that.data.carts.length; i++) { // 循环列表得到每个数据
-            if (that.data.carts[i]) {
-              if (that.data.carts[i].selected) {
-                console.log(that.data.carts[i])
-                that.data.carts.splice(i, 1)
+      console.log(order_groups)
+      if (order_groups.length !== 0) {
+        //筛选数组中具体信息
+        for (var i = 0; i < order_groups.length; i++) {
+          order_groups[i].good_pic = order_groups[i].good_image
+          order_groups[i].good_price = order_groups[i].style_price
+          delete order_groups[i].selected
+          delete order_groups[i].good_image
+          delete order_groups[i].style_price
+        }
+        //获取微信地址电话
+        wx.chooseAddress({
+          success: function(res) {
+            var order_people = res.userName;
+            var order_phone = res.telNumber;
+            var order_address = res.provinceName + res.cityName + res.countyName + res.detailInfo;
+            //将要缓存的信息放入orider
+            var orider = {
+              //user_token: token, //用户标识`
+              order_number: outTradeNo, //`订单号`
+              order_people: order_people, //`收件人名称`
+              order_phone: order_phone, //`收件人电话`
+              order_address: order_address, //`收件人地址`
+              order_formd: e.detail.formId, //`表单提交ID`       
+              good_prices: that.data.totalPrice, //`商品总价格`
+              order_gdnu: order_groups.length, //商品规格数量
+              order_group: order_groups,
+            }
+
+            app.point('正在创建订单', 'success', 2000)
+            wx.setStorageSync('orider', orider);
+            for (var i = 0; i < that.data.carts.length; i++) { // 循环列表得到每个数据
+              if (that.data.carts[i]) {
+                if (that.data.carts[i].selected) {
+                  console.log(that.data.carts[i])
+                  that.data.carts.splice(i, 1)
+                }
               }
             }
+            that.setData({
+              carts: that.data.carts,
+              totalPrice: 0
+            })
+            wx.setStorageSync('project_carts', that.data.carts);
+            wx.navigateTo({
+              url: '../fillOrider/fillOrider',
+            })
+
           }
-          that.setData({
-            carts: that.data.carts,
-            totalPrice: 0
-          })
-          wx.setStorageSync('project_carts', that.data.carts);
-          wx.navigateTo({
-            url: '../fillOrider/fillOrider',
-          })
-        }
-      })
+        })
+      } if (order_groups.length == 0){
+
+        app.point('请先选择要购买的商品', 'none', 2000)
+        return false;
+      }
+
     } else if (that.data.editor !== true) {
       for (var i = 0; i < that.data.carts.length; i++) { // 循环列表得到每个数据
         if (that.data.carts[i]) {
@@ -115,7 +117,7 @@ Page({
             console.log(that.data.carts[i])
             that.data.carts.splice(i, 1)
           }
-        }
+        } 
       }
       console.log(that.data.carts)
       app.point('正在删除购物车商品', 'success', 2000)

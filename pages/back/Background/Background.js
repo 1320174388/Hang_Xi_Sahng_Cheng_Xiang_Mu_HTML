@@ -24,6 +24,11 @@ Page({
       url:"../order/order",
     })
   },
+  Jump_img:function(){
+    wx.navigateTo({
+      url: "../banner/banner",
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
