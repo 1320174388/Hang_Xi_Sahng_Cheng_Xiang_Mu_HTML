@@ -1,38 +1,90 @@
 <!--pages/home/myOrider/myOrider.wxml-->
-<view class='wrap'>
+<view class='all-wrap'>
   <!--导航条-->
   <view class="navbar">
     <text wx:for="{{navbar}}" data-idx='{{index}}' class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap='navbarTap'>{{item}}</text>
   </view>
 
   <view class='main col' wx:for='{{orderList}}' wx:key='index' wx:if='{{item.order_status == currentTab+1}}'>
-    <view class='orider' catchtap='jump_detail' id='{{index}}'>订单号：{{item.order_number}}</view>
-    <view class='list row'  catchtap='jump_detail'  id='{{index}}'>
+    <view class='orider' catchtap='jump_detail' id='{{index}}'>订单号：
+      <text style='color:#ccc;'> {{item.order_number}}</text>
+    </view>
+    <view class='list row' catchtap='jump_detail' id='{{index}}'>
       <image class='list_left' src='{{hosturl+item.details[0].good_pic}}'></image>
       <view class='list_right'>
         <view class='list_right_item row_between'>{{item.details[0].good_name}}</view>
         <view class='list_right_item row_between'>{{item.details[0].style_name}}
           <text>￥{{item.details[0].good_price}}</text>
         </view>
-        <view class='list_right_item row_between'><text></text>
+        <view class='list_right_item row_between'>
+          <text></text>
           <text>*{{item.details[0].good_num}}</text>
         </view>
+      </view>
+    </view>
+    <view class='price'>
+      <!-- <view class='price_main'> -->
+      <view class='price_item'>合计
+        <text class='price_item_right'>￥{{item.zPrice}}</text>
+      </view>
+      <view class='price_item'>共{{item.order_gdnu}}件商品</view>
+      <!-- </view> -->
+    </view>
+    <view class='btn row'>
+
+
+
+      <!-- <view class='btn3' bindtap='jump_evaluate'>确认收货</view>
+        <view class='btn1'>延长收货</view> -->
+      <!-- <view class='btn2'>查看物流</view> -->
+
+      <view class='btn3' bindtap='' wx:if="{{item.order_status == 3}}" bindtap='qRrecive' id='{{index}}'>确认收货</view>
+      <view class='btn3' bindtap='' wx:if="{{item.order_status == 1}}" bindtap='fukuan' id="{{index}}">立即付款</view>
+      <view class='btn1' bindtap='' wx:if="{{item.order_status == 1}}" bindtap='quxiao' id="{{index}}">取消订单</view>
+      <!-- <view class='btn3' bindtap='' wx:if="{{item.order_status == 4}}" bindtap='evaluate' id="{{index}}">立即评价</view> -->
+
     </view>
   </view>
-  <view class='price'>
-    <!-- <view class='price_main'> -->
-      <view class='price_item'>运费：0</view>
-      <view class='price_item'>合计<text class='price_item_right'>￥{{item.zPrice}}</text>
+  <view class='wrap' hidden='{{hid}}' data-classification='true' catchtap='delification'>
+    <view data-classification='' catchtap='delification'>
+      <view class="pay_wrap col">
+        <view class='pay_head col_around'>
+          <view class='pay_head_top row'>订单号：
+            <text class='pay_head_top_right'>{{orider.order_number}}</text>
+          </view>
+          <view class='pay_head_bot row'>
+            <text class='pay_head_bot_right'>应付价格</text>￥{{orider.good_prices}}
+          </view>
         </view>
-        <view class='price_item'>共{{item.order_gdnu}}件商品</view>
-        <!-- </view> -->
-      </view>
-      <view class='btn row'>
-       
-       
-        <view class='btn3' bindtap='jump_evaluate'>确认收货</view>
-        <view class='btn1'>延长收货</view>
-        <!-- <view class='btn2'>查看物流</view> -->
+        <view class='pay_main col_around'>
+          <text>联系店主</text>
+          <view class='row pay_main_num'>微信号： 21876384
+            <text>复制</text>
+          </view>
+          <image class='twocode'></image>
+          <view class='pay_main_th'>支付二维码</view>
+          <view class='row_between'>
+            <view class='col'>
+              <image class='twocode'></image>
+              <view class='pay_foot'>微信二维码</view>
+            </view>
+            <view class='col'>
+              <image class='twocode'></image>
+              <view class='pay_foot'>支付宝二维码</view>
+            </view>
+          </view>
+        </view>
       </view>
     </view>
   </view>
+</view>
+<!-- 
+<view class='wrap' hidden='{{evaluate}}'>
+  <view class="box_evaluate col">
+    <form>
+      <view class='box_evaluate'></view>
+      <textarea maxlength='200' name="content" placeholder='最多输入200个字符'></textarea>
+      <button form-type='submit'>上传</button>
+    </form>
+  </view>
+</view> -->

@@ -1,24 +1,47 @@
 // pages/home/oriderDetail/oriderDetail.js
+var config = require('../../../config.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-      expressNum:'1235467899876',
+      orderDetail:'',
+    //   图片域名
+      host:config.hostUrl,
+    evaluate: true,
   },
-  copy:function(){
-      wx.setClipboardData({
-          data: this.data.expressNum
-      })
+  evaluate: function (e) {
+    this.setData({
+      evaluate: false,
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+        var that = this;
+      getApp().request(config.hostUrl + '/v1/order_module/getOrderDetails',{
+          order_number: options.orderNum
+      },function(res){
+        if(res.data.retData){
+            var orderObj = res.data.retData;
+            var zj = 0;
+            for (var i = 0; i < orderObj.details.length;i++){
+                zj += parseFloat(orderObj.details[i].good_num * orderObj.details[i].good_price);
+            }
+            orderObj.zj = zj;
+            that.setData({
+                orderDetail: orderObj,
+            })
+            console.log(orderObj);
+        }
+      });
+
+
   },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

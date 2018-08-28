@@ -1,65 +1,54 @@
 <!--pages/home/oriderDetail/oriderDetail.wxml-->
 <view class='wrap'>
-    <view class='orderNum'>
-        <text>订单号:123456789</text>
+  <view class='orderNum'>
+    <text>订单号:<text style='color:#ccc;'> {{orderDetail.order_number}}</text></text>
+  </view>
+  <!-- <view class='orderStatus'>
+        <text></text>
+    </view> -->
+  <view class='people'>
+    <text>姓名\t</text>
+    <text>{{orderDetail.order_people}}</text>
+    <view>
+      <text>收货地址:</text>
+      <text>{{orderDetail.order_address}}</text>
     </view>
-    <view class='orderStatus'>
-        <text>卖家已发货</text>
-        <view>
-            <text>中通快递:\t</text>
-            <text>123456789123</text>
-            <view bindtap='copy' data-text='{{expressNum}}'>复制</view>
-        </view>
+  </view>
+  <view class='shopFood' wx:for="{{orderDetail.details}}" wx:key="{{index}}">
+    <image src='{{host+item.good_pic}}'></image>
+    <view>
+      <text>{{item.good_name}}</text>
+      <view>
+        <text>{{item.style_name}}</text>
+        <text>￥{{item.good_price}}</text>
+      </view>
+      <view>
+        *{{item.good_num}}
+      </view>
+      <button class='pj' wx:if="{{item.critic_status == 0}}" bindtap='evaluate' id="{{index}}">立即评价</button>
     </view>
-    <view class='people'>
-        <text>姓名\t</text>
-        <text>克拉斯</text>
-        <view>
-            <text>收货地址:</text>
-            <text>收货人的地址</text> 
-        </view>
-    </view>
-    <view class='shopFood'>
-        <image src='../images/content.png'></image>
-        <view>
-            <text>商品名称</text>
-            <view>
-                <text>商品规格</text>
-                <text>￥15.9</text>
-            </view>
-            <view>
-                *2
-            </view>
-        </view>
-        
-    </view>
-    <view class='zPrice'>
-        <text>共2件商品\t合计 : </text>
-        <text>￥31.8</text>
-    </view>
-    <view class='btn-wrap'>
-        <button class='qR'>确认收货</button>
-    </view>
-    <view class='shopFood'>
-        <image src='../images/content.png'></image>
-        <view>
-            <text>商品名称</text>
-            <view>
-                <text>商品规格</text>
-                <text>￥15.9</text>
-            </view>
-            <view>
-                *2
-            </view>
-        </view>
-        
-    </view>
-    <view class='zPrice'>
-        <text>共2件商品\t合计 : </text>
-        <text>￥31.8</text>
-    </view>
-    <view class='btn-wrap'>
-        <button class='qX'>取消订单</button>
-        <button class='qR'>立即付款</button>
-    </view>
+    
+
+  </view>
+
+  <view class='zPrice'>
+    <text>共{{orderDetail.details.length}}件商品\t合计 : </text>
+    <text>￥{{orderDetail.zj}}</text>
+  </view>
+  <view class='btn-wrap'>
+    <button class='qR' wx:if='{{orderDetail.order_status==3}}'>确认收货</button>
+    <button class='qX' wx:if='{{orderDetail.order_status==1}}'>取消订单</button>
+    <button class='qR' wx:if='{{orderDetail.order_status==1}}'>立即付款</button>
+
+  </view>
+</view>
+
+<view class='wrap' hidden='{{evaluate}}'>
+  <view class="box_evaluate col">
+    <form>
+      <view class='box_evaluate'></view>
+      <textarea maxlength='200' name="content" placeholder='最多输入200个字符'></textarea>
+      <button form-type='submit'>上传</button>
+    </form>
+  </view>
 </view>
