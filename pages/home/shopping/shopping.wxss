@@ -213,8 +213,8 @@
   /* transform: rotate(90deg);*/
   background-color:transparent;
   border:none;
-
-
+  white-space: nowrap;
+font-size: 36rpx;
 color: #fff;
 }
 
