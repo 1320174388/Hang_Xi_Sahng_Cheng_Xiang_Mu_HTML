@@ -1,12 +1,12 @@
 <!--pages/home/contactUs/contactUs.wxml-->
 <view>
-    <view class='phone'>
-        <text>电话:123456789</text>
+    <view class='phone' bindtap='phoneCall'>
+        <text>联系电话:18310379198</text>
     </view>
-    <view class='ewmImg'>
-        <image src=''></image>
+    <view class='ewmImg' bindtap='EwmDj'>
+        <image src='../images/EWM.jpg' mode='widthFix'></image>
     </view>
     <view class='address'>
-        <text>地址:看书看书看书看看书看书看书看书看书看书看书看书看书看书看</text>
+        <map longitude="116.327238" latitude="39.636547" markers='{{markers}}' style='width:100%;'></map>
     </view>
 </view>

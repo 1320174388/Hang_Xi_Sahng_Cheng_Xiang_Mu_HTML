@@ -1,13 +1,32 @@
 // pages/home/contactUs/contactUs.js
+var config = require('../../../config.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-      
+      markers: [{
+          id: 0,
+          latitude: 39.636547,
+          longitude: 116.327238,
+          width: 50,
+          height: 50,
+      }],
   },
 
+    // 二维码点击事件
+    EwmDj:function(){
+        wx.previewImage({
+            urls: [config.hostUrl+'/uploads/static/user.jpg'],
+        })
+    },
+    // 点击拨打电话
+    phoneCall:function(){
+        wx.makePhoneCall({
+            phoneNumber: '18310379198',
+        })
+    },
   /**
    * 生命周期函数--监听页面加载
    */
