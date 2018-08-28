@@ -33,6 +33,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "linear-gradient(-42deg, #FF2D7C 0%, #FF6532 100%)",
+    
     "navigationBarTitleText": "",
     "navigationBarTextStyle":"black"
   },

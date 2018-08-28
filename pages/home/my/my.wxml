@@ -28,16 +28,17 @@
             <text>\n{{item.text}}</text>
         </view>
     </view>
+      <!-- 后台管理 -->
+    <view wx:if="{{administrator}}" class='content-wrap' bindtap='jump_Background'>
+        <text>后台管理</text>
+        <text>></text>
+    </view>
     <!-- 购物车 -->
     <view class='content-wrap' bindtap='jump_shopping'>
         <text>购物车</text>
         <text>></text>
     </view>
-    <!-- 后台管理 -->
-    <view class='content-wrap' bindtap='jump_Background'>
-        <text>后台管理</text>
-        <text>></text>
-    </view>
+  
     <!-- 我的地址 -->
     <view class='content-wrap' bindtap='jump_installAddress'>
         <text>我的地址</text>

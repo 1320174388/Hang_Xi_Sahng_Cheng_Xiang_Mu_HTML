@@ -1,1 +1,5 @@
-{}
+{
+  "navigationBarTitleText": "后台管理",
+  "navigationBarBackgroundColor": "#262d49",
+  "navigationBarTextStyle": "white"
+}

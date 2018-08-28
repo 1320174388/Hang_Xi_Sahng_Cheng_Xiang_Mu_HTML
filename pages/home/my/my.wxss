@@ -16,7 +16,8 @@
  /* 头部用户信息 */
  .header{
      height: 200rpx;
-     background: #FF6532;
+     /* background-image: linear-gradient(-42deg, #FF2D7C 0%, #FF6532 100%); */
+     background: #ff2840;
      padding: 20rpx 40rpx;
      display: flex;
  }

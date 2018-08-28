@@ -1,8 +1,5 @@
 {
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#000",
-    "navigationBarTitleText": "分类详情",
-    "navigationBarTextStyle": "white"
-  }
+  "navigationBarTitleText": "后台管理",
+  "navigationBarBackgroundColor": "#262d49",
+  "navigationBarTextStyle": "white"
 }

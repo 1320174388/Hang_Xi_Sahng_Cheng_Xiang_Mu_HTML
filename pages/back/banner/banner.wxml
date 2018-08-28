@@ -8,6 +8,6 @@
   </swiper-item>
 </swiper>
 
-<view class="index_cont_btn">
+<!-- <view class="index_cont_btn">
   <view class='index_cont_b' bindtap='uploadfiles'>上传</view>
-</view>
+</view> -->

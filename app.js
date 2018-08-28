@@ -146,6 +146,12 @@ function login_init() {
         function(res) {
           console.log(res.data);
           wx.setStorageSync('token', res.data.retData.token)
+          getApp().request(
+            config.hostUrl + '/v1/login_module/login_admin/' + res.data.retData.token, {},
+            function (res) {
+              wx.setStorageSync('admin_user_type_print', res.data.retData)
+            },'POST'
+          );
         }, 'POST'
       );
     }
