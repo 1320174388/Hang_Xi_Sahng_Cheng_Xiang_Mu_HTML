@@ -30,6 +30,12 @@ Page({
           },
       ]
   },
+//   点击购物车
+    jump_shopping:function(){
+        wx.switchTab({
+            url: '../shopping/shopping'
+        })
+    },
 //点击分类的订单
   jump_myOrider: function (e) {
     var idx = e.currentTarget.dataset.index
@@ -43,19 +49,23 @@ Page({
           url: '../myOrider/myOrider?idx=0',
       })
   },
-  //
+  //点击我的地址
   jump_installAddress:function(){
-    wx.navigateTo({
-      url: '../installAddress/installAddress',
-    })
+      wx.chooseAddress({})
   },
 
-  //
+  //点击我的收藏
   jump_myCollect: function () {
     wx.navigateTo({
       url: '../myCollect/myCollect',
     })
   },
+//   点击联系我们
+    jump_lianxi:function(){
+        wx.navigateTo({
+            url: '../contactUs/contactUs',
+        })
+    },
 
   jump_Background:function(){
 wx.navigateTo({

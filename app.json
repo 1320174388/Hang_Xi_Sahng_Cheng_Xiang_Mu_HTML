@@ -25,7 +25,8 @@
     "pages/home/kefu/ask/ask",
     "pages/home/kefu/adminManage/adminManage",
     "pages/home/kefu/question/question",
-    "pages/home/kefu/questionDetail/questionDetail"
+    "pages/home/kefu/questionDetail/questionDetail",
+    "pages/home/contactUs/contactUs"
   ],
   "window":{
     "backgroundTextStyle":"light",

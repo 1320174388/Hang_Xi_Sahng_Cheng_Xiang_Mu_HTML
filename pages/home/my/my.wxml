@@ -28,6 +28,11 @@
             <text>\n{{item.text}}</text>
         </view>
     </view>
+    <!-- 购物车 -->
+    <view class='content-wrap' bindtap='jump_shopping'>
+        <text>购物车</text>
+        <text>></text>
+    </view>
     <!-- 后台管理 -->
     <view class='content-wrap' bindtap='jump_Background'>
         <text>后台管理</text>
@@ -41,6 +46,11 @@
     <!-- 我的收藏 -->
     <view class='content-wrap' bindtap='jump_myCollect'>
         我的收藏
+        <text>></text>
+    </view>
+    <!-- 联系我们 -->
+    <view class='content-wrap' bindtap='jump_lianxi'>
+        联系我们
         <text>></text>
     </view>
 

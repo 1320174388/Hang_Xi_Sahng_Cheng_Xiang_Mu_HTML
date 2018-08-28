@@ -1,0 +1,12 @@
+<!--pages/home/contactUs/contactUs.wxml-->
+<view>
+    <view class='phone'>
+        <text>电话:123456789</text>
+    </view>
+    <view class='ewmImg'>
+        <image src=''></image>
+    </view>
+    <view class='address'>
+        <text>地址:看书看书看书看看书看书看书看书看书看书看书看书看书看书看</text>
+    </view>
+</view>

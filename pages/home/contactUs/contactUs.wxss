@@ -1,0 +1,22 @@
+/* pages/home/contactUs/contactUs.wxss */
+
+.phone{
+    padding: 0 40rpx;
+    background: #fff;
+    margin-bottom: 20rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    font-size: 28rpx;
+}
+.ewmImg{
+    padding: 0 40rpx;
+    background: #fff;
+    margin-bottom: 20rpx;
+}
+.address{
+    padding: 10rpx 40rpx 10rpx;
+    background: #fff;
+    margin-bottom: 20rpx;
+    font-size: 28rpx;
+    line-height: 50rpx;
+}

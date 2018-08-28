@@ -1,5 +1,6 @@
 // pages/home/oriderDetail/oriderDetail.js
 var config = require('../../../config.js');
+var shopId;
 Page({
 
   /**
@@ -15,7 +16,34 @@ Page({
     this.setData({
       evaluate: false,
     })
+    // 获取商品
+      shopId = e.currentTarget.id;
   },
+//   评价上传
+    pjFun:function(res){
+        var that = this;
+        getApp().request(config.hostUrl +'/v1/order_module/orderDoodsComment',{
+            order_number: that.data.orderDetail.order_number,
+            user_token: that.data.orderDetail.user_token,
+            good_index: that.data.orderDetail.details[shopId].good_index,
+            critic_content: res.detail.value.content,
+            critic_name: that.data.orderDetail.order_people,
+        },function(res){
+            if(res.data.errNum == 0){
+                that.setData({
+                    evaluate:true,
+                });
+                getApp().point(res.data.retMsg,'success',1000);
+                setTimeout(function(){
+                    var orderDetail = that.data.orderDetail;
+                    orderDetail.details[shopId].critic_status = 1;
+                    that.setData({
+                        orderDetail: orderDetail,
+                    })
+                },1000)
+            }
+        },'post');
+    },
 
   /**
    * 生命周期函数--监听页面加载
@@ -34,6 +62,7 @@ Page({
             orderObj.zj = zj;
             that.setData({
                 orderDetail: orderObj,
+                orderPeople: orderObj.order_people,
             })
             console.log(orderObj);
         }

@@ -35,7 +35,7 @@
     <text>共{{orderDetail.details.length}}件商品\t合计 : </text>
     <text>￥{{orderDetail.zj}}</text>
   </view>
-  <view class='btn-wrap'>
+  <view class='btn-wrap' wx:if='{{orderDetail.order_status==3||orderDetail.order_status==3}}'>
     <button class='qR' wx:if='{{orderDetail.order_status==3}}'>确认收货</button>
     <button class='qX' wx:if='{{orderDetail.order_status==1}}'>取消订单</button>
     <button class='qR' wx:if='{{orderDetail.order_status==1}}'>立即付款</button>
@@ -45,7 +45,7 @@
 
 <view class='wrap' hidden='{{evaluate}}'>
   <view class="box_evaluate col">
-    <form>
+    <form bindsubmit='pjFun'>
       <view class='box_evaluate'></view>
       <textarea maxlength='200' name="content" placeholder='最多输入200个字符'></textarea>
       <button form-type='submit'>上传</button>
