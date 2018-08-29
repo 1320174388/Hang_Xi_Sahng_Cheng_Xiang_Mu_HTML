@@ -29,7 +29,7 @@ page {
 .list_left_right {
   width: 150rpx;
   height: 150rpx;
-  background: blueviolet;
+  
 }
 
 .list_right {

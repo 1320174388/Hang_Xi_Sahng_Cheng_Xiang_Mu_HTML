@@ -27,7 +27,6 @@ Page({
   },
   // 一键复制事件
   copyBtn: function (e) {
-    console.log('复制成功')
     var that = this;
     wx.setClipboardData({
       //准备复制的数据
@@ -135,7 +134,6 @@ Page({
         'user_token': token
       },
       function(res) {
-        console.log(res)
         if (res.data.retData) {
           var list = res.data.retData;
           //   计算总价

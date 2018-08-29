@@ -125,7 +125,6 @@ Page({
   },
   // 增加数量
   addCount(e) {
-    console.log(this.data.idx)
     if (this.data.idx==null) {
       app.point('请先选择规格', 'none', 2000)
       return false;
@@ -160,21 +159,17 @@ Page({
   },
   //触底事件
   lower: function() {
-    console.log("触底事件")
     var that = this;
     var searchPageNum = that.data.searchPageNum + 1; //每次触发上拉事件，把searchPageNum+1 
     // callbackcount = that.data.callbackcount; //返回数据的个数  
-
     app.request(
       config.hostUrl + '/v1/good_module/critic_get', {
 
         goodIndex: that.data.goodData.good_index
       },
       function (res) {
-        console.log(res)
         if (res.data.retData.criticList.length== 12) {
           var newarr = that.data.criticList.concat(res.data.retData.criticList)
-        console.log(newarr)
         that.setData({
           'criticList': newarr,
           searchPageNum: searchPageNum,
@@ -182,7 +177,6 @@ Page({
         })
         } else if (res.data.retData.criticList.length < 12) {
           var newarr = that.data.criticList.concat(res.data.retData.criticList)
-        console.log(newarr)
         that.setData({
           'criticList': newarr,
           searchPageNum: searchPageNum,
@@ -225,7 +219,6 @@ Page({
   },
   //加入购物车
   addcarts: function() {
-
     if (this.data.idx == null) {
       app.point('请先选择规格', 'none', 2000)
       return false;
@@ -245,7 +238,6 @@ Page({
         var project_carts = wx.getStorageSync('project_carts');
         for (var i in project_carts) {
           if (project_carts[i]) {
-
             if (project_carts[i].good_index == this.data.goodData.good_index) {
               app.point('商品已加入购物车', 'none', 2000)
               return false;
@@ -262,22 +254,7 @@ Page({
     }
   },
   //加载时获取的信息
-  bindviewtap: function() {
-    //加载评论
-    // app.request(
-    //   config.hostUrl + '/v1/good_module/critic_get', {
-
-    //     goodIndex: ""
-    //   },
-    //   function(res) {
-    //     console.log(res)
-    //     if (res.data.retData == true) {
-
-    //     }
-    //   }
-    // )
-
-  },
+  bindviewtap: function() {},
   /**
    * 生命周期函数--监听页面加载
    */
@@ -292,7 +269,6 @@ Page({
         goodIndex: goodindex
       },
       function(res) {
-        console.log(res)
         that.setData({
           goodData: res.data.retData.goodData,
           criticList: res.data.retData.criticList
@@ -304,7 +280,6 @@ Page({
             goodIndex: that.data.goodData.good_index
           },
           function(res) {
-            console.log(res)
             if (res.data.retData == true) {
               that.setData({
                 mycollect: true

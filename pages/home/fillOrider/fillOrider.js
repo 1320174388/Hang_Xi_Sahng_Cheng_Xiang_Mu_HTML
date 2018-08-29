@@ -16,7 +16,6 @@ Page({
 
   // 一键复制事件
   copyBtn: function (e) {
-    console.log('复制成功')
     var that = this;
     wx.setClipboardData({
       //准备复制的数据
@@ -43,7 +42,6 @@ Page({
    */
 
   delification: function(e) {
-    console.log(e)
     if (e.currentTarget.dataset.classification) {
       this.setData({
         hid: true
@@ -63,10 +61,7 @@ Page({
   onChangeShowState: function() {
     var that = this;
     var token = wx.getStorageSync('token');
-    console.log(that.data.orider.order_number)
     var order_groups = that.data.orider.order_group
-    console.log(order_groups)
-    console.log(JSON.stringify(order_groups))
     app.request(
       config.hostUrl + '/v1/order_module/paymentOrder', {
         user_token: token, //用户标识`
@@ -80,7 +75,6 @@ Page({
         order_group: JSON.stringify(order_groups), //`商品信息json数据good_index 商品主键 good_name 商品名称 style_name 规格名称 good_num 商品数量 good_price 商品单价 good_pic 商品缩略图
       },
       function(res) {
-        console.log(res)
         that.setData({
           hid: (!that.data.hid)
         })
@@ -93,7 +87,6 @@ Page({
    */
   onLoad: function(options) {
     var orider = wx.getStorageSync('orider')
-    console.log(orider)
     this.setData({
       orider: orider
     })

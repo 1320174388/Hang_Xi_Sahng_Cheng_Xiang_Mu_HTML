@@ -143,7 +143,6 @@ Page({
             getApp().request(config.hostUrl + '/v1/talk_module/admin_route/' + wx.getStorageSync('token'), {
               adminFormid: response.detail.formId
             }, function (res) {
-              console.log(res);
             }, 'post');
             wx.navigateTo({
               url: '../kefu/adminManage/adminManage',

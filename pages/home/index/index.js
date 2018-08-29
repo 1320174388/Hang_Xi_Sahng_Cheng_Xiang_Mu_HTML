@@ -149,7 +149,6 @@ Page({
     getApp().request(
       config.hostUrl + '/v1/sowing_module/sowing_route', {},
       function (res) {
-        console.log(res.data.retData)
         that.setData({
           swiperArr: res.data.retData
         })

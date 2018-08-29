@@ -13,15 +13,12 @@ Page({
     host: config.hostUrl,
   },
   chooseimages: function(e) {
-    console.log(e)
     var that = this;
-
     wx.chooseImage({
       count: 9,
       sizeType: ['original'],
       sourceType: ['album', 'camera'],
       success: function(res) {
-        console.log(res)
         that.uploadFileArr(res.tempFilePaths, 1)
       },
     })
@@ -40,7 +37,6 @@ Page({
         'sowingSort': fileSort
       },
       function(ort) {
-        console.log(ort)
         if (ort.errNum == 0) {
           app.point('上传成功', 'success', 2000);
           if (fileArr[fileSort]) {
@@ -64,13 +60,10 @@ Page({
     app.request(
       config.hostUrl +'/v1/sowing_module/sowing_route', {},
       function(res) {
-        console.log(res.data.retData)
         that.setData({
           Wheel: res.data.retData
       })
-
       },'GET')
-
   },
 
   /**

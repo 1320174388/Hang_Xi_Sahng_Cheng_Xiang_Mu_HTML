@@ -1,8 +1,8 @@
 <!--pages/home/myCollect//myCollect.wxml-->
 
 <view>
-  <view class='wrap'>
-    <text hidden="{{carts==null?true:false}}" >当前没有收藏</text>
+<view class='wrap'>
+      <!-- <text hidden="{{carts==null?true:false}}" >当前没有收藏</text> -->
     <view class='list row' wx:for="{{carts}}" wx:key="" wx:for-item="d">
       <view class='list_left row_between'>
         <!-- <view class='list_left_left click'></view> -->

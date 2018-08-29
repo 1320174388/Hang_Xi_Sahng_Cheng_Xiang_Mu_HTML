@@ -30,7 +30,7 @@ Page({
     this.setData({
       carts: carts
     });
-    // this.getTotalPrice();                           // 重新获取总价
+                           // 重新获取总价
   },
 
   selectAll(e) {
@@ -62,9 +62,6 @@ Page({
             function (res) {
               delete that.data.carts[i]
               app.point('正在删除购物车商品', 'success', 2000)
-              // that.setData({
-              //   carts: that.data.carts,
-              // })
             }, "DELETE",
             )
         }
@@ -86,11 +83,9 @@ Page({
         'userToken': token
       },
       function(res) {
-        console.log(res)
         that.setData({
           carts: res.data.retData
         })
-        console.log(that.data.carts)
       }
     );
   },
