@@ -1,24 +1,16 @@
 <!--pages/home/evaluate/evaluate.wxml-->
 <view class='pages'>
   <view class='head'>
-    <view class='banner'>
-      <swiper indicator-dots="false" autoplay="true" interval="2000" duration="500" circular="true">
+    <view class='banner' style='height:{{imgWidth}}px;'>
+      <swiper indicator-dots="false" autoplay="true" interval="2000" duration="500" circular="true" style='height:{{imgWidth}}px;'>
         <block wx:for="{{goodData.good_img_master}}" wx:key="" wx:for-item="m">
           <swiper-item>
-            <image src="{{host+m.picture_url}}" class="banner-img" mode='{{mode[1]}}'></image>
+            <image src="{{host+m.picture_url}}" class="banner-img"  mode='{{mode[1]}}'></image>
           </swiper-item>
         </block>
       </swiper>
     </view>
-    <view class='head_cont col'>
-      <!-- <view class='row_between' style="display:block">
-       
-        <button class='consult' hover-class='none' style='border:0' plain='true' open-type='share'>
-          <image src='../images/hfx.svg' class='consult_img'></image>
-          <text class='consult_text'>分享</text>
-        
-        </button>
-      </view> -->
+    <view class='head_cont col'> 
       <view class='head_cont_name'>
         <text>{{goodData.good_name}}</text>
         <button class='consult' hover-class='none' style='border:0' plain='true' open-type='share'>
@@ -26,7 +18,6 @@
           <text class='consult_text'>分享</text>
         </button>
       </view>
-      <!-- <view class='head_cont_text'>怎么美好的白菜。咋不留着自己吃呢</view> -->
       <view class='row_between'>
         <view class='row'>
           <text class='f_color'>￥{{goodData.good_price}}</text>

@@ -20,7 +20,9 @@ Page({
    
     idx: null,
     searchPageNum: 0, // 设置加载的第几次，默认是第一次  
-    searchLoadingComplete: false //“没有数据”的变量，默认false，隐藏
+    searchLoadingComplete: false ,//“没有数据”的变量，默认false，隐藏
+    // 图片宽
+    imgWidth:'',
   },
 
 
@@ -238,7 +240,6 @@ Page({
       };
       var project_carts = wx.getStorageSync('project_carts');
       if (wx.getStorageSync('project_carts')) {
-        console.log(project_carts)
         for (var i in project_carts) {
           if (project_carts[i]) {
             if (project_carts[i].good_index == this.data.goodData.good_index) {
@@ -253,7 +254,6 @@ Page({
         wx.setStorageSync('project_carts', project_carts);
       } else {
         var project_carts = [];
-        console.log(project_carts)
         project_carts[0] = project_cart;
         wx.setStorageSync('project_carts', project_carts);
         // app.point('加入购物车成功', 'success', 2000)
@@ -266,6 +266,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    var sysInfo = wx.getSystemInfoSync();
+    this.setData({
+      imgWidth: sysInfo.windowWidth
+    })
     var goodindex = options.goodindex;
     if (goodindex){
     var that = this;
