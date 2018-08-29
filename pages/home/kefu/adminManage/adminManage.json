@@ -1,3 +1,5 @@
 {
-    "navigationBarTitleText": "后台"
+    "navigationBarTitleText": "后台",
+    "navigationBarBackgroundColor": "#262c49",
+    "navigationBarTextStyle": "white"
 }

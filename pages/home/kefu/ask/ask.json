@@ -1,3 +1,5 @@
 {
-    "navigationBarTitleText": "提问"
-}
+    "navigationBarTitleText": "提问",
+    "navigationBarBackgroundColor": "#ff2840",
+    "navigationBarTextStyle": "white"
+  }

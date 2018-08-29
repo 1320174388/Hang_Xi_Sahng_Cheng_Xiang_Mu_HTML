@@ -1,6 +1,7 @@
 // pages/home/evaluate/evaluate.js
 var config = require('../../../config.js');
 var app = getApp();
+var mycollect= false;
 Page({
 
   /**
@@ -201,6 +202,7 @@ Page({
           that.setData({
             mycollect: true
           })
+          mycollect=true;
         }, 'POST',
       )
     } else if (that.data.mycollect == true) {
@@ -234,13 +236,16 @@ Page({
         'style_price': this.data.goodData.style_data[this.data.idx].style_price,
         'good_image': this.data.goodData.good_img_master[0].picture_url,
       };
+      var project_carts = wx.getStorageSync('project_carts');
       if (wx.getStorageSync('project_carts')) {
-        var project_carts = wx.getStorageSync('project_carts');
+        console.log(project_carts)
         for (var i in project_carts) {
           if (project_carts[i]) {
             if (project_carts[i].good_index == this.data.goodData.good_index) {
               app.point('商品已加入购物车', 'none', 2000)
               return false;
+            }else{
+              app.point('加入购物车成功', 'success', 2000)
             }
           }
         }
@@ -248,8 +253,10 @@ Page({
         wx.setStorageSync('project_carts', project_carts);
       } else {
         var project_carts = [];
+        console.log(project_carts)
         project_carts[0] = project_cart;
         wx.setStorageSync('project_carts', project_carts);
+        // app.point('加入购物车成功', 'success', 2000)
       }
     }
   },

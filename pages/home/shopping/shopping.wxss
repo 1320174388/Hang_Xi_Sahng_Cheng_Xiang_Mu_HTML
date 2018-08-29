@@ -78,7 +78,8 @@
 .imgs {
   width: 150rpx;
   height: 150rpx;
-  background: #ccc;
+  
+  margin-left: 10rpx;
 }
 
 .list_right {
@@ -111,7 +112,7 @@
 .list_main {
   border-top: 2px solid #f2f2f2;
   background: #fff;
-  padding: 73rpx 50rpx 17rpx 37rpx;
+  padding: 28rpx 50rpx 17rpx 37rpx;
 }
 
 .col {
@@ -198,9 +199,10 @@
 
 .foot_right {
   background-image: linear-gradient(-206deg, #ff5e42 0%, #ff1058 95%);
-  width: 246rpx;
+  width: 300rpx;
   height: 100rpx;
-  padding: 0 28rpx 0 66rpx;
+  line-height: 100rpx;
+  
   font-family: PingFangSC-Regular;
   font-size: 36rpx;
   color: #fff;
@@ -216,57 +218,16 @@
   white-space: nowrap;
 font-size: 36rpx;
 color: #fff;
+
+}
+.foot_right_r::after{
+  border: none
 }
 
-/*主容器*/
 
-.stepper {
-  width: 80px;
-  height: 26px;
-  font-family: PingFangSC-Regular;
-  font-size: 30rpx;
-  color: #979797;
-}
 
-/*加号和减号*/
 
-.stepper view {
-  width: 48rpx;
-  height: 48rpx;
-  border-radius: 48rpx;
-  border: 1rpx solid #979797;
-  line-height: 48rpx;
-  text-align: center;
-  float: left;
-  font-family: PingFangSC-Regular;
-  font-size: 30rpx;
-  color: #979797;
-}
 
-/*数值*/
-
-.stepper input {
-  width: 40px;
-  height: 26px;
-  float: left;
-  margin: 0 auto;
-  text-align: center;
-  font-size: 12px;
-  /*给中间的input设置左右边框即可*//* border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc; */
-}
-
-/*普通样式*/
-
-.stepper .normal {
-  color: #979797;
-}
-
-/*禁用样式*/
-
-.stepper .disabled {
-  color: #ccc;
-}
 
 /*客服  */
 .kefu_rexian_dizhi{
@@ -290,4 +251,9 @@ color: #fff;
   position: absolute;
   left: 27%;
   top: 25%;
+}
+.blue{
+  background: #008cffd3;
+  width:50%;
+  text-align: center;
 }

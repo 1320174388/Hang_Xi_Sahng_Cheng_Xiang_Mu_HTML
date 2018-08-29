@@ -24,7 +24,7 @@ Page({
   //拨打电话
   tel: function() {
     wx.makePhoneCall({
-      phoneNumber: '123456',
+      phoneNumber: '18310379198',
     })
   },
   //   商品页面跳转

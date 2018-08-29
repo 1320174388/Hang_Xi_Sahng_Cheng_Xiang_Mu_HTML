@@ -9,6 +9,15 @@
  view{
      box-sizing: border-box;
  }
+ .next{
+  width:20rpx;
+height:25rpx;
+float:right;
+margin:;
+margin-top:40rpx;
+margin-right:20rpx;
+
+ }
  .xc{
      color: #fff;
      font-size: 50rpx;
@@ -140,7 +149,7 @@ background: #fff;
      font-size: 24rpx;
      color: #4A4A4A;
      position: absolute;
-     right: 20rpx;
+     right: 60rpx;
      top: 0;
  }
  /* 小圆点样式 */

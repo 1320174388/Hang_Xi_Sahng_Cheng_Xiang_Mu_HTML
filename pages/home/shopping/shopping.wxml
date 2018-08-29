@@ -22,7 +22,7 @@
 
 
       <view class='main_right col'>
-        <view class='f_color5 list_right_item'>{{c.good_name+c.style_name}}</view>
+        <view class='f_color5 list_right_item'>{{c.good_name+ " " +c.style_name}}</view>
         <view class='row_between list_right_item'>
           <view>
             <text class='f_color'>￥{{c.style_price}}</text>
@@ -37,25 +37,7 @@
     </view>
   </scroll-view>
  </view>
-<!--<view class='price'>
-  <!-- <view class='price_top row_between'>
-    <view>商品总价</view>
-    <view class='f_color2'>￥65.9</view>
-  </view> -->
-  <!-- <view class='price_bot col'>
-    <view class='row_between'>
-      <view>商品总价</view>
-      <view class='f_color2'>￥{{totalPrice}}</view>
-    </view>
-    <view class='row_between'>
-      <view class='row'>
-        <view class='price_bot_left'>运费</view>
-        <view class='f_color3'>实付满88包邮</view>
-      </view>
-      <view class='f_color2'>￥10</view>
-    </view>
-  </view> 
-</view> -->
+
 <form report-submit="true" bindsubmit="jump_fillOrider">
 <view class='foot row'>
   <view class='foot_left row'>
@@ -71,7 +53,7 @@
     </view>
   </view>
   <view class='foot_right row_between' >
-  <text bindtap='editor'>{{editor==true?"编辑":"完成"}}</text>
+  <text bindtap='editor' class='blue'>{{editor==true?"编辑":"完成"}}</text>
     <button class='foot_right_r' formType='submit'>{{editor==true?"结算":"删除"}}</button>
 
     <!-- <view class='foot_right_r'>></view> -->

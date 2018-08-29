@@ -11,7 +11,21 @@
       </swiper>
     </view>
     <view class='head_cont col'>
-      <view class='head_cont_name'>{{goodData.good_name}}</view>
+      <!-- <view class='row_between' style="display:block">
+       
+        <button class='consult' hover-class='none' style='border:0' plain='true' open-type='share'>
+          <image src='../images/hfx.svg' class='consult_img'></image>
+          <text class='consult_text'>分享</text>
+        
+        </button>
+      </view> -->
+      <view class='head_cont_name'>
+        <text>{{goodData.good_name}}</text>
+        <button class='consult' hover-class='none' style='border:0' plain='true' open-type='share'>
+          <image src='../images/hfx.svg' class='consult_img'></image>
+          <text class='consult_text'>分享</text>
+        </button>
+      </view>
       <!-- <view class='head_cont_text'>怎么美好的白菜。咋不留着自己吃呢</view> -->
       <view class='row_between'>
         <view class='row'>
@@ -30,7 +44,7 @@
     <view class='col' hidden='{{selet_show}}'>
       <view class='row s_sp'>
         <view wx:for="{{goodData.style_data}}" wx:key="x" wx:for-item="s">
-          <view data-index='{{index}}' bindtap='select' class='{{s.active==true?"ative":"specification "}}'> {{s.style_name}}:{{s.style_price}}</view>
+          <view data-index='{{index}}' bindtap='select' class='{{s.active==true?"ative":"specification"}}'> {{s.style_name}} ￥{{s.style_price}}</view>
         </view>
       </view>
       <view class='row_between'>
@@ -70,7 +84,7 @@
             </view>
           </view>
         </view>
-         <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>
+        <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>
       </scroll-view>
     </view>
   </view>
@@ -81,7 +95,7 @@
         <text>首页</text>
       </view>
       <view class='foot_left_item col' bindtap='mycollect'>
-        <image class='foot_img' src="{{mycollect == false?'../images/collection.png':'../images/mycollect.png'}}"></image>
+        <image class='foot_img' src="{{mycollect == true?'../images/mycollect.png':'../images/collection.png'}}"></image>
         <text>收藏</text>
       </view>
     </view>

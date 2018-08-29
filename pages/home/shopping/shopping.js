@@ -51,6 +51,7 @@ Page({
         if (that.data.carts[i]) {
           if (that.data.carts[i].selected) {
             order_groups.push(that.data.carts[i])
+            // delete that.data.carts[i]
           }
         }
       }
@@ -88,8 +89,7 @@ Page({
             for (var i = 0; i < that.data.carts.length; i++) { // 循环列表得到每个数据
               if (that.data.carts[i]) {
                 if (that.data.carts[i].selected) {
-                  console.log(that.data.carts[i])
-                  that.data.carts.splice(i, 1)
+                  delete that.data.carts[i]
                 }
               }
             }
@@ -111,11 +111,10 @@ Page({
       }
 
     } else if (that.data.editor !== true) {
-      for (var i = 0; i < that.data.carts.length; i++) { // 循环列表得到每个数据
+      for (var i in that.data.carts) { // 循环列表得到每个数据
         if (that.data.carts[i]) {
-          if (that.data.carts[i].selected) {
-            console.log(that.data.carts[i])
-            that.data.carts.splice(i, 1)
+          if (that.data.carts[i].selected) {                                     
+            delete that.data.carts[i]
           }
         } 
       }

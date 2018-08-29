@@ -10,7 +10,7 @@ Page({
 
     carts: null, // 购物车列表
     hasList: false, // 列表是否有数据
-   
+
     selectAllStatus: false, // 全选状态，默认全选
     host: config.hostUrl,
   },
@@ -30,7 +30,7 @@ Page({
     this.setData({
       carts: carts
     });
-                           // 重新获取总价
+    // 重新获取总价
   },
 
   selectAll(e) {
@@ -47,29 +47,27 @@ Page({
     // this.getTotalPrice();                               // 重新获取总价
   },
   //删除收藏
-  del:function(e){
+  del: function(e) {
     var that = this;
     var token = wx.getStorageSync('token')
+    var index = '';
     for (var i = 0; i < that.data.carts.length; i++) { // 循环列表得到每个数据
       if (that.data.carts[i]) {
         if (that.data.carts[i].selected) {
-          var index = that.data.carts[i].good_index
-          app.request(
-            config.hostUrl + '/v1/collect_module/collect_delete', {
-              'userToken': token,
-              goodIndex: index
-            },
-            function (res) {
-              delete that.data.carts[i]
-              app.point('正在删除购物车商品', 'success', 2000)
-            }, "DELETE",
-            )
+          index += ',' +that.data.carts[i].good_index
         }
       }
     }
-    this.setData({
-      carts: that.data.carts,
-    })
+    app.request(
+      config.hostUrl + '/v1/collect_module/collect_delete', {
+        'userToken': token,
+        goodIndex: index.substr(1)
+      },
+      function (res) {
+        app.point('删除收藏成功', 'success', 2000);
+        that.onLoad()
+      }, "DELETE",
+    )
   },
 
   /**
