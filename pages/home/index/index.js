@@ -126,10 +126,13 @@ Page({
       var query = wx.createSelectorQuery();
       var wrapWidth = "";
       var contWidth = "";
-      query.select('#notice-wrap').boundingClientRect(function(res) {
+      //选择 id节点获取信息
+      query.select('#notice-wrap').boundingClientRect(
+        function(res) {
         wrapWidth = res.width;
       }).exec();
-      query.select('#notice-cont').boundingClientRect(function(res) {
+      query.select('#notice-cont').boundingClientRect(
+        function(res) {
         contWidth = res.width;
       }).exec();
       setTimeout(function() {

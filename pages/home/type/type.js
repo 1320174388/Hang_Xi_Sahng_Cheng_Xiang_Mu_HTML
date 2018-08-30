@@ -27,6 +27,7 @@ Page({
           contentList: typeList[res.currentTarget.id].son_class
         })
     },
+    //跳转到二级分类列表
   jump_shopDetail:function(res){
       var contentList = this.data.contentList;
       var classIndex = contentList[res.currentTarget.id].class_index;

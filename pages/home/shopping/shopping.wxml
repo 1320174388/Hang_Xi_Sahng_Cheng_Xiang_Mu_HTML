@@ -36,23 +36,7 @@
           </view>
         </view>
       </view>
-      <!--地老天荒的logo和电话 -->
-      <!-- <view class='dlth' bindtap='phone_dlth'>
-      <image src='https://lg-gvr0nl54-1256844085.cos.ap-shanghai.myqcloud.com/gslogo_1x.png' class='dlth_logo' mode="widthFix"></image>
-      <view>
-        售后电话\t:\t
-        <text>010-86220269</text>
-      </view>
-    </view> -->
     </scroll-view>
-  </view>
-  <!--地老天荒的logo和电话 -->
-  <view class='dlth' bindtap='phone_dlth'>
-    <image src='https://lg-gvr0nl54-1256844085.cos.ap-shanghai.myqcloud.com/gslogo_1x.png' class='dlth_logo' mode="widthFix"></image>
-    <view>
-      售后电话\t:\t
-      <text>010-86220269</text>
-    </view>
   </view>
 </view>
 

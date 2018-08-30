@@ -24,6 +24,7 @@ Page({
   jump_fillOrider: function(e) {
     var that = this;
     var carts = that.data.carts;
+    //获取年月日时分秒和后10位随机数
     var outTradeNo = ""; //订单号
     for (var i = 0; i < 10; i++) //18位随机数，用以加在时间戳后面。
     {
@@ -47,6 +48,7 @@ Page({
       getSeconds = "0" + getSeconds
     }
     outTradeNo = t.getFullYear() + "" + month + "" + getDate + "" + getHours + "" + getMinutes + "" + getSeconds + "" + outTradeNo; //时间戳，用来生成订单号。
+    //当事件为结算时
     if (that.data.editor == true) {
       var order_groups = [];
       var total = 0;
@@ -88,6 +90,7 @@ Page({
             }
 
             app.point('正在创建订单', 'success', 2000)
+            //跳转时删除购物车列表选中项
             wx.setStorageSync('orider', orider);
             for (var i = 0; i < that.data.carts.length; i++) { // 循环列表得到每个数据
               if (that.data.carts[i]) {
@@ -107,13 +110,13 @@ Page({
 
           }
         })
-      } if (order_groups.length == 0){
-
+      }//当点击结算时没有选中的商品时
+       if (order_groups.length == 0){
         app.point('请先选择要购买的商品', 'none', 2000)
         return false;
       }
-
-    } else if (that.data.editor !== true) {
+    } else //当点击结算选中商品时
+     if (that.data.editor !== true) {
       for (var i in that.data.carts) { // 循环列表得到每个数据
         if (that.data.carts[i]) {
           if (that.data.carts[i].selected) {                                     
