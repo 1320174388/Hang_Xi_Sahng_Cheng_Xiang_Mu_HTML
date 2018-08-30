@@ -84,6 +84,7 @@ page {
 /*地老天荒售后电话 */
 
 .dlth {
+  margin-top: 20rpx;
   width: 100%;
   text-align: center;
   color: #ccc;
