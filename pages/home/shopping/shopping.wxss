@@ -216,9 +216,11 @@
   /* transform: rotate(90deg);*/
   background-color:transparent;
   border:none;
+  border-radius: 0rpx; 
   white-space: nowrap;
 font-size: 36rpx;
 color: #fff;
+ background-image: linear-gradient(-206deg, #ff5e42 0%, #ff1058 95%);
 
 }
 .foot_right_r::after{
