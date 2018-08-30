@@ -199,7 +199,7 @@
 }
 
 .foot_right {
-  background-image: linear-gradient(-206deg, #ff5e42 0%, #ff1058 95%);
+  /* background-image: linear-gradient(-206deg, #ff5e42 0%, #ff1058 95%); */
   width: 300rpx;
   height: 100rpx;
   line-height: 100rpx;
