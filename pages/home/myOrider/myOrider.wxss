@@ -1,6 +1,7 @@
 /* pages/home/myOrider/myOrider.wxss */
 page{
   background: #fff;
+  min-height: 100vh;
 }
 .navbar {
   flex: none;
@@ -271,3 +272,25 @@ box-sizing:border-box;
         width: 200rpx;
         
     }
+/*地老天荒售后电话 */
+
+.dlth {
+  width: 100%;
+  text-align: center;
+  color: #ccc;
+  font-size: 30rpx;
+  padding: 10rpx 0 20rpx 0;
+  background: #f9f9f9;
+  position: relative;
+  bottom: -100rpx;
+  right: 0;
+}
+
+.dlth_logo {
+  width: 400rpx;
+  margin-bottom: 10rpx;
+}
+.orl{
+  text-align: center;
+  margin-top: 300rpx;
+}

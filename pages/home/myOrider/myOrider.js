@@ -24,6 +24,13 @@ Page({
     fkNum:'',
     // 付款金额
     fkPrice:'',
+    
+  },
+  // 地老天荒logo和热线
+  phone_dlth: function () {
+    wx.makePhoneCall({
+      phoneNumber: '01086220269'
+    })
   },
   // 一键复制事件
   copyBtn: function (e) {
@@ -41,7 +48,6 @@ Page({
   // 控制付款页面的显示隐藏
   delification: function(e) {
     if (e.currentTarget.dataset.classification) {
-
       this.setData({
         hid: true,
       })
@@ -70,7 +76,6 @@ Page({
 
   // 点击立即付款
   fukuan: function(e) {
-     
     this.setData({
       hid: false,
       fkNum: this.data.orderList[e.currentTarget.id].order_number,
@@ -103,6 +108,12 @@ Page({
   },
   //导航条点击事件
   navbarTap: function(e) {
+    // if (this.data.orderList.length==0){
+    //   this.setData({
+    //     currentTab: e.currentTarget.dataset.idx,
+    //     orl:false
+    //   })
+    // }
     this.setData({
       currentTab: e.currentTarget.dataset.idx
     })
@@ -153,7 +164,8 @@ Page({
               zj = zj + (list[i].details[j].good_num * list[i].details[j].good_price);
             }
             list[i].zPrice = zj;
-          }
+          } 
+          
           that.setData({
             orderList: list,
           })

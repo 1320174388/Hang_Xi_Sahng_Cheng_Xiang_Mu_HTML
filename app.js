@@ -144,7 +144,6 @@ function login_init() {
       getApp().request(
         config.hostUrl + '/v1/login_module/login_init/' + res.code, {},
         function(res) {
-          console.log(res.data);
           wx.setStorageSync('token', res.data.retData.token)
           getApp().request(
             config.hostUrl + '/v1/login_module/login_admin/' + res.data.retData.token, {},

@@ -5,12 +5,12 @@
       <swiper indicator-dots="false" autoplay="true" interval="2000" duration="500" circular="true" style='height:{{imgWidth}}px;'>
         <block wx:for="{{goodData.good_img_master}}" wx:key="" wx:for-item="m">
           <swiper-item>
-            <image src="{{host+m.picture_url}}" class="banner-img"  mode='{{mode[1]}}'></image>
+            <image src="{{host+m.picture_url}}" class="banner-img" mode='{{mode[1]}}'></image>
           </swiper-item>
         </block>
       </swiper>
     </view>
-    <view class='head_cont col'> 
+    <view class='head_cont col'>
       <view class='head_cont_name'>
         <text>{{goodData.good_name}}</text>
         <button class='consult' hover-class='none' style='border:0' plain='true' open-type='share'>
@@ -56,13 +56,27 @@
     </view>
 
     <view class='box' hidden='{{currentTab!==0}}'>
-      <view wx:for='{{goodData.good_img_details}}' wx:key='' wx:for-item="g">
-        <image src='{{host+g.picture_url}}' class='box_img' mode="widthFix"></image>
-      </view>
+      <scroll-view scroll-y>
+        <view wx:for='{{goodData.good_img_details}}' wx:key='' wx:for-item="g">
+          <image src='{{host+g.picture_url}}' class='box_img' mode="widthFix"></image>
+        </view>
+        <!--地老天荒的logo和电话 -->
+        <view class='dlth' bindtap='phone_dlth'>
+          <image src='https://lg-gvr0nl54-1256844085.cos.ap-shanghai.myqcloud.com/gslogo_1x.png' class='dlth_logo' mode="widthFix"></image>
+          <view>
+            售后电话\t:\t
+            <text>010-86220269</text>
+          </view>
+        </view>
+      </scroll-view>
+      
+
     </view>
 
     <view class='box' hidden="{{currentTab!==1}}">
-      <scroll-view scroll-y style="height: 100vh;" bindscrolltolower="lower">
+      <view class='wu' hidden='{{cr}}'>
+        暂时没有评论</view>
+      <scroll-view scroll-y style="height: 85vh;" bindscrolltolower="lower">
         <view class='col list_wrap' wx:if="{{c}}" wx:for="{{criticList}}" wx:key='' wx:for-item="c">
           <view class='list'>
             <image class='list_img' src='../images/my-head-icon.png'></image>
@@ -75,8 +89,27 @@
             </view>
           </view>
         </view>
-        <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>
+        <view class="complete" hidden="{{!searchLoadingComplete}}">已加载全部
+          <!--地老天荒的logo和电话 -->
+          <view class='dlth' bindtap='phone_dlth'>
+            <image src='https://lg-gvr0nl54-1256844085.cos.ap-shanghai.myqcloud.com/gslogo_1x.png' class='dlth_logo' mode="widthFix"></image>
+            <view>
+              售后电话\t:\t
+              <text>010-86220269</text>
+            </view>
+          </view>
+        </view>
       </scroll-view>
+
+      <!--地老天荒的logo和电话 -->
+      <view class='dlth' bindtap='phone_dlth' hidden='{{cr}}'>
+        <image src='https://lg-gvr0nl54-1256844085.cos.ap-shanghai.myqcloud.com/gslogo_1x.png' class='dlth_logo' mode="widthFix"></image>
+        <view>
+          售后电话\t:\t
+          <text>010-86220269</text>
+        </view>
+      </view>
+
     </view>
   </view>
   <view class='foot row'>
@@ -99,42 +132,3 @@
   </view>
 
 </view>
-<!-- 商品规格选择弹窗 -->
-<!-- <view class='wrap'  data-classification='true' catchtap='delification'>
-    <view data-classification='' catchtap='delification'>
-      <scroll-view class='scroll' scroll-y="true">
-        <text>商品名称</text>
-        <view class='scroll_item' wx:for='{{style}}' wx:key=""></view>
-        <view>数量</view>
-        <text>总价</text>
-      </scroll-view>
-    </view>
-  </view> -->
-<!-- <view class=" pay_wrap col hide{{showView? 'show': ''}} ">
-  <view class='pay_head col_around'>
-    <view class='pay_head_top row'>订单号：
-      <text class='pay_head_top_right'>1129843984893</text>
-    </view>
-    <view class='pay_head_bot row'>
-      <text class='pay_head_bot_right'>商品价格</text>￥65.9
-    </view>
-  </view>
-  <view class='pay_main col_around'>
-    <text>联系店主</text>
-    <view class='row pay_main_num'>微信号： 21876384
-      <text>复制</text>
-    </view>
-    <image class='twocode'></image>
-    <view class='pay_main_th'>支付二维码</view>
-    <view class='row_between'>
-      <view class='col'>
-        <image class='twocode'></image>
-        <view class='pay_foot'>微信二维码</view>
-      </view>
-      <view class='col'>
-        <image class='twocode'></image>
-        <view class='pay_foot'>支付宝二维码</view>
-      </view>
-    </view>
-  </view>
-</view> -->

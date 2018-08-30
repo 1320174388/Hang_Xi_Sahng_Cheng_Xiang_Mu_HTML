@@ -1,7 +1,8 @@
 <!--pages/home/myCollect//myCollect.wxml-->
 
 <view>
-<view class='wrap'>
+<view class='wrap col_between'>
+<view>
       <!-- <text hidden="{{carts==null?true:false}}" >当前没有收藏</text> -->
     <view class='list row' wx:for="{{carts}}" wx:key="" wx:for-item="d">
       <view class='list_left row_between'>
@@ -18,6 +19,14 @@
       </view>
     </view>
   </view>
+  </view>
+  <view class='dlth' bindtap='phone_dlth'>
+  <image src='https://lg-gvr0nl54-1256844085.cos.ap-shanghai.myqcloud.com/gslogo_1x.png' class='dlth_logo' mode="widthFix"></image>
+  <view>
+    售后电话\t:\t
+    <text>010-86220269</text>
+  </view>
+</view>
   <view class='foot row_between'>
     <view class='foot_left row'>
       <!-- wx:if 是否全选显示不同图标 -->

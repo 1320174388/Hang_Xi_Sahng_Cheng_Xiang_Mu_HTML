@@ -21,6 +21,13 @@ Page({
     //   今日特卖
     shopArr: [],
   },
+
+  // 地老天荒logo和热线
+  phone_dlth: function() {
+    wx.makePhoneCall({
+      phoneNumber: '01086220269'
+    })
+  },
   //拨打电话
   tel: function() {
     wx.makePhoneCall({
@@ -31,7 +38,7 @@ Page({
   shopJump: function(e) {
     var classindex = e.currentTarget.dataset.classindex;
     wx.navigateTo({
-        url: '../shopDetail/shopDetail?classIndex=' + classindex,
+      url: '../shopDetail/shopDetail?classIndex=' + classindex,
     })
   },
 
@@ -39,7 +46,7 @@ Page({
   jump_evaluate: function(e) {
     var goodindex = e.currentTarget.dataset.goodindex;
     wx.navigateTo({
-      url: '../evaluate/evaluate?goodindex='+goodindex,
+      url: '../evaluate/evaluate?goodindex=' + goodindex,
     })
   },
   //点击公告弹出修改框
@@ -98,7 +105,7 @@ Page({
     //导航获取
     getApp().request(
       config.hostUrl + '/v1/assortment_module/getGoodsClass', {},
-      function (res) {
+      function(res) {
         that.setData({
           navArr: res.data.retData
         })
@@ -148,7 +155,7 @@ Page({
     var that = this;
     getApp().request(
       config.hostUrl + '/v1/sowing_module/sowing_route', {},
-      function (res) {
+      function(res) {
         that.setData({
           swiperArr: res.data.retData
         })
@@ -166,8 +173,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
-  },
+  onShow: function() {},
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -214,7 +220,7 @@ Page({
           if (wx.getStorageSync('admin_user_type_print')) {
             getApp().request(config.hostUrl + '/v1/talk_module/admin_route/' + wx.getStorageSync('token'), {
               adminFormid: response.detail.formId
-            }, function (res) {}, 'post');
+            }, function(res) {}, 'post');
             wx.navigateTo({
               url: '../kefu/adminManage/adminManage',
             })

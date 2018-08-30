@@ -19,6 +19,7 @@ Page({
       phoneNumber: this.data.orider.order_phone,
     })
   },
+  
   btn_tap: function() {
     var that = this;
     if (that.data.idx == 0) {
@@ -60,15 +61,17 @@ Page({
   },
   btn_add_tap: function() {
     var that = this;
+    var idx = that.data.idx;
     app.request(
       config.hostUrl + '/v1/order_module/setOrderState', {
         'order_number': that.data.orider.order_number,
         'order_status': 2
       },
       function(res) {
+        app.timeBack(2000,{})
       },
     )
-    app.timeBack(2000)
+    
   },
   /**
    * 生命周期函数--监听页面加载

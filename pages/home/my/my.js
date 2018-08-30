@@ -30,6 +30,12 @@ Page({
       },
     ]
   },
+  // 地老天荒logo和热线
+  phone_dlth: function () {
+    wx.makePhoneCall({
+      phoneNumber: '01086220269'
+    })
+  },
   //   点击购物车
   jump_shopping: function() {
     wx.switchTab({

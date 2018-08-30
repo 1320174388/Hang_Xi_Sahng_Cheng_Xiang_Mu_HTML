@@ -28,12 +28,12 @@ Page({
       sizeType: ['original'],
       sourceType: ['album', 'camera'],
       success: function(res) {
-        console.log(res)
+
         var ss = [];
         for (var i = 0; i < res.tempFiles.length; i++) {
           ss[i] = res.tempFiles[i].path;
         }
-        console.log(ss)
+
         that.setData({
           'good_img_master': ss
         })
@@ -43,14 +43,14 @@ Page({
   },
   //上传详情图片
   Upimgs: function(e) {
-    console.log(e)
+
     var that = this;
     wx.chooseImage({
       count: 9,
       sizeType: ['original'],
       sourceType: ['album', 'camera'],
       success: function(res) {
-        console.log(res)
+
         that.setData({
           good_img_details: res.tempFilePaths
         })
@@ -59,15 +59,15 @@ Page({
     })
   },
   int_name_add: function(e) {
-    console.log(e)
+
     var arr = {}
     this.setData({
       style_data: this.data.style_data.concat(arr)
     })
-    console.log(e.currentTarget.dataset.index)
+
   },
   int_name_del: function(e) {
-    console.log(e)
+
     var list = this.data.style_data;
     var index = e.currentTarget.dataset.index;
     list.splice(index, 1);
@@ -82,7 +82,7 @@ Page({
     }
   },
   styleName: function(e) {
-    console.log(e)
+
     var i = e.currentTarget.dataset.index;
     this.data.style_data[i].style_name = e.detail.value;
     this.setData({
@@ -90,7 +90,7 @@ Page({
     })
   },
   stylePrice: function(e) {
-    console.log(e)
+
     var i = e.currentTarget.dataset.index
     this.data.style_data[i].style_price = e.detail.value;
     this.setData({
@@ -98,8 +98,7 @@ Page({
     })
   },
   classAdd: function(e) {
-    console.log(e)
-    console.log(e.detail.value.names)
+
     var that = this;
     var inpt = [];
     var ipt = [];
@@ -128,7 +127,7 @@ Page({
         'goodStyle': styleArr,
       },
       function(res) {
-        console.log(res.data)
+
         if (res.data.errNum == 0) {
           if (good_master_type) {
             that.uploadfiles(that.data.good_img_master, 'master', 1, that.data.good_index, function() {
@@ -176,7 +175,7 @@ Page({
         'imageSort': imageSort
       },
       function(ort) {
-        console.log(ort)
+
         if (ort.errNum == 0) {
           app.point('上传成功', 'success', 2000);
           if (filePathArr[imageSort]) {
@@ -191,7 +190,7 @@ Page({
   uploadimgs: function(page, path) {
     var that = this;
     var curImgList = [];
-    console.log(that.data.good_img_master)
+
     for (var i = 0; i < path.length; i++) {
       wx.showToast({
           icon: 'loading',
@@ -207,7 +206,7 @@ Page({
             'imageFile': '',
           },
           function(res) {
-            console.log(res);
+
             curImgList.push(res.data);
             var evalList = this.data.good_img_master;
             evalList[0] = curImgList;
@@ -239,7 +238,7 @@ Page({
         goodIndex: idx
       },
       function(res) {
-        console.log(res.data.retData)
+
         var good_img_details = [];
         for (var i = 0; i < res.data.retData.goodData.good_img_details.length; i++) {
           good_img_details[i] = config.hostUrl + res.data.retData.goodData.good_img_details[i].picture_url     
@@ -250,10 +249,10 @@ Page({
         }
         if (res.data.retData.goodData.style_data){
           var style_data = res.data.retData.goodData.style_data;
-          console.log(style_data)
+
         } else if (!res.data.retData.goodData.style_data){
           var style_data=[{}]
-          console.log(style_data)
+
         }   
         that.setData({
           good_img_details: good_img_details,

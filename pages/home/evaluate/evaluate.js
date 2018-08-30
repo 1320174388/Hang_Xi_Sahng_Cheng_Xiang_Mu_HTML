@@ -1,7 +1,7 @@
 // pages/home/evaluate/evaluate.js
 var config = require('../../../config.js');
 var app = getApp();
-var mycollect= false;
+var mycollect = false;
 Page({
 
   /**
@@ -12,20 +12,25 @@ Page({
     navbar: ['详情', '评论'], //导航
     currentTab: 0,
     goodData: '',
-    criticList:'',
-    
+    criticList: '',
+cr:true,
     host: config.hostUrl,
     selet_show: true,
     num: 1,
-   
+
     idx: null,
     searchPageNum: 0, // 设置加载的第几次，默认是第一次  
-    searchLoadingComplete: false ,//“没有数据”的变量，默认false，隐藏
+    searchLoadingComplete: false, //“没有数据”的变量，默认false，隐藏
     // 图片宽
-    imgWidth:'',
+    imgWidth: '',
   },
 
-
+  // 地老天荒logo和热线
+  phone_dlth: function () {
+    wx.makePhoneCall({
+      phoneNumber: '01086220269'
+    })
+  },
   //跳转到填写订单
   orider: function(e) {
     var that = this;
@@ -128,10 +133,10 @@ Page({
   },
   // 增加数量
   addCount(e) {
-    if (this.data.idx==null) {
+    if (this.data.idx == null) {
       app.point('请先选择规格', 'none', 2000)
       return false;
-    } else if (this.data.idx !==null|| this.data.idx==0) {
+    } else if (this.data.idx !== null || this.data.idx == 0) {
       var num = this.data.num + 1;
       var total = num * this.data.goodData.style_data[this.data.idx].style_price
       this.setData({
@@ -167,26 +172,26 @@ Page({
     // callbackcount = that.data.callbackcount; //返回数据的个数  
     app.request(
       config.hostUrl + '/v1/good_module/critic_get', {
-
+        critic_number: searchPageNum * 12,
         goodIndex: that.data.goodData.good_index
       },
-      function (res) {
-        if (res.data.retData.criticList.length== 12) {
+      function(res) {
+        if (res.data.retData.criticList.length == 12) {
           var newarr = that.data.criticList.concat(res.data.retData.criticList)
-        that.setData({
-          'criticList': newarr,
-          searchPageNum: searchPageNum,
-          searchLoadingComplete: false,
-        })
+          that.setData({
+            'criticList': newarr,
+            searchPageNum: searchPageNum,
+            searchLoadingComplete: false,
+          })
         } else if (res.data.retData.criticList.length < 12) {
           var newarr = that.data.criticList.concat(res.data.retData.criticList)
-        that.setData({
-          'criticList': newarr,
-          searchPageNum: searchPageNum,
-          searchLoadingComplete: true,
-        })
+          that.setData({
+            'criticList': newarr,
+            searchPageNum: searchPageNum,
+            searchLoadingComplete: true,
+          })
         }
-       }
+      }
     )
   },
 
@@ -204,7 +209,7 @@ Page({
           that.setData({
             mycollect: true
           })
-          mycollect=true;
+          mycollect = true;
         }, 'POST',
       )
     } else if (that.data.mycollect == true) {
@@ -239,24 +244,24 @@ Page({
         'good_image': this.data.goodData.good_img_master[0].picture_url,
       };
       var project_carts = wx.getStorageSync('project_carts');
-      if (wx.getStorageSync('project_carts')) {
+      if (project_carts.length!==0) {
         for (var i in project_carts) {
           if (project_carts[i]) {
             if (project_carts[i].good_index == this.data.goodData.good_index) {
               app.point('商品已加入购物车', 'none', 2000)
               return false;
-            }else{
+            } else {
               app.point('加入购物车成功', 'success', 2000)
             }
           }
         }
         project_carts[project_carts.length] = project_cart;
         wx.setStorageSync('project_carts', project_carts);
-      } else {
+      } else if (project_carts==0) {
         var project_carts = [];
         project_carts[0] = project_cart;
         wx.setStorageSync('project_carts', project_carts);
-        // app.point('加入购物车成功', 'success', 2000)
+        app.point('加入购物车成功', 'success', 2000)
       }
     }
   },
@@ -271,40 +276,48 @@ Page({
       imgWidth: sysInfo.windowWidth
     })
     var goodindex = options.goodindex;
-    if (goodindex){
-    var that = this;
-    var token = wx.getStorageSync('token')
-    //获取商品详情信息
-    app.request(
-      config.hostUrl + '/v1/good_module/good_details', {
-        goodIndex: goodindex
-      },
-      function(res) {
-        that.setData({
-          goodData: res.data.retData.goodData,
-          criticList: res.data.retData.criticList
-        })
-        //判断商品是否收藏接口
-        app.request(
-          config.hostUrl + '/v1/collect_module/collect_isget', {
-            'userToken': token,
-            goodIndex: that.data.goodData.good_index
-          },
-          function(res) {
-            if (res.data.retData == true) {
-              that.setData({
-                mycollect: true
-              })
-            } else if (res.data.retData == false) {
-              that.setData({
-                mycollect: false
-              })
-            }
+    if (goodindex) {
+      var that = this;
+      var token = wx.getStorageSync('token')
+      //获取商品详情信息
+      app.request(
+        config.hostUrl + '/v1/good_module/good_details', {
+          goodIndex: goodindex
+        },
+        function(res) {
+          if (res.data.retData.criticList.length==0){
+            that.setData({
+              cr:false,
+              //searchLoadingComplete: true,
+              goodData: res.data.retData.goodData,
+              criticList: res.data.retData.criticList
+            })
           }
-        )
-      }
+          that.setData({
+            goodData: res.data.retData.goodData,
+            criticList: res.data.retData.criticList
+          })
+          //判断商品是否收藏接口
+          app.request(
+            config.hostUrl + '/v1/collect_module/collect_isget', {
+              'userToken': token,
+              goodIndex: that.data.goodData.good_index
+            },
+            function(res) {
+              if (res.data.retData == true) {
+                that.setData({
+                  mycollect: true
+                })
+              } else if (res.data.retData == false) {
+                that.setData({
+                  mycollect: false
+                })
+              }
+            }
+          )
+        }
       )
-    } 
+    }
   },
 
   /**
@@ -318,7 +331,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.onLoad({ goodindex: this.data.goodData.good_index});
+    this.onLoad({
+      goodindex: this.data.goodData.good_index
+    });
   },
 
   /**

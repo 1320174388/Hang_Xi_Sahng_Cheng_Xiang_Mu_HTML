@@ -14,6 +14,12 @@ Page({
           height: 50,
       }],
   },
+  // 地老天荒logo和热线
+  phone_dlth: function () {
+    wx.makePhoneCall({
+      phoneNumber: '01086220269'
+    })
+  },
 
     // 二维码点击事件
     EwmDj:function(){

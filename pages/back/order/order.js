@@ -78,6 +78,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+
     var that = this;
     app.request(
       config.hostUrl + '/v1/order_module/getAllOrderList', {},
@@ -109,7 +110,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+this.onLoad();
   },
 
   /**

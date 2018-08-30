@@ -1,5 +1,5 @@
 <!--pages/home/oriderDetail/oriderDetail.wxml-->
-<view class='wrap'>
+<view class='wrap_h'>
   <view class='orderNum'>
     <text>订单号:<text style='color:#ccc;'> {{orderDetail.order_number}}</text></text>
   </view>
@@ -27,7 +27,6 @@
       </view>
       <button class='pj' wx:if="{{item.critic_status == 0}}" bindtap='evaluate' id="{{index}}">立即评价</button>
     </view>
-    
 
   </view>
 
@@ -41,8 +40,16 @@
     <button class='qR' wx:if='{{orderDetail.order_status==1}}'>立即付款</button>
 
   </view>
-</view>
 
+</view>
+<!--地老天荒的logo和电话 -->
+<view class='dlth' bindtap='phone_dlth'>
+  <image src='https://lg-gvr0nl54-1256844085.cos.ap-shanghai.myqcloud.com/gslogo_1x.png' class='dlth_logo' mode="widthFix"></image>
+  <view>
+    售后电话\t:\t
+    <text>010-86220269</text>
+  </view>
+</view>
 <view class='wrap' hidden='{{evaluate}}'>
   <view class="box_evaluate col">
     <form bindsubmit='pjFun'>

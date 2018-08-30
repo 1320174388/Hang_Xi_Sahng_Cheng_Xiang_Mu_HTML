@@ -21,6 +21,7 @@
   </view>
   <image class='name_right' src='../images/next.png' />
 </view>
+<view class='box'>
 <scroll-view scroll-y="true">
   <view class='list col'>
     <view class='list_main row' wx:for="{{orider.order_group}}" wx:key="" wx:for-item="g">
@@ -38,7 +39,17 @@
       </view>
     </view>
   </view>
+
 </scroll-view>
+</view>
+  <!--地老天荒的logo和电话 -->
+<view class='dlth' bindtap='phone_dlth'>
+  <image src='https://lg-gvr0nl54-1256844085.cos.ap-shanghai.myqcloud.com/gslogo_1x.png' class='dlth_logo' mode="widthFix"></image>
+  <view>
+    售后电话\t:\t
+    <text>010-86220269</text>
+  </view>
+</view>
 <view class='foot row'>
   <view class='foot_left row_around'>
     <view class='foot_left_left row'>

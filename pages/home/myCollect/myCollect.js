@@ -14,6 +14,12 @@ Page({
     selectAllStatus: false, // 全选状态，默认全选
     host: config.hostUrl,
   },
+  // 地老天荒logo和热线
+  phone_dlth: function () {
+    wx.makePhoneCall({
+      phoneNumber: '01086220269'
+    })
+  },
   jump_evaluate: function(e) {
     var goodindex = e.currentTarget.dataset.goodindex;
     wx.navigateTo({

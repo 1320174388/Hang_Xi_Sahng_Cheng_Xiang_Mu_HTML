@@ -12,6 +12,12 @@ Page({
       host:config.hostUrl,
     evaluate: true,
   },
+  // 地老天荒logo和热线
+  phone_dlth: function () {
+    wx.makePhoneCall({
+      phoneNumber: '01086220269'
+    })
+  },
   evaluate: function (e) {
     this.setData({
       evaluate: false,
@@ -65,14 +71,9 @@ Page({
                 orderDetail: orderObj,
                 orderPeople: orderObj.order_people,
             })
-            console.log(orderObj);
         }
       });
-
-
   },
-
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

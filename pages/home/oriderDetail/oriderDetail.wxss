@@ -1,6 +1,7 @@
 /* pages/home/oriderDetail/oriderDetail.wxss */
 page{
     background: #f6f5f4;
+
 }
 view{
     box-sizing: border-box;
@@ -135,6 +136,9 @@ view{
     position: fixed;
     top: 0;
 } */
+.wrap_h{
+min-height: 100vh;
+}
 .wrap>.box_evaluate{
    width: 661rpx;
     
@@ -168,4 +172,22 @@ box-sizing:border-box;
         width: 200rpx;
         
     }
+/*地老天荒售后电话 */
+
+.dlth {
+  width: 100%;
+  text-align: center;
+  color: #ccc;
+  font-size: 30rpx;
+  padding: 10rpx 0 20rpx 0;
+  background: #f9f9f9;
+  position: relative;
+  bottom: 0;
+  right: 0;
+}
+
+.dlth_logo {
+  width: 400rpx;
+  margin-bottom: 10rpx;
+}
 

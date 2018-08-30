@@ -116,7 +116,7 @@ Page({
   },
 
   classDel: function() {
-    console.log("删除子分类")
+
     var that = this;
     var data = wx.getStorageSync('classEdit');
     var ids = wx.getStorageSync('classIndex');
@@ -127,7 +127,7 @@ Page({
         'class_index': data.class_index,
       },
       function(res) {
-        console.log(res)
+
         if (res.data.errNum == 0){
           that.setData({
             del_hid: true,

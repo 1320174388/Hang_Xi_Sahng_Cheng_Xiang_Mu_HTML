@@ -14,6 +14,12 @@ Page({
     host: config.hostUrl,
     editor: true, //显示删除+
   },
+  // 地老天荒logo和热线
+  phone_dlth: function () {
+    wx.makePhoneCall({
+      phoneNumber: '01086220269'
+    })
+  },
   //跳转到填写订单或删除全部
   jump_fillOrider: function(e) {
     var that = this;
@@ -42,10 +48,8 @@ Page({
     }
     outTradeNo = t.getFullYear() + "" + month + "" + getDate + "" + getHours + "" + getMinutes + "" + getSeconds + "" + outTradeNo; //时间戳，用来生成订单号。
     if (that.data.editor == true) {
-
       var order_groups = [];
       var total = 0;
-      console.log(that.data.carts)
       //遍历出需要的数据放入order_groups
       for (var i = 0; i < that.data.carts.length; i++) { // 循环列表得到每个数据
         if (that.data.carts[i]) {
@@ -55,7 +59,6 @@ Page({
           }
         }
       }
-      console.log(order_groups)
       if (order_groups.length !== 0) {
         //筛选数组中具体信息
         for (var i = 0; i < order_groups.length; i++) {
@@ -118,7 +121,6 @@ Page({
           }
         } 
       }
-      console.log(that.data.carts)
       app.point('正在删除购物车商品', 'success', 2000)
       that.setData({
         carts: that.data.carts,
@@ -289,7 +291,6 @@ Page({
             getApp().request(config.hostUrl + '/v1/talk_module/admin_route/' + wx.getStorageSync('token'), {
               adminFormid: response.detail.formId
             }, function (res) {
-              console.log(res);
             }, 'post');
             wx.navigateTo({
               url: '../kefu/adminManage/adminManage',

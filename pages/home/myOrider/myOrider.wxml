@@ -4,38 +4,49 @@
   <view class="navbar">
     <text wx:for="{{navbar}}" data-idx='{{index}}' class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap='navbarTap'>{{item}}</text>
   </view>
-
-  <view class='main col' wx:for='{{orderList}}' wx:key='index' wx:if='{{item.order_status == currentTab+1}}'>
-    <view class='orider' catchtap='jump_detail' id='{{index}}'>订单号：
-      <text style='color:#ccc;'> {{item.order_number}}</text>
-    </view>
-    <view class='list row' catchtap='jump_detail' id='{{index}}'>
-      <image class='list_left' src='{{hosturl+item.details[0].good_pic}}'></image>
-      <view class='list_right'>
-        <view class='list_right_item row_between'>{{item.details[0].good_name}}</view>
-        <view class='list_right_item row_between'>{{item.details[0].style_name}}
-          <text>￥{{item.details[0].good_price}}</text>
+  <view class='col_between'>
+    <scroll-view scroll-y="true" style='height:92vh'>
+      <view class='main col' wx:for='{{orderList}}' wx:key='index' wx:if='{{item.order_status == currentTab+1}}'>
+        <view class='orider' catchtap='jump_detail' id='{{index}}'>订单号：
+          <text style='color:#ccc;'> {{item.order_number}}</text>
         </view>
-        <view class='list_right_item row_between'>
-          <text></text>
-          <text>*{{item.details[0].good_num}}</text>
+        <view class='list row' catchtap='jump_detail' id='{{index}}'>
+          <image class='list_left' src='{{hosturl+item.details[0].good_pic}}'></image>
+          <view class='list_right'>
+            <view class='list_right_item row_between'>{{item.details[0].good_name}}</view>
+            <view class='list_right_item row_between'>{{item.details[0].style_name}}
+              <text>￥{{item.details[0].good_price}}</text>
+            </view>
+            <view class='list_right_item row_between'>
+              <text></text>
+              <text>*{{item.details[0].good_num}}</text>
+            </view>
+          </view>
+        </view>
+        <view class='price'>
+          <!-- <view class='price_main'> -->
+          <view class='price_item'>合计
+            <text class='price_item_right'>￥{{item.zPrice}}</text>
+          </view>
+          <view class='price_item'>共{{item.order_gdnu}}件商品</view>
+          <!-- </view> -->
+        </view>
+        <view class='btn row'>
+          <view class='btn3' bindtap='' wx:if="{{item.order_status == 3}}" bindtap='qRrecive' id='{{index}}'>确认收货</view>
+          <view class='btn3' bindtap='' wx:if="{{item.order_status == 1}}" bindtap='fukuan' id="{{index}}">立即付款</view>
+          <view class='btn1' bindtap='' wx:if="{{item.order_status == 1}}" bindtap='quxiao' id="{{index}}">取消订单</view>
         </view>
       </view>
-    </view>
-    <view class='price'>
-      <!-- <view class='price_main'> -->
-      <view class='price_item'>合计
-        <text class='price_item_right'>￥{{item.zPrice}}</text>
+    </scroll-view>
+    <view class='dlth' bindtap='phone_dlth'>
+      <image src='https://lg-gvr0nl54-1256844085.cos.ap-shanghai.myqcloud.com/gslogo_1x.png' class='dlth_logo' mode="widthFix"></image>
+      <view>
+        售后电话\t:\t
+        <text>010-86220269</text>
       </view>
-      <view class='price_item'>共{{item.order_gdnu}}件商品</view>
-      <!-- </view> -->
-    </view>
-    <view class='btn row'>
-      <view class='btn3' bindtap='' wx:if="{{item.order_status == 3}}" bindtap='qRrecive' id='{{index}}'>确认收货</view>
-      <view class='btn3' bindtap='' wx:if="{{item.order_status == 1}}" bindtap='fukuan' id="{{index}}">立即付款</view>
-      <view class='btn1' bindtap='' wx:if="{{item.order_status == 1}}" bindtap='quxiao' id="{{index}}">取消订单</view>
     </view>
   </view>
+
   <view class='wrap' hidden='{{hid}}' data-classification='true' catchtap='delification'>
     <view data-classification='' catchtap='delification'>
       <view class="pay_wrap col">
@@ -50,9 +61,9 @@
         <view class='pay_main col_around'>
           <text>联系店主</text>
           <view class='row pay_main_num'>微信号： hanlaoshimofang
-             <view bindtap='copyBtn' class='pay_main_num_text'>复制</view>
+            <view bindtap='copyBtn' class='pay_main_num_text'>复制</view>
           </view>
-           <image class='twocode' src='../images/add.jpg' data-types='user' bindtap='big'></image>
+          <image class='twocode' src='../images/add.jpg' data-types='user' bindtap='big'></image>
           <view class='pay_main_th'>支付二维码</view>
           <view class='row_between'>
             <view class='col'>
@@ -60,7 +71,7 @@
               <view class='pay_foot'>微信二维码</view>
             </view>
             <view class='col'>
-               <image class='twocode' src='../images/zfb_pay.jpg' data-types='zhifu' bindtap='big'></image>
+              <image class='twocode' src='../images/zfb_pay.jpg' data-types='zhifu' bindtap='big'></image>
               <view class='pay_foot'>支付宝二维码</view>
             </view>
           </view>
@@ -69,13 +80,3 @@
     </view>
   </view>
 </view>
-<!-- 
-<view class='wrap' hidden='{{evaluate}}'>
-  <view class="box_evaluate col">
-    <form>
-      <view class='box_evaluate'></view>
-      <textarea maxlength='200' name="content" placeholder='最多输入200个字符'></textarea>
-      <button form-type='submit'>上传</button>
-    </form>
-  </view>
-</view> -->

@@ -8,57 +8,75 @@
  *  历史记录 :  -----------------------
  */-->
 
-<view class='list col'>
- <!-- <text wx:if="{{carts !== null?'hidden=true':'hidden=false'}}" style='text-align:center'> 购物车还是空的哦！</text> -->
-  <scroll-view scroll-y="true">
-    <view class='list_main row_between' wx:if="{{c}}" wx:for="{{carts}}" wx:key="" wx:for-item="c">
-      <view class='main_left row'>
-        <!-- wx:if 是否选择显示不同图标 -->
-        <icon wx:if="{{c.selected}}" type="success" color="red" bindtap="selectList" data-index="{{index}}" />
-        <icon wx:else type="circle" bindtap="selectList" data-index="{{index}}" />
+<view class='list col_between'>
+  <!-- <text wx:if="{{carts !== null?'hidden=true':'hidden=false'}}" style='text-align:center'> 购物车还是空的哦！</text> -->
+  <view>
+    <scroll-view scroll-y="true">
+      <view class='list_main row_between' wx:if="{{c}}" wx:for="{{carts}}" wx:key="" wx:for-item="c">
+        <view class='main_left row'>
+          <!-- wx:if 是否选择显示不同图标 -->
+          <icon wx:if="{{c.selected}}" type="success" color="red" bindtap="selectList" data-index="{{index}}" />
+          <icon wx:else type="circle" bindtap="selectList" data-index="{{index}}" />
 
-        <image class='imgs' src='{{host+c.good_image}}'></image>
-      </view>
+          <image class='imgs' src='{{host+c.good_image}}'></image>
+        </view>
 
 
-      <view class='main_right col'>
-        <view class='f_color5 list_right_item'>{{c.good_name+ " " +c.style_name}}</view>
-        <view class='row_between list_right_item'>
-          <view>
-            <text class='f_color'>￥{{c.style_price}}</text>
-          </view>
-          <view class='list_right_item_right row_around'>
-            <text class='right_flex' bindtap="minusCount" data-index="{{index}}">-</text>
-            <text>{{c.good_num}}</text>
-            <text class='right_flex' bindtap="addCount" data-index="{{index}}">+</text>
+        <view class='main_right col'>
+          <view class='f_color5 list_right_item'>{{c.good_name+ " " +c.style_name}}</view>
+          <view class='row_between list_right_item'>
+            <view>
+              <text class='f_color'>￥{{c.style_price}}</text>
+            </view>
+            <view class='list_right_item_right row_around'>
+              <text class='right_flex' bindtap="minusCount" data-index="{{index}}">-</text>
+              <text>{{c.good_num}}</text>
+              <text class='right_flex' bindtap="addCount" data-index="{{index}}">+</text>
+            </view>
           </view>
         </view>
       </view>
-    </view>
-  </scroll-view>
- </view>
-
-<form report-submit="true" bindsubmit="jump_fillOrider">
-<view class='foot row'>
-  <view class='foot_left row'>
-    <view class='row'>
-      <!-- wx:if 是否全选显示不同图标 -->
-      <icon wx:if="{{selectAllStatus}}" type="success_circle" color="red" bindtap="selectAll" />
-      <icon wx:else type="circle" color="gray" bindtap="selectAll" />
-      <text>全选</text>
-    </view>
-    <view class='row'>
-      <view>合计：</view>
-      <view class='f_color'>￥{{totalPrice}}</view>
-    </view>
+      <!--地老天荒的logo和电话 -->
+      <!-- <view class='dlth' bindtap='phone_dlth'>
+      <image src='https://lg-gvr0nl54-1256844085.cos.ap-shanghai.myqcloud.com/gslogo_1x.png' class='dlth_logo' mode="widthFix"></image>
+      <view>
+        售后电话\t:\t
+        <text>010-86220269</text>
+      </view>
+    </view> -->
+    </scroll-view>
   </view>
-  <view class='foot_right row_between' >
-  <text bindtap='editor' class='blue'>{{editor==true?"编辑":"完成"}}</text>
-    <button class='foot_right_r' formType='submit'>{{editor==true?"结算":"删除"}}</button>
-
-    <!-- <view class='foot_right_r'>></view> -->
+  <!--地老天荒的logo和电话 -->
+  <view class='dlth' bindtap='phone_dlth'>
+    <image src='https://lg-gvr0nl54-1256844085.cos.ap-shanghai.myqcloud.com/gslogo_1x.png' class='dlth_logo' mode="widthFix"></image>
+    <view>
+      售后电话\t:\t
+      <text>010-86220269</text>
+    </view>
   </view>
 </view>
+
+<form report-submit="true" bindsubmit="jump_fillOrider">
+  <view class='foot row'>
+    <view class='foot_left row'>
+      <view class='row'>
+        <!-- wx:if 是否全选显示不同图标 -->
+        <icon wx:if="{{selectAllStatus}}" type="success_circle" color="red" bindtap="selectAll" />
+        <icon wx:else type="circle" color="gray" bindtap="selectAll" />
+        <text>全选</text>
+      </view>
+      <view class='row'>
+        <view>合计：</view>
+        <view class='f_color'>￥{{totalPrice}}</view>
+      </view>
+    </view>
+    <view class='foot_right row_between'>
+      <text bindtap='editor' class='blue'>{{editor==true?"编辑":"完成"}}</text>
+      <button class='foot_right_r' formType='submit'>{{editor==true?"结算":"删除"}}</button>
+
+      <!-- <view class='foot_right_r'>></view> -->
+    </view>
+  </view>
 </form>
 <!-- 客服图标 -->
 <view class='kefu_rexian_dizhi'>

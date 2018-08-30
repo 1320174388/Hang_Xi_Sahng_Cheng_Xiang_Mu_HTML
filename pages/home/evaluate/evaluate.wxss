@@ -139,8 +139,9 @@ swiper {
 .main {
   font-size: 30rpx;
   color: #000;
+  min-height: 95vh;
   /* height: 80vw; */
-  margin-bottom: 150rpx;
+  /* margin-bottom: 150rpx; */
 }
 
 .navbar {
@@ -249,6 +250,8 @@ swiper {
 box {
   /* margin-bottom: 100rpx; */
   padding-bottom: 30rpx;
+  min-height: 50vh;
+  background: red
 }
 
 .foot_left {
@@ -354,3 +357,44 @@ box {
   padding: auto;
   font-size: 40rpx;
 }
+.complete{
+  text-align: center;
+}
+/*地老天荒售后电话 */
+
+.dlth {
+  width: 100%;
+  text-align: center;
+  color: #ccc;
+  font-size: 30rpx;
+  padding: 10rpx 0 20rpx 0;
+  background: #f9f9f9;
+  clear: both;
+  position: relative;
+  bottom: 0;
+  right: 0;
+  margin-top: 200rpx;
+}
+/* .dlth_b {
+  width: 100%;
+  text-align: center;
+  color: #ccc;
+  font-size: 30rpx;
+  padding: 10rpx 0 20rpx 0;
+  background: #f9f9f9;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+} */
+
+
+.dlth_logo {
+  width: 400rpx;
+  margin-bottom: 10rpx;
+}
+.wu{
+  text-align: center;
+  position: relative;
+  top: 300rpx;
+}
+

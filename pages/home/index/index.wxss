@@ -6,207 +6,235 @@
  *  文件描述 :  商城首页样式
  *  历史记录 :  -----------------------
  */
- view{
-     box-sizing: border-box;
- }
- .next{
-  width:20rpx;
-height:25rpx;
-float:right;
-margin:;
-margin-top:40rpx;
-margin-right:20rpx;
 
- }
- .xc{
-     color: #fff;
-     font-size: 50rpx;
-     position: absolute;
-     right: 30rpx;
-     top: 10rpx;
-     z-index: 9;
- }
- .head-notice{
-     height: 50rpx;
-     line-height: 50rpx;
-     color: #fff;
-     font-size: 28rpx;
-     background: #f67e79;
-     display: flex;
- }
- .head-notice>image{
-     width: 36rpx;
-     height: 36rpx;
-     margin: 5rpx 20rpx;
- }
- .head-notice>view{
-     width: 70%;
-     height: 100%;
-     margin: 0 20rpx;
-     overflow: hidden;
-     position: relative;
- }
- .head-notice>view>view{
-     height: 100%;
-     position: absolute;
-     top: 0;
- }
- .notice-edit{
-     position: absolute;
-     width: 100%;
-     height: 100vh;
-     z-index: 6;
-     background: rgba(0, 0, 0, 0.5);
-     left: 0;
-     top: 0;
- }
- .notice-edit>view{
-     width: 80%;
-     margin: 0 auto;
-     height: 460rpx;
-     background: #fff;
-     color: #333;
-     margin-top: 200rpx;
-     padding: 50rpx;
- }
-  .notice-edit textarea{
-      width: 100%;
-      height: 260rpx;
-      border: 1px solid #999;
+view {
+  box-sizing: border-box;
+}
 
-  }
-    .notice-edit button{
-        border: 1px solid #999;
-        color: #999;
-        background: #fff;
-        padding: 0 20rpx;
-        font-size: 28rpx;
-        margin: 40rpx auto 0;
-        text-align: center;
-        width: 200rpx;
-        
-    }
-.tel{
+.next {
+  width: 20rpx;
+  height: 25rpx;
+  float: right;
+ 
+  margin-top: 40rpx;
+  margin-right: 20rpx;
+}
+
+.xc {
+  color: #fff;
+  font-size: 50rpx;
+  position: absolute;
+  right: 30rpx;
+  top: 10rpx;
+  z-index: 9;
+}
+
+.head-notice {
+  height: 50rpx;
+  line-height: 50rpx;
+  color: #fff;
+  font-size: 28rpx;
+  background: #f67e79;
+  display: flex;
+}
+
+.head-notice>image {
+  width: 36rpx;
+  height: 36rpx;
+  margin: 5rpx 20rpx;
+}
+
+.head-notice>view {
+  width: 70%;
+  height: 100%;
+  margin: 0 20rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+.head-notice>view>view {
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.notice-edit {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  z-index: 6;
+  background: rgba(0, 0, 0, 0.5);
+  left: 0;
+  top: 0;
+}
+
+.notice-edit>view {
+  width: 80%;
+  margin: 0 auto;
+  height: 460rpx;
+  background: #fff;
+  color: #333;
+  margin-top: 200rpx;
+  padding: 50rpx;
+}
+
+.notice-edit textarea {
+  width: 100%;
+  height: 260rpx;
+  border: 1px solid #999;
+}
+
+.notice-edit button {
+  border: 1px solid #999;
+  color: #999;
+  background: #fff;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+  margin: 40rpx auto 0;
+  text-align: center;
+  width: 200rpx;
+}
+
+.tel {
   margin: 2% 4%;
   background: #fff;
   text-align: center;
-  color: #E1E1E1;
+  color: #e1e1e1;
   padding: 10rpx 0;
-  border-radius:10rpx; 
-
+  border-radius: 10rpx;
 }
- .head-swiper image{
-     width: 100%;
- }
- .content-nav{
-    display:flex;
-padding:20rpx 25rpx;
-background:#fff;
-flex-flow:row wrap;
 
- }
- .content-nav>view{
-     text-align: center;
-     width: 100rpx;
-     align-items: center;
-     
- }
- .content-nav image{
-     width: 93rpx;
-     height: 100rpx;
- }
- .content-nav text{
-     font-size: 24rpx;
+.head-swiper image {
+  width: 100%;
+}
 
- }
- /* 内容 今日特卖 */
- .content{
-background: #fff;
- }
- .title-wrap{
-     height: 100rpx;
-     border-top: 1rpx solid #E1E1E1;
-     border-bottom: 1rpx solid #E1E1E1;
-     text-align: center;
-     line-height: 100rpx;
-     position: relative;
- }
- /* 小圆点统一样式 */
- .title-wrap>view{
-     position: absolute;
-     border-radius: 50%;
-     background: #FF3D4B;
-     width: 15rpx;
-     height: 15rpx;
- }
- /* 文字样式 */
- .title-wrap>text:first-of-type{
-     color: #FF1058;
-     font-size: 34rpx;
-     font-weight: bold;
- }
- .title-wrap>text:last-of-type{
-     font-size: 24rpx;
-     color: #4A4A4A;
-     position: absolute;
-     right: 60rpx;
-     top: 0;
- }
- /* 小圆点样式 */
- .title-wrap>view:first-of-type{
-     width: 8rpx;
-     height: 8rpx;
-     top: 55rpx;
-     left: 270rpx;
- }
- .title-wrap>view:nth-of-type(2){
-     top: 45rpx;
-     left: 285rpx;
- }
- .title-wrap>view:nth-of-type(3){
-     top: 45rpx;
-     left: 455rpx;
- }
- .title-wrap>view:last-of-type{
-     width: 8rpx;
-     height: 8rpx;
-     top: 40rpx;
-     left: 475rpx;
- }
- /* 今日特卖内容 */
- .content-shop{
-     padding: 20rpx 40rpx;
-     display: flex;
-     justify-content: space-around;
-    
-     
- }
- .content-shop>view{
-     display: flex;
-     flex-direction: column;
-     text-align: center;
- }
- .content-shop image{
-     width: 200rpx;
-     height: 200rpx;
-    
- }
- .content-shop text:first-of-type{
-     font-size: 22rpx;
- }
- .content-shop text:nth-of-type(2){
-     color: #FF1656;
-     font-size: 28rpx;
- }
+.content-nav {
+  display: flex;
+  padding: 20rpx 25rpx;
+  background: #fff;
+  flex-flow: row wrap;
+}
 
- /*客服  */
-.kefu_rexian_dizhi{
-  position:fixed;
+.content-nav>view {
+  text-align: center;
+  width: 100rpx;
+  align-items: center;
+}
+
+.content-nav image {
+  width: 93rpx;
+  height: 100rpx;
+}
+
+.content-nav text {
+  font-size: 24rpx;
+}
+
+/* 内容 今日特卖 */
+
+.content {
+  background: #fff;
+}
+
+.title-wrap {
+  height: 100rpx;
+  border-top: 1rpx solid #e1e1e1;
+  border-bottom: 1rpx solid #e1e1e1;
+  text-align: center;
+  line-height: 100rpx;
+  position: relative;
+}
+
+/* 小圆点统一样式 */
+
+.title-wrap>view {
+  position: absolute;
+  border-radius: 50%;
+  background: #ff3d4b;
+  width: 15rpx;
+  height: 15rpx;
+}
+
+/* 文字样式 */
+
+.title-wrap>text:first-of-type {
+  color: #ff1058;
+  font-size: 34rpx;
+  font-weight: bold;
+}
+
+.title-wrap>text:last-of-type {
+  font-size: 24rpx;
+  color: #4a4a4a;
+  position: absolute;
+  right: 60rpx;
+  top: 0;
+}
+
+/* 小圆点样式 */
+
+.title-wrap>view:first-of-type {
+  width: 8rpx;
+  height: 8rpx;
+  top: 55rpx;
+  left: 270rpx;
+}
+
+.title-wrap>view:nth-of-type(2) {
+  top: 45rpx;
+  left: 285rpx;
+}
+
+.title-wrap>view:nth-of-type(3) {
+  top: 45rpx;
+  left: 455rpx;
+}
+
+.title-wrap>view:last-of-type {
+  width: 8rpx;
+  height: 8rpx;
+  top: 40rpx;
+  left: 475rpx;
+}
+
+/* 今日特卖内容 */
+
+.content-shop {
+  padding: 20rpx 40rpx;
+  display: flex;
+  justify-content: space-around;
+}
+
+.content-shop>view {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.content-shop image {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.content-shop text:first-of-type {
+  font-size: 22rpx;
+}
+
+.content-shop text:nth-of-type(2) {
+  color: #ff1656;
+  font-size: 28rpx;
+}
+
+/*客服  */
+
+.kefu_rexian_dizhi {
+  position: fixed;
   top: 60%;
   right: 0;
   width: 90rpx;
 }
-.btn{
+
+.btn {
   width: 90rpx;
   height: 90rpx;
   border-radius: 50%;
@@ -215,22 +243,37 @@ background: #fff;
   padding-top: 3rpx;
   position: relative;
 }
-.btn_img{
+
+.btn_img {
   width: 45rpx;
   height: 45rpx;
   position: absolute;
   left: 27%;
   top: 25%;
 }
-.nav_box{
+
+.nav_box {
   width: 20%;
   height: 150rpx;
   margin: 10rpx 20rpx;
- 
-align-items:center;
-
+  align-items: center;
 }
+
 /* .nav_box image{
   width: 100rpx;
   height: 100rpx;
 } */
+
+/*地老天荒售后电话 */
+.dlth{
+width: 100%;
+text-align: center;
+color: #ccc;
+font-size: 30rpx;
+padding: 10rpx 0 20rpx 0;
+background: #F9F9F9;
+}
+.dlth_logo{
+width: 400rpx;
+margin-bottom: 10rpx;
+}
