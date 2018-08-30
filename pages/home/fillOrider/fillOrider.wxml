@@ -63,7 +63,7 @@
       </view>
       <view class='pay_main col_around'>
         <text>联系店主</text>
-        <view class='row pay_main_num'>微信号： han18310379198
+        <view class='row pay_main_num'>微信号： hanlaoshimofang
           <view bindtap='copyBtn' class='pay_main_num_text'>复制</view>
         </view>
         <image class='twocode' src='../images/add.jpg' data-types='user' bindtap='big'></image>

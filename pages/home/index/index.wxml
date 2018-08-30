@@ -42,14 +42,14 @@
   <view wx:if="{{nA.son_class.length==3}}" wx:for="{{shopArr}}" wx:key="" wx:for-item="nA">
     <view class='content'>
       <view bindtap='shopJump' data-classIndex='{{nA.class_index}}' class='title-wrap'>
-        <!-- 标题周边圆点 -->
+        <!-- 标题周边圆点
         <view></view>
         <view></view>
         <view></view>
-        <view></view>
+        <view></view> -->
         <!-- 文字 -->
         <text>{{nA.class_name}}</text>
-        <text >更多</text><image class='next' src='../images/next.png'></image>
+        <text>更多</text><image class='next' src='../images/next.png'></image>
       </view>
       <view class='content-shop'>
         <view wx:for="{{nA.son_class}}" wx:key="index" wx:for-item="sc" bindtap='jump_evaluate' data-goodindex='{{sc.good_index}}'>
